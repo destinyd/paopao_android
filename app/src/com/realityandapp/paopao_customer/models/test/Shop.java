@@ -18,9 +18,9 @@ public class Shop implements IShop {
 
     public Shop() {
         i++;
-        name = "name" + String.valueOf(i);
-        description = "description" + String.valueOf(i);
-        contact = "contact" + String.valueOf(i);
+        name = "shop" + String.valueOf(i);
+        description = "shop description" + String.valueOf(i);
+        contact = "shop contact" + String.valueOf(i);
         avatar = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
 

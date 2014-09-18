@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <ImageView
-            android:id="@+id/iv_shop_icon"
+            android:id="@+id/iv_good_icon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -37,12 +37,13 @@
             style="@style/DescSection"
             >
         <TextView
-                android:id="@+id/topic_title"
+                android:id="@+id/good_title"
                 style="@style/TopicTitle"/>
 
         <TextView
-                android:id="@+id/topic_desc"
-                android:layout_below="@id/topic_title"
-                style="@style/TopicDesc"/>
+                android:id="@+id/good_desc"
+                style="@style/TopicDesc"
+                android:layout_below="@id/good_title"
+                />
     </RelativeLayout>
 </com.realityandapp.paopao_customer.views.widget.SquareLayout>

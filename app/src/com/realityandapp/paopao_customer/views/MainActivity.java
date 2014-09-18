@@ -41,6 +41,7 @@ public class MainActivity extends ListActivity {
         addItem(data, "sign in", SignInActivity.class);
         addItem(data, "sign up", SignUpActivity.class);
         addItem(data, "shops", ShopsActivity.class);
+        addItem(data, "shop goods", ShopGoodsActivity.class);
 
         return data;
     }
