@@ -14,4 +14,18 @@
     <string name="label_email">Email</string>
     <string name="sign_up">注册</string>
 
+
+    <string name="fa_home">&#xf015;</string>
+    <string name="fa_book">&#xf02d;</string>
+    <string name="fa_info">&#xf05a;</string>
+    <string name="fa_question">&#xf059;</string>
+    <string name="fa_note">&#xf044;</string>
+    <string name="fa_menu">&#xf0c9;</string>
+    <string name="fa_search">&#xf002;</string>
+    <string name="fa_round">&#xf10c;</string>
+    <string name="fa_backback">&#xf053;</string>
+    <string name="fa_backnext">&#xf054;</string>
+    <string name="fa_backcount">&#xf02d;</string>
+    <string name="fa_backcheckmark">&#xf00c;</string>
+    <string name="fa_backsmile">&#xf118;</string>
 </resources>

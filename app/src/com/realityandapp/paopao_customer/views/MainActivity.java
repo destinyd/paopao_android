@@ -40,7 +40,7 @@ public class MainActivity extends ListActivity {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         addItem(data, "sign in", SignInActivity.class);
         addItem(data, "sign up", SignUpActivity.class);
-//        addItem(data, "other", OtherActivity.class);
+        addItem(data, "shops", ShopsActivity.class);
 
         return data;
     }
