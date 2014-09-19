@@ -1,7 +1,8 @@
 package com.realityandapp.paopao_customer.views.base;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
+import com.realityandapp.paopao_customer.R;
 import roboguice.activity.RoboFragmentActivity;
 
 /**
@@ -11,5 +12,15 @@ public class PaopaoBaseActivity extends RoboFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        ((TextView)findViewById(R.id.title)).setText(title);
+    }
+
+    @Override
+    public void setTitle(int titleId) {
+        ((TextView)findViewById(R.id.title)).setText(titleId);
     }
 }

@@ -23,6 +23,7 @@
         <platform.version>4.4.2_r3</platform.version>
         <compatibility-v4.version>19.1.0</compatibility-v4.version>
         <activeandroid.version>3.1-SNAPSHOT</activeandroid.version>
+        <abs.version>4.4.0</abs.version>
     </properties>
 
 	<dependencyManagement>

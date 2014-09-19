@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <com.mindpin.android.loadingview.LoadingView
-        android:id="@+id/loading_view"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+            android:id="@+id/loading_view"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    <include layout="@layout/actionbar_shops" android:id="@+id/actionbar"/>
 
     <GridView
-        android:id="@+id/gv_shops"
-        android:numColumns="2"
-        android:gravity="center"
-        android:horizontalSpacing="5dp"
-        android:verticalSpacing="5dp"
-        android:stretchMode="columnWidth"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+            android:id="@+id/gv_shops"
+            android:numColumns="2"
+            android:gravity="center"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:stretchMode="columnWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/actionbar"
+            >
     </GridView>
 
 
-</LinearLayout>
+</RelativeLayout>

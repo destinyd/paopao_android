@@ -1,6 +1,5 @@
 package com.realityandapp.paopao_customer.views;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.GridView;
 import com.mindpin.android.loadingview.LoadingView;

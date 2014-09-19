@@ -30,6 +30,7 @@ public class SignInActivity extends PaopaoBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.sign_in);
+        setTitle("登录");
 //        myAuthenticator = new AuthenticatorsController(this);
 //        current_user = User.current();
         btn_signin.setOnClickListener(new View.OnClickListener() {

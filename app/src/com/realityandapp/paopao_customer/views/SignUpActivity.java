@@ -36,6 +36,7 @@ public class SignUpActivity extends PaopaoBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.sign_up);
+        setTitle("注册");
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

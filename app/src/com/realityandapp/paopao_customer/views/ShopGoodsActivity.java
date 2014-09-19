@@ -8,7 +8,6 @@ import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
-import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -30,6 +29,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods);
+
         shop = new Shop();
         setTitle(shop.get_name() + " 的菜品");
         get_datas();

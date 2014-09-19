@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/ActionBar">
+    <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+            style="@style/ActionBarFATV"
+            android:id="@+id/fatv_menu"
+            android:text="@string/fa_menu"
+            android:layout_alignParentLeft="true"
+            />
+    <TextView
+            style="@style/ActionBarTitle"
+            android:id="@+id/title"
+            android:layout_toRightOf="@id/fatv_menu"
+            android:layout_alignParentRight="true"
+            />
+</RelativeLayout>

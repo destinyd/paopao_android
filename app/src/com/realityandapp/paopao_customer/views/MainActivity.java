@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import com.realityandapp.paopao_customer.views.SignInActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
