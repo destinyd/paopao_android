@@ -53,6 +53,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
+                set_cart_count(99);
             }
         }.execute();
     }

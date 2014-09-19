@@ -3,11 +3,13 @@ package com.realityandapp.paopao_customer.views;
 import android.os.Bundle;
 import android.widget.GridView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -49,6 +51,7 @@ public class ShopsActivity extends PaopaoBaseActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
+                set_cart_count(101);
             }
         }.execute();
     }
