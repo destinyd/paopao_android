@@ -10,6 +10,8 @@ paopao-customer-parent apk
 依赖库
 ---------------------
 * [destinyd/android-archetypes][android-archetypes]
+* [jgilfelt/android-viewbadger][android-viewbadger]
 
 
 [android-archetypes]: https://github.com/destinyd/android-archetypes
+[android-viewbadger]: https://github.com/jgilfelt/android-viewbadger
