@@ -2,11 +2,12 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/ActionBar">
-    <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
             android:id="@+id/fatv_menu"
             android:text="@string/fa_menu"
             android:layout_alignParentLeft="true"
+            android:background="@drawable/actionbar_icon"
             />
     <TextView
             style="@style/ActionBarTitle"

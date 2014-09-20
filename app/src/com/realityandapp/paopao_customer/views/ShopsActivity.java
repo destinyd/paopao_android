@@ -1,21 +1,13 @@
 package com.realityandapp.paopao_customer.views;
 
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
-import android.view.View;
 import android.widget.GridView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
-import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
-import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 

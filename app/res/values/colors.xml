@@ -3,4 +3,6 @@
     <color name="actionbar_background">#FF5722</color>
     <color name="ddd">#ddd</color>
     <color name="menu_background">#F9F9F9</color>
+    <color name="actionbar_icon_unfocus">@android:color/transparent</color>
+    <color name="actionbar_icon_focus">#FFE64A19</color>
 </resources>

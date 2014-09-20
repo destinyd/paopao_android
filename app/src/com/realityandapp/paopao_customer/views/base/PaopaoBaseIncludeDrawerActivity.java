@@ -7,10 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.ShopsActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 
 /**
@@ -22,7 +21,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
     @InjectView(R.id.left_drawer)
     LinearLayout left_drawer;
     @InjectView(R.id.fatv_menu)
-    FontAwesomeTextView fatv_menu;
+    FontAwesomeButton fatv_menu;
     @InjectView(R.id.menu_home)
     LinearLayout menu_home;
     @InjectView(R.id.menu_favorites)
