@@ -13,7 +13,8 @@
     <string name="label_name">昵称</string>
     <string name="label_email">Email</string>
     <string name="sign_up">注册</string>
-
+    <string name="cart">购物车</string>
+    <string name="search">搜索</string>
 
     <string name="fa_home">&#xf015;</string>
     <string name="fa_book">&#xf02d;</string>
@@ -28,7 +29,9 @@
     <string name="fa_count">&#xf02d;</string>
     <string name="fa_checkmark">&#xf00c;</string>
     <string name="fa_smile">&#xf118;</string>
-    <string name="cart">购物车</string>
     <string name="fa_cart">&#xf07a;</string>
-    <string name="search">搜索</string>
+    <string name="fa_heart">&#xf004;</string>
+    <string name="fa_map_marker">&#xf041;</string>
+    <string name="fa_cog">&#xf013;</string>
+    <string name="fa_sign_out">&#xf08b;</string>
 </resources>

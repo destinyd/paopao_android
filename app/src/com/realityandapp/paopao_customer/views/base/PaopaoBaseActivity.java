@@ -11,7 +11,6 @@ import roboguice.activity.RoboFragmentActivity;
  * Created by dd on 14-9-18.
  */
 public class PaopaoBaseActivity extends RoboFragmentActivity {
-    private FontAwesomeTextView fatv_cart = null;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +27,7 @@ public class PaopaoBaseActivity extends RoboFragmentActivity {
     }
 
     protected void set_cart_count(int count){
-        if(fatv_cart == null)
-            fatv_cart = (FontAwesomeTextView) findViewById(R.id.fatv_cart);
+        FontAwesomeTextView fatv_cart = (FontAwesomeTextView) findViewById(R.id.fatv_cart);
         if(fatv_cart != null && count >= 0) {
             BadgeView badge = new BadgeView(this, fatv_cart);
             badge.setTextSize(getResources().getDimensionPixelSize(R.dimen.cart_badge_text_size));

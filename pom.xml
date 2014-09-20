@@ -20,8 +20,8 @@
         <android.version>4.1.1.4</android.version>
         <android-support.version>r7</android-support.version>
         <android.plugin.version>3.8.1</android.plugin.version>
-        <platform.version>4.4.2_r3</platform.version>
-        <compatibility-v4.version>19.1.0</compatibility-v4.version>
+        <platform.version>L_r1</platform.version>
+        <compatibility-v4.version>20.0.0</compatibility-v4.version>
         <activeandroid.version>3.1-SNAPSHOT</activeandroid.version>
         <abs.version>4.4.0</abs.version>
     </properties>
@@ -45,11 +45,11 @@
                 <!--<artifactId>support-v4</artifactId>-->
                 <!--<version>${android-support.version}</version>-->
             <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>android.support</groupId>-->
-                <!--<artifactId>compatibility-v4</artifactId>-->
-                <!--<version>${compatibility-v4.version}</version>-->
-            <!--</dependency>-->
+            <dependency>
+                <groupId>android.support</groupId>
+                <artifactId>compatibility-v4</artifactId>
+                <version>${compatibility-v4.version}</version>
+            </dependency>
 		</dependencies>
 
 	</dependencyManagement>

@@ -1,7 +1,12 @@
 package com.realityandapp.paopao_customer.views;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.R;
@@ -9,6 +14,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
 import com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -18,7 +24,7 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class ShopsActivity extends PaopaoBaseActivity {
+public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     @InjectView(R.id.gv_shops)
     GridView gv_shops;
     @InjectView(R.id.loading_view)
@@ -60,6 +66,5 @@ public class ShopsActivity extends PaopaoBaseActivity {
         ShopsAdapter adapter =
                 new ShopsAdapter(getLayoutInflater(), shops);
         gv_shops.setAdapter(adapter);
-
     }
 }

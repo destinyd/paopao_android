@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/left_drawer"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_gravity="start"
+              android:orientation="vertical"
+              android:background="#F9F9F9"
+        >
+    <LinearLayout
+            android:id="@+id/menu_home"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_home"
+                />
+        <TextView
+                android:text="首页"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_favorites"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_heart"
+                />
+        <TextView
+                android:text="我的收藏"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_orders"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_note"
+                />
+        <TextView
+                android:text="我的点单"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_addresses"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_map_marker"
+                />
+        <TextView
+                android:text="我的地址薄"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_settings"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_cog"
+                />
+        <TextView
+                android:text="设置"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_exit"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_sign_out"
+                />
+        <TextView
+                android:text="退出"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
+</LinearLayout>
