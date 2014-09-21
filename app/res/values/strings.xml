@@ -15,6 +15,8 @@
     <string name="sign_up">注册</string>
     <string name="cart">购物车</string>
     <string name="search">搜索</string>
+    <string name="into_shop">进入店铺</string>
+    <string name="cart_total_label">总价(不含运费):</string>
 
     <string name="fa_home">&#xf015;</string>
     <string name="fa_book">&#xf02d;</string>
@@ -34,4 +36,6 @@
     <string name="fa_map_marker">&#xf041;</string>
     <string name="fa_cog">&#xf013;</string>
     <string name="fa_sign_out">&#xf08b;</string>
+    <string name="fa_plus_square">&#xf0fe;</string>
+    <string name="fa_minus_square">&#xf146;</string>
 </resources>

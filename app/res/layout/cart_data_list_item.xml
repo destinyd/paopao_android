@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/white_with_bbb_bottom_border"
+            >
+        <CheckBox
+                android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:id="@+id/cb_shop_goods"
+                android:checked="true"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:layout_alignParentRight="true"
+                  android:id="@+id/tv_goto_shop"
+                  android:textColor="@color/into_shop"
+                  android:text="@string/into_shop"
+                  android:gravity="center_vertical|right"
+                  android:layout_marginRight="2dp"
+                  android:singleLine="true"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:id="@+id/tv_shop_name"
+                  android:layout_toLeftOf="@+id/tv_goto_shop"
+                  android:layout_toRightOf="@+id/cb_shop_goods"
+                  android:gravity="center"
+                  android:paddingLeft="5dp"
+                  android:paddingRight="5dp"
+                  android:singleLine="true"
+                />
+    </RelativeLayout>
+
+    <ListView
+            android:id="@+id/iv_cart_goods_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/bbb"
+            android:dividerHeight="1dp"
+            >
+    </ListView>
+    <!--android:background="#ddd"-->
+</LinearLayout>

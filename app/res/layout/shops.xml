@@ -8,14 +8,6 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-        <com.mindpin.android.loadingview.LoadingView
-                android:id="@+id/loading_view"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
-
         <include layout="@layout/actionbar_shops" android:id="@+id/actionbar"/>
 
         <GridView
@@ -32,6 +24,9 @@
                 >
         </GridView>
 
+        <com.mindpin.android.loadingview.LoadingView
+                android:id="@+id/loading_view"
+                style="@style/LoadingViewWithActionBar"/>
 
     </RelativeLayout>
 

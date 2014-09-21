@@ -26,4 +26,8 @@ public class DataProvider {
         }
         return list;
     }
+
+    public static Cart get_cart() {
+        return new Cart();
+    }
 }

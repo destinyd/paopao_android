@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="actionbar_background">#FF5722</color>
+    <color name="first_color">#FF5722</color>
+    <color name="first_color_focus">#E64A19</color>
+    <color name="actionbar_background">@color/first_color</color>
+    <color name="into_shop">@color/first_color</color>
+    <color name="cart_good_amount">@color/first_color</color>
     <color name="ddd">#ddd</color>
+    <color name="bbb">#bbb</color>
     <color name="menu_background">#F9F9F9</color>
     <color name="actionbar_icon_unfocus">@android:color/transparent</color>
-    <color name="actionbar_icon_focus">#FFE64A19</color>
+    <color name="actionbar_icon_focus">@color/first_color_focus</color>
+    <color name="eee">#eee</color>
+    <color name="color777">#777</color>
 </resources>

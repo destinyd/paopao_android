@@ -29,6 +29,7 @@
         <activity android:name=".views.SignInActivity"/>
         <activity android:name=".views.ShopsActivity"/>
         <activity android:name=".views.ShopGoodsActivity"/>
+        <activity android:name=".views.CartActivity"/>
     </application>
 
 </manifest>
