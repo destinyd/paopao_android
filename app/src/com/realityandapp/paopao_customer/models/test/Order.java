@@ -17,6 +17,7 @@ public class Order implements IOrder {
     public String status;
     public Shop shop;
     public Address address;
+    public Deliveryman deliveryman;
     public int shop_discount;
     public float shop_delivery_price;
     public float total = 0;
@@ -35,6 +36,7 @@ public class Order implements IOrder {
         total += shop_delivery_price;
         address = new Address();
         status = "等待支付";
+        deliveryman = new Deliveryman();
     }
 
     @Override
@@ -75,6 +77,11 @@ public class Order implements IOrder {
     @Override
     public String get_status() {
         return status;
+    }
+
+    @Override
+    public Deliveryman get_deliveryman() {
+        return deliveryman;
     }
 
     @Override

@@ -25,7 +25,7 @@
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                   android:layout_toRightOf="@+id/tv_order_total_label"
                   android:layout_alignParentRight="true"
-                  android:gravity="center"
+                  android:gravity="center_vertical|left"
                   android:paddingLeft="5dp"
                   android:paddingRight="5dp"
                   android:singleLine="true"
@@ -62,30 +62,34 @@
                         />
             </RelativeLayout>
 
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                            android:id="@+id/rl_order_address"
-                            android:background="@drawable/white_with_bbb_bottom_border"
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
                             android:padding="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/white_with_bbb_bottom_border"
                     >
-                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                                android:id="@+id/rl_order_address_contact"
-                                android:gravity="center_vertical"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginBottom="10dp"
-                        >
-                    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-                              android:gravity="center_vertical|left"
-                              android:singleLine="true"
-                              android:layout_alignParentLeft="true"
-                              android:id="@+id/tv_contact"
-                              android:layout_toLeftOf="@id/tv_edit_address"
-                            />
-                </RelativeLayout>
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:gravity="center_vertical|left"
-                          android:id="@+id/tv_address"
-                          android:layout_alignParentBottom="true"
-                          android:layout_below="@id/rl_order_address_contact"
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:text="@string/order_deliveryman"
+                          android:id="@+id/tv_deliveryman_label"
+                        />
+                <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:id="@+id/fabtn_microphone"
+                        android:text="@string/fa_microphone"
+                        android:textColor="@color/cart_highlight"
+                        android:layout_alignParentRight="true"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_deliveryman"
+                        android:gravity="center_vertical|right"
+                        android:layout_toRightOf="@id/tv_deliveryman_label"
+                        android:layout_toLeftOf="@id/fabtn_microphone"
+                        android:layout_marginRight="5dp"
                         />
             </RelativeLayout>
 
@@ -95,7 +99,6 @@
                     android:layout_height="wrap_content"
                     android:divider="@color/bbb"
                     android:dividerHeight="1dp"
-                    android:layout_below="@id/rl_order_address"
                     android:background="@drawable/white_with_bbb_bottom_border"
                     >
             </ListView>
@@ -139,6 +142,34 @@
                         android:layout_toRightOf="@id/tv_delivery_price_label"
                         android:textColor="@color/cart_highlight"
                         android:layout_alignParentRight="true"
+                        />
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:id="@+id/rl_order_address"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                            android:padding="10dp"
+                    >
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:id="@+id/rl_order_address_contact"
+                                android:gravity="center_vertical"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginBottom="10dp"
+                        >
+                    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                              android:gravity="center_vertical|left"
+                              android:singleLine="true"
+                              android:layout_alignParentLeft="true"
+                              android:id="@+id/tv_contact"
+                              android:layout_toLeftOf="@id/tv_edit_address"
+                            />
+                </RelativeLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:gravity="center_vertical|left"
+                          android:id="@+id/tv_address"
+                          android:layout_alignParentBottom="true"
+                          android:layout_below="@id/rl_order_address_contact"
                         />
             </RelativeLayout>
         </LinearLayout>

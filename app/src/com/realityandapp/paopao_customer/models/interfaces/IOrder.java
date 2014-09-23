@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
+import com.realityandapp.paopao_customer.models.test.Deliveryman;
+
 import java.util.List;
 
 /**
@@ -15,4 +17,5 @@ public interface IOrder extends IBase {
     public IAddress get_address();
     public float get_total();
     public String get_status();
+    public Deliveryman get_deliveryman();
 }

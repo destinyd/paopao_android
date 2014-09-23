@@ -33,6 +33,8 @@ public class OrderActivity extends PaopaoBaseActivity {
     TextView tv_address;
     @InjectView(R.id.tv_order_status)
     TextView tv_order_status;
+    @InjectView(R.id.tv_deliveryman)
+    TextView tv_deliveryman;
     @InjectView(R.id.lv_order_goods_data)
     ListView lv_order_goods_data;
 
@@ -71,10 +73,15 @@ public class OrderActivity extends PaopaoBaseActivity {
 
     private void build_views() {
         build_status();
+        build_deliveryman();
         build_total();
         build_delivery();
         build_address();
         build_cart_to_order();
+    }
+
+    private void build_deliveryman() {
+        tv_deliveryman.setText(order.get_deliveryman().get_realname());
     }
 
     private void build_status() {
