@@ -17,6 +17,12 @@
     <string name="search">搜索</string>
     <string name="into_shop">进入店铺</string>
     <string name="cart_total_label">总价(不含运费):</string>
+    <string name="cart_to_order_total_label">总价(含运费):</string>
+    <string name="edit_address">修改地址</string>
+    <string name="determine_purchase">确定购买</string>
+    <string name="delivery_type">配送方式</string>
+    <string name="delivery_price">配送费用</string>
+    <string name="cart_to_order_plus_hint">菜品备注,例如:不辣,不葱</string>
 
     <string name="fa_home">&#xf015;</string>
     <string name="fa_book">&#xf02d;</string>

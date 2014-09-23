@@ -20,7 +20,7 @@
                   android:textSize="16dp"
                   android:gravity="center_vertical"
                   android:id="@+id/tv_cart_total_label"
-                  android:text="@string/cart_total_label"
+                  android:text="@string/cart_to_order_total_label"
                 />
         <Button android:layout_width="wrap_content" android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -29,6 +29,7 @@
                 android:textColor="@android:color/white"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:text="@string/determine_purchase"
                 />
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                   android:layout_toLeftOf="@+id/tv_goto_shop"
@@ -39,8 +40,8 @@
                   android:singleLine="true"
                   android:textSize="16dp"
                   android:textColor="@color/cart_highlight"
-                  android:id="@+id/tv_cart_total"
-                  />
+                  android:id="@+id/tv_cart_to_order_total"
+                />
     </RelativeLayout>
 
     <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -49,26 +50,47 @@
             >
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
-            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
-                            android:id="@+id/rl_cart_top"
-                            android:gravity="center_vertical"
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:id="@+id/rl_cart_to_order_address"
                             android:background="@drawable/white_with_bbb_bottom_border"
+                            android:padding="10dp"
                     >
-                <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/cb_cart_goods_count"
-                        android:checked="true"
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:id="@+id/rl_cart_to_order_address_contact"
+                                android:gravity="center_vertical"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginBottom="10dp"
+                        >
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                              android:gravity="center_vertical|right"
+                              android:textColor="@color/tv_link"
+                              android:text="@string/edit_address"
+                              android:layout_alignParentRight="true"
+                              android:id="@+id/tv_edit_address"
+                            />
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                              android:gravity="center_vertical|left"
+                              android:singleLine="true"
+                              android:layout_alignParentLeft="true"
+                              android:id="@+id/tv_contact"
+                              android:layout_toLeftOf="@id/tv_edit_address"
+                            />
+                </RelativeLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:gravity="center_vertical|left"
+                          android:id="@+id/tv_address"
+                          android:layout_alignParentBottom="true"
+                          android:layout_below="@id/rl_cart_to_order_address_contact"
                         />
             </RelativeLayout>
 
             <ListView
-                    android:id="@+id/lv_cart_data"
+                    android:id="@+id/lv_cart_to_order_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:divider="@color/bbb"
                     android:dividerHeight="1dp"
-                    android:layout_below="@id/rl_cart_top"
+                    android:layout_below="@id/rl_cart_to_order_address"
                     >
             </ListView>
         </LinearLayout>

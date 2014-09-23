@@ -5,10 +5,7 @@ import com.realityandapp.paopao_customer.models.interfaces.ICartData;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by dd on 14-9-18.
@@ -23,7 +20,7 @@ public class Cart implements ICart {
         i++;
         _id = String.valueOf(i);
         updated_at = Calendar.getInstance().getTime();
-        for(int i=0; i < 10; i++){
+        for(int i=0; i < 1 + new Random().nextInt(3); i++){
             data.add(new CartData());
         }
     }

@@ -16,15 +16,17 @@ public class CartData implements ICartData {
     public String _id;
     public Shop shop;
     public int shop_discount;
+    public float shop_delivery_price;
     public List<ICartGoodsData> goods = new ArrayList<ICartGoodsData>();
 
     public CartData() {
         i++;
         shop = new Shop();
-        shop_discount = 1 + new Random().nextInt();
-        for(int i=0; i < 10; i++){
+        shop_discount = 1 + new Random().nextInt(5000);
+        for(int i=0; i < 1 + new Random().nextInt(5); i++){
             goods.add(new CartGoodsData());
         }
+        shop_delivery_price = 5f;
     }
 
     @Override
@@ -50,5 +52,10 @@ public class CartData implements ICartData {
     @Override
     public List<ICartGoodsData> get_shop_goods_data() {
         return goods;
+    }
+
+    @Override
+    public float get_shop_delivery_price() {
+        return shop_delivery_price;
     }
 }

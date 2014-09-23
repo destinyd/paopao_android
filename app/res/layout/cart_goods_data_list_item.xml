@@ -33,7 +33,7 @@
                     android:textSize="30dp"
                     android:id="@+id/fabtn_reduce"
                     android:text="@string/fa_minus_square"
-                    android:textColor="@color/cart_good_amount"
+                    android:textColor="@color/cart_highlight"
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"
                     android:padding="2dp"
@@ -42,7 +42,7 @@
                       android:id="@+id/tv_amount"
                       android:gravity="center"
                       android:singleLine="true"
-                      android:textColor="@color/cart_good_amount"
+                      android:textColor="@color/cart_highlight"
                       android:padding="2dp"
                     />
             <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
@@ -50,7 +50,7 @@
                     android:textSize="30dp"
                     android:id="@+id/fabtn_increase"
                     android:text="@string/fa_plus_square"
-                    android:textColor="@color/cart_good_amount"
+                    android:textColor="@color/cart_highlight"
                     android:layout_alignParentLeft="true"
                     android:background="@android:color/transparent"
                     android:padding="2dp"

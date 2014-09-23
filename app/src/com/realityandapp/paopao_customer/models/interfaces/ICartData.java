@@ -10,4 +10,5 @@ public interface ICartData extends IBase {
     public String get_shop_name();
     public int get_shop_discount();
     public List<ICartGoodsData> get_shop_goods_data();
+    public float get_shop_delivery_price();
 }

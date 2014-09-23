@@ -30,4 +30,8 @@ public class DataProvider {
     public static Cart get_cart() {
         return new Cart();
     }
+
+    public static Address get_default_address() {
+        return new Address();
+    }
 }
