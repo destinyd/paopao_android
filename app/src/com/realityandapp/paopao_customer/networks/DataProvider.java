@@ -34,4 +34,8 @@ public class DataProvider {
     public static Address get_default_address() {
         return new Address();
     }
+
+    public static Order get_order(String s) {
+        return new Order();
+    }
 }

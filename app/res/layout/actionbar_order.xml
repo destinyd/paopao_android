@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/ActionBar"
+        >
+    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+            style="@style/ActionBarFATV"
+            android:id="@+id/fatv_back"
+            android:background="@drawable/actionbar_icon"
+            android:text="@string/fa_back"
+            android:layout_alignParentLeft="true"
+            />
+    <LinearLayout android:layout_width="50dp" android:layout_height="50dp"
+                  android:id="@+id/ll_cart"
+                  android:layout_alignParentRight="true"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+                style="@style/ActionBarFATV"
+                android:id="@+id/fatv_edit"
+                android:background="@drawable/actionbar_icon"
+                android:text="@string/fa_pencil_square_o"
+                />
+    </LinearLayout>
+    <TextView
+            style="@style/ActionBarTitle"
+            android:id="@+id/title"
+            android:layout_toLeftOf="@id/ll_cart"
+            android:layout_toRightOf="@id/fatv_back"
+            />
+</RelativeLayout>

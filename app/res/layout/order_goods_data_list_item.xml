@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="90dp"
+                    android:id="@+id/rl_cart_to_order_goods"
+                    android:padding="10dp"
+            >
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:id="@+id/rl_cart_to_order_good_data_top"
+                        android:gravity="center_vertical"
+                >
+            <TextView android:layout_width="100dp" android:layout_height="match_parent"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/tv_good_name"
+                      android:gravity="center_vertical|left"
+                      android:singleLine="true"
+                    />
+            <TextView android:layout_width="100dp" android:layout_height="match_parent"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/tv_good_total"
+                      android:gravity="center_vertical|right"
+                      android:singleLine="true"
+                      android:textColor="@color/cart_highlight"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/tv_unit_price"
+                      android:gravity="center"
+                      android:singleLine="true"
+                      android:layout_toLeftOf="@id/tv_good_total"
+                      android:layout_toRightOf="@id/tv_good_name"
+                    />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_below="@id/rl_cart_to_order_good_data_top"
+                >
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/tv_plus"
+                      android:gravity="center_vertical|left"
+                      android:layout_marginRight="5dp"
+                      android:singleLine="true"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
