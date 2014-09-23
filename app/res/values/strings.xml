@@ -24,5 +24,6 @@
     <string name="delivery_price">配送费用</string>
     <string name="cart_to_order_plus_hint">菜品备注,例如:不辣,不葱</string>
     <string name="delivery_type_system">官方配送</string>
+    <string name="order_status">订单状态</string>
 
 </resources>

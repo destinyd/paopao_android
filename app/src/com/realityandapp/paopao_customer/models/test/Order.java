@@ -14,20 +14,27 @@ import java.util.Random;
 public class Order implements IOrder {
     public static int i = 0;
     public String _id;
+    public String status;
     public Shop shop;
     public Address address;
     public int shop_discount;
     public float shop_delivery_price;
+    public float total = 0;
     public List<ICartGoodsData> goods = new ArrayList<ICartGoodsData>();
 
     public Order() {
         i++;
         shop = new Shop();
         shop_discount = 1 + new Random().nextInt(5000);
-        for(int i=0; i < 1 + new Random().nextInt(5); i++){
-            goods.add(new CartGoodsData());
-        }
         shop_delivery_price = 5f;
+        for(int i=0; i < 1 + new Random().nextInt(5); i++){
+            CartGoodsData good = new CartGoodsData();
+            goods.add(good);
+            total += good.get_price() * good.get_amount();
+        }
+        total += shop_delivery_price;
+        address = new Address();
+        status = "等待支付";
     }
 
     @Override
@@ -46,18 +53,28 @@ public class Order implements IOrder {
     }
 
     @Override
-    public float get_order_delivery_price() {
+    public float get_delivery_price() {
         return shop_delivery_price;
     }
 
     @Override
-    public int get_order_delivery_type() {
+    public int get_delivery_type() {
         return 0;
     }
 
     @Override
-    public IAddress get_order_address() {
+    public IAddress get_address() {
         return address;
+    }
+
+    @Override
+    public float get_total() {
+        return total;
+    }
+
+    @Override
+    public String get_status() {
+        return status;
     }
 
     @Override
@@ -66,7 +83,9 @@ public class Order implements IOrder {
     }
 
     @Override
-    public List<ICartGoodsData> get_order_goods_data() {
+    public List<ICartGoodsData> get_goods_data() {
         return goods;
     }
+
+
 }

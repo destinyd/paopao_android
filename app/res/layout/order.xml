@@ -19,11 +19,11 @@
                   android:layout_alignParentLeft="true"
                   android:textSize="16dp"
                   android:gravity="center_vertical"
-                  android:id="@+id/tv_cart_total_label"
+                  android:id="@+id/tv_order_total_label"
                   android:text="@string/total_with_delivery_label"
                 />
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-                  android:layout_toRightOf="@+id/tv_cart_total_label"
+                  android:layout_toRightOf="@+id/tv_order_total_label"
                   android:layout_alignParentRight="true"
                   android:gravity="center"
                   android:paddingLeft="5dp"
@@ -41,6 +41,27 @@
             >
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="vertical">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                            android:padding="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                    >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:text="@string/order_status"
+                          android:id="@+id/tv_order_status_label"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_order_status"
+                        android:gravity="center_vertical|right"
+                        android:layout_toRightOf="@id/tv_order_status_label"
+                        android:textColor="@color/cart_highlight"
+                        android:layout_alignParentRight="true"
+                        />
+            </RelativeLayout>
+
             <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                             android:id="@+id/rl_order_address"
                             android:background="@drawable/white_with_bbb_bottom_border"
@@ -75,8 +96,51 @@
                     android:divider="@color/bbb"
                     android:dividerHeight="1dp"
                     android:layout_below="@id/rl_order_address"
+                    android:background="@drawable/white_with_bbb_bottom_border"
                     >
             </ListView>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                            android:padding="10dp"
+                            android:layout_gravity="center_vertical"
+                    >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:text="@string/delivery_type"
+                          android:id="@+id/tv_delivery_type_label"
+                          android:layout_alignParentLeft="true"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical|right"
+                          android:text="@string/delivery_type_system"
+                          android:textColor="@color/cart_highlight"
+                          android:id="@+id/tv_delivery_type"
+                          android:layout_alignParentRight="true"
+                          android:layout_toRightOf="@id/tv_delivery_type_label"
+                        />
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                            android:padding="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                    >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:text="@string/delivery_price"
+                          android:id="@+id/tv_delivery_price_label"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_delivery_price"
+                        android:gravity="center_vertical|right"
+                        android:layout_toRightOf="@id/tv_delivery_price_label"
+                        android:textColor="@color/cart_highlight"
+                        android:layout_alignParentRight="true"
+                        />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

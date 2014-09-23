@@ -17,7 +17,7 @@ public class CartToOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsDat
 
     public CartToOrderGoodsDataAdapter(LayoutInflater inflater,
                                        final List<ICartGoodsData> items) {
-        super(inflater, R.layout.cart_to_order_goods_data_list_item);
+        super(inflater, R.layout.order_goods_data_list_item);
         cart_data = items;
         setItems(cart_data);
     }

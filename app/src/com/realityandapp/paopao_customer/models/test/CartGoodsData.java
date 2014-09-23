@@ -16,6 +16,7 @@ public class CartGoodsData implements ICartGoodsData {
     private String _id;
     private String name;
     private String description;
+    private String plus;
 
     public CartGoodsData() {
         i++;
@@ -25,6 +26,8 @@ public class CartGoodsData implements ICartGoodsData {
         price = 1 + new Random().nextInt(20);
         unit = "份";
         amount = 1 + new Random().nextInt(3);
+        plus = "good plus" + _id;
+        plus = null;
     }
 
     @Override
@@ -40,6 +43,11 @@ public class CartGoodsData implements ICartGoodsData {
     @Override
     public float get_price() {
         return price;
+    }
+
+    @Override
+    public String get_plus() {
+        return plus;
     }
 
     @Override
