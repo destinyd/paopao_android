@@ -44,11 +44,23 @@
             <groupId>com.activeandroid</groupId>
             <artifactId>activeandroid</artifactId>
             <version>${activeandroid.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.roboguice</groupId>
             <artifactId>roboguice</artifactId>
             <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.mindpin.android.loadingview</groupId>
@@ -78,11 +90,23 @@
             <groupId>com.nostra13.universalimageloader</groupId>
             <artifactId>universal-image-loader</artifactId>
             <version>1.9.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.github.jgilfelt</groupId>
             <artifactId>android-viewbadger</artifactId>
             <version>0.0.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
