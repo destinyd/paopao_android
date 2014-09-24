@@ -44,6 +44,7 @@ public class MainActivity extends ListActivity {
         addItem(data, "cart", CartActivity.class);
         addItem(data, "cart to order", CarToOrderActivity.class);
         addItem(data, "order", OrderActivity.class);
+        addItem(data, "im", IMActivity.class);
 
         return data;
     }

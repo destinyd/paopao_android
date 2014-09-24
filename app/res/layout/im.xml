@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <include layout="@layout/actionbar_im" android:id="@+id/actionbar"/>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_input"
+                    android:background="@color/im_input_background"
+            >
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+                style="@style/IMInputFATV"
+                android:id="@+id/fatv_voice"
+                android:background="@drawable/actionbar_icon"
+                android:text="@string/fa_voice"
+                android:layout_alignParentLeft="true"
+                />
+
+        <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+                style="@style/IMInputFATV"
+                android:id="@+id/fatv_plus"
+                android:background="@drawable/actionbar_icon"
+                android:text="@string/fa_plus_square"
+                android:layout_alignParentRight="true"
+                />
+
+        <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_toLeftOf="@id/fatv_plus"
+                  android:layout_toRightOf="@id/fatv_voice"
+                  android:minHeight="50dp"
+                  android:maxHeight="100dp"
+                />
+    </RelativeLayout>
+
+    <ListView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:layout_below="@id/actionbar"
+              android:layout_above="@id/rl_input"
+            >
+    </ListView>
+</RelativeLayout>

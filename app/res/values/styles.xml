@@ -89,7 +89,7 @@
     <style name="ActionBar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:background">#ff5722</item>
+        <item name="android:background">@color/actionbar_background</item>
     </style>
     <style name="MenuLine">
         <item name="android:layout_width">match_parent</item>
@@ -120,6 +120,8 @@
         <item name="android:background">@android:color/white</item>
         <item name="android:layout_below">@id/actionbar</item>
         <item name="android:layout_alignParentBottom">true</item>
+    </style>
+    <style name="IMInputFATV" parent="ActionBarFATV">
     </style>
 
 </resources>

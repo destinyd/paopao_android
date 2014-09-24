@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="first_color">#FF5722</color>
-    <color name="first_color_focus">#E64A19</color>
+    <color name="deep_orange_50">#fbe9e7</color>
+    <color name="deep_orange_100">#ffccbc</color>
+    <color name="deep_orange_200">#ffccbc</color>
+    <color name="deep_orange_300">#ff8a65</color>
+    <color name="deep_orange_400">#ff7043</color>
+    <color name="deep_orange_500">#FF5722</color>
+    <color name="deep_orange_600">#F4511E</color>
+    <color name="deep_orange_700">#E64A19</color>
+    <color name="deep_orange_800">#d84315</color>
+    <color name="deep_orange_900">#bf360c</color>
+    <color name="deep_orange_A100">#ff9e80</color>
+    <color name="deep_orange_A200">#ff6e40</color>
+    <color name="deep_orange_A400">#ff3d00</color>
+    <color name="deep_orange_A700">#dd2c00</color>
+
+    <color name="first_color">@color/deep_orange_500</color>
+    <color name="first_color_focus">@color/deep_orange_700</color>
+    <color name="first_color_stressed">@color/deep_orange_50</color>
     <color name="actionbar_background">@color/first_color</color>
     <color name="tv_link">@color/first_color</color>
     <color name="cart_highlight">@color/first_color</color>
@@ -12,4 +28,5 @@
     <color name="actionbar_icon_focus">@color/first_color_focus</color>
     <color name="eee">#eee</color>
     <color name="color777">#777</color>
+    <color name="im_input_background">@color/deep_orange_500</color>
 </resources>
