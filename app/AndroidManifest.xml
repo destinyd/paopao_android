@@ -30,7 +30,7 @@
         <activity android:name=".views.ShopsActivity"/>
         <activity android:name=".views.ShopGoodsActivity"/>
         <activity android:name=".views.CartActivity"/>
-        <activity android:name=".views.CarToOrderActivity"/>
+        <activity android:name=".views.CartToOrderActivity"/>
         <activity android:name=".views.OrderActivity"/>
         <activity android:name=".views.IMActivity"/>
     </application>

@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class CarToOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_CONTACT = "%s(%s)";
     private static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
@@ -124,7 +124,7 @@ public class CarToOrderActivity extends PaopaoBaseActivity implements View.OnCli
                 }
                 addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
 
-                AlertDialog.Builder dialog_builder = new AlertDialog.Builder(CarToOrderActivity.this)
+                AlertDialog.Builder dialog_builder = new AlertDialog.Builder(CartToOrderActivity.this)
                         .setTitle("请选择您所在地址")
                         .setAdapter(addressesAdapter, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
