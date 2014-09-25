@@ -27,5 +27,6 @@
     <string name="order_status">订单状态</string>
     <string name="order_deliveryman">配送员</string>
     <string name="create_address">新建地址</string>
+    <string name="new_address_hint">请输入地址，搜索出地图位置</string>
 
 </resources>
