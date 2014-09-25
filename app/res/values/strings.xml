@@ -26,5 +26,6 @@
     <string name="delivery_type_system">官方配送</string>
     <string name="order_status">订单状态</string>
     <string name="order_deliveryman">配送员</string>
+    <string name="create_address">新建地址</string>
 
 </resources>

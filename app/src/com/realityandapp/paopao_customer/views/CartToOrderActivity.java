@@ -41,11 +41,13 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     TextView tv_address;
     @InjectView(R.id.tv_edit_address)
     TextView tv_edit_address;
+    @InjectView(R.id.tv_add_address)
+    TextView tv_add_address;
     @InjectView(R.id.lv_cart_to_order_data)
     ListView lv_cart_to_order_data;
 
     private Cart cart;
-    private Address address;
+    private Address address = null;
     private List<String> list_address_string = new ArrayList<String>();
     private ArrayAdapter<String> addressesAdapter;
     AlertDialog addressesDialog;
@@ -85,8 +87,15 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
 
     private void build_views() {
         build_total();
+        build_once();
         build_address();
         build_cart_to_order();
+    }
+
+    private void build_once() {
+        tv_edit_address.setOnClickListener(this);
+        tv_add_address.setOnClickListener(this);
+        btn_submit.setOnClickListener(this);
     }
 
     private void build_cart_to_order() {
@@ -101,9 +110,21 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(FORMAT_CONTACT, address.get_realname(), address.get_phone()));
-        tv_address.setText(address.get_address());
-        tv_edit_address.setOnClickListener(this);
+        if(address == null){
+            tv_address.setVisibility(View.GONE);
+            tv_contact.setText("暂无地址信息");
+            tv_edit_address.setVisibility(View.GONE);
+            tv_add_address.setVisibility(View.VISIBLE);
+            btn_submit.setEnabled(false);
+        }
+        else {
+            tv_contact.setText(String.format(FORMAT_CONTACT, address.get_realname(), address.get_phone()));
+            tv_address.setVisibility(View.VISIBLE);
+            tv_address.setText(address.get_address());
+            tv_edit_address.setVisibility(View.VISIBLE);
+            tv_add_address.setVisibility(View.GONE);
+            btn_submit.setEnabled(true);
+        }
     }
 
     Integer selection = -1;
@@ -140,7 +161,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //todo goto new address activity
-                                System.out.println("新建地址");
+                                goto_new_address();
                             }
                         })
                         .setNeutralButton("取消", null);
@@ -148,6 +169,20 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
                 addressesDialog.show();
                 addressesDialog.getListView().setSelection(0);
                 break;
+            case R.id.tv_add_address:
+                goto_new_address();
+                break;
+            case R.id.btn_submit:
+                submit();
+                break;
         }
+    }
+
+    private void submit() {
+        System.out.println("submit");
+    }
+
+    private void goto_new_address() {
+        System.out.println("新建地址");
     }
 }
