@@ -1,6 +1,7 @@
 package com.realityandapp.paopao_customer.views;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,13 +13,14 @@ import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 /**
  * Created by dd on 14-9-18.
  */
-public class OrderActivity extends PaopaoBaseActivity {
+public class OrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_CONTACT = "%s(%s)";
     @InjectView(R.id.loading_view)
@@ -37,6 +39,10 @@ public class OrderActivity extends PaopaoBaseActivity {
     TextView tv_deliveryman;
     @InjectView(R.id.lv_order_goods_data)
     ListView lv_order_goods_data;
+    @InjectView(R.id.fatv_destroy)
+    FontAwesomeButton fatv_destroy;
+    @InjectView(R.id.fatv_edit)
+    FontAwesomeButton fatv_edit;
 
     private Order order;
 
@@ -72,12 +78,18 @@ public class OrderActivity extends PaopaoBaseActivity {
     }
 
     private void build_views() {
+        build_actionbar();
         build_status();
         build_deliveryman();
         build_total();
         build_delivery();
         build_address();
         build_cart_to_order();
+    }
+
+    private void build_actionbar() {
+        fatv_edit.setOnClickListener(this);
+        fatv_destroy.setOnClickListener(this);
     }
 
     private void build_deliveryman() {
@@ -106,5 +118,17 @@ public class OrderActivity extends PaopaoBaseActivity {
     private void build_address() {
         tv_contact.setText(String.format(FORMAT_CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
         tv_address.setText(order.get_address().get_address());
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.fatv_edit:
+                System.out.println("fatv edit click");
+                break;
+            case R.id.fatv_destroy:
+                System.out.println("fatv destroy click");
+                break;
+        }
     }
 }
