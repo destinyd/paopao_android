@@ -11,12 +11,11 @@ import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
-import com.realityandapp.paopao_customer.models.interfaces.ICart;
+import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.test.Address;
-import com.realityandapp.paopao_customer.models.test.Cart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
-import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
+import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -27,16 +26,14 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class OrderEditActivity extends PaopaoBaseActivity implements View.OnClickListener {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_CONTACT = "%s(%s)";
     private static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
-    @InjectView(R.id.btn_submit)
-    Button btn_submit;
-    @InjectView(R.id.tv_cart_to_order_total)
-    TextView tv_cart_to_order_total;
+    @InjectView(R.id.tv_order_total)
+    TextView tv_order_total;
     @InjectView(R.id.tv_contact)
     TextView tv_contact;
     @InjectView(R.id.tv_address)
@@ -47,23 +44,29 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     TextView tv_add_address;
     @InjectView(R.id.tv_delivery_price)
     TextView tv_delivery_price;
-    @InjectView(R.id.lv_cart_to_order_data)
-    ListView lv_cart_to_order_data;
+    @InjectView(R.id.lv_order_data)
+    ListView lv_order_data;
 
-    private ICart cart;
-    private IAddress address = null;
     private List<String> list_address_string = new ArrayList<String>();
     private ArrayAdapter<String> addressesAdapter;
     AlertDialog addressesDialog;
     private ArrayList<Address> addresses = new ArrayList<Address>();
+    private IOrder order;
+    private IAddress selected_address;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cart_to_order);
+        setContentView(R.layout.order_edit);
 
-        setTitle("订单确定");
+        bind_actions();
+        setTitle("订单修改");
         get_data();
+    }
+
+    private void bind_actions() {
+        findViewById(R.id.fatv_cancel).setOnClickListener(this);
+        findViewById(R.id.fatv_submit).setOnClickListener(this);
     }
 
     private void get_data() {
@@ -76,8 +79,8 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
 
             @Override
             public Void call() throws Exception {
-                cart = DataProvider.get_cart();
-                address = DataProvider.get_default_address();
+                order = DataProvider.get_order("1");
+                selected_address = order.get_address();
                 return null;
             }
 
@@ -93,42 +96,35 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
         build_total();
         build_once();
         build_address();
-        build_cart_to_order();
+        build_order();
     }
 
     private void build_once() {
         tv_edit_address.setOnClickListener(this);
         tv_add_address.setOnClickListener(this);
-        btn_submit.setOnClickListener(this);
     }
 
-    private void build_cart_to_order() {
-        CartToOrderAdapter adapter =
-                new CartToOrderAdapter(getLayoutInflater(), cart.get_data());
-        lv_cart_to_order_data.setAdapter(adapter);
-        ListViewUtils.setListViewHeightBasedOnChildren(lv_cart_to_order_data);
+    private void build_order() {
+        OrderGoodsDataAdapter adapter =
+                new OrderGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
+        lv_order_data.setAdapter(adapter);
+        ListViewUtils.setListViewHeightBasedOnChildren(lv_order_data);
     }
 
     private void build_total() {
-        tv_cart_to_order_total.setText(String.format(FORMAT_PRICE, cart.get_total()));
+        tv_order_total.setText(String.format(FORMAT_PRICE, order.get_total()));
     }
 
     private void build_address() {
-        if(address == null){
-            tv_address.setVisibility(View.GONE);
-            tv_contact.setText("暂无地址信息");
-            tv_edit_address.setVisibility(View.GONE);
-            tv_add_address.setVisibility(View.VISIBLE);
-            btn_submit.setEnabled(false);
-        }
-        else {
-            tv_contact.setText(String.format(FORMAT_CONTACT, address.get_realname(), address.get_phone()));
-            tv_address.setVisibility(View.VISIBLE);
-            tv_address.setText(address.get_address());
-            tv_edit_address.setVisibility(View.VISIBLE);
-            tv_add_address.setVisibility(View.GONE);
-            btn_submit.setEnabled(true);
-        }
+        tv_contact.setText(String.format(FORMAT_CONTACT, selected_address.get_realname(), selected_address.get_phone()));
+        tv_address.setVisibility(View.VISIBLE);
+        tv_address.setText(selected_address.get_address());
+        tv_edit_address.setVisibility(View.VISIBLE);
+        build_delivery_price();
+    }
+
+    private void build_delivery_price() {
+        tv_delivery_price.setText(String.format(FORMAT_PRICE, order.get_delivery_price()));
     }
 
     Integer selection = -1;
@@ -139,24 +135,26 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
             case R.id.tv_edit_address:
                 //todo a progress dialog to loading addresses
                 if (addresses.size() == 0)
-                    for (int i = 0; i < 20; i++) {
+                    for (int i = 0; i < 5; i++) {
                         addresses.add(new Address());
                     }
                 for (Address address : addresses) {
                     list_address_string.add(String.format(
-                            FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
+                            FORMAT_FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
                     ));
                 }
                 addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
 
-                AlertDialog.Builder dialog_builder = new AlertDialog.Builder(CartToOrderActivity.this)
+                AlertDialog.Builder dialog_builder = new AlertDialog.Builder(OrderEditActivity.this)
                         .setTitle("请选择您所在地址")
                         .setAdapter(addressesAdapter, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 //                                select_address = list_address_string.get(which);
                                 selection = which;
-                                address = addresses.get(which);
+                                selected_address = addresses.get(which);
+                                System.out.println(selected_address);
                                 build_address();
+                                //todo calculate delivery price for new address
 //                                System.out.println(select_address);
                                 dialog.cancel();
                             }
@@ -176,14 +174,32 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
             case R.id.tv_add_address:
                 goto_new_address();
                 break;
-            case R.id.btn_submit:
+            case R.id.fatv_submit:
                 submit();
+                break;
+            case R.id.fatv_cancel:
+                if(!selected_address.get_id().equals(order.get_address().get_id())){
+                    new AlertDialog.Builder(OrderEditActivity.this)
+                            .setTitle("提示：订单地址已修改")
+                            .setNegativeButton("取消修改", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    finish();
+                                }
+                            })
+                            .setNeutralButton("继续修改", null)
+                            .create()
+                            .show();
+                }
+                else
+                    finish();
                 break;
         }
     }
 
     private void submit() {
         System.out.println("submit");
+        //todo submit edit new address for order
     }
 
     private void goto_new_address() {

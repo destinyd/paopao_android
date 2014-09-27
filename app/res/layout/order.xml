@@ -30,7 +30,7 @@
                   android:paddingRight="5dp"
                   android:singleLine="true"
                   android:textSize="16dp"
-                  android:textColor="@color/cart_highlight"
+                  android:textColor="@color/tv_highlight"
                   android:id="@+id/tv_order_total"
                 />
     </RelativeLayout>
@@ -57,7 +57,7 @@
                         android:id="@+id/tv_order_status"
                         android:gravity="center_vertical|right"
                         android:layout_toRightOf="@id/tv_order_status_label"
-                        android:textColor="@color/cart_highlight"
+                        android:textColor="@color/tv_highlight"
                         android:layout_alignParentRight="true"
                         />
             </RelativeLayout>
@@ -77,7 +77,7 @@
                         android:textSize="20dp"
                         android:id="@+id/fabtn_microphone"
                         android:text="@string/fa_microphone"
-                        android:textColor="@color/cart_highlight"
+                        android:textColor="@color/tv_highlight"
                         android:layout_alignParentRight="true"
                         android:background="@android:color/transparent"
                         android:gravity="center"
@@ -117,7 +117,7 @@
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:gravity="center_vertical|right"
                           android:text="@string/delivery_type_system"
-                          android:textColor="@color/cart_highlight"
+                          android:textColor="@color/tv_highlight"
                           android:id="@+id/tv_delivery_type"
                           android:layout_alignParentRight="true"
                           android:layout_toRightOf="@id/tv_delivery_type_label"
@@ -140,7 +140,7 @@
                         android:id="@+id/tv_delivery_price"
                         android:gravity="center_vertical|right"
                         android:layout_toRightOf="@id/tv_delivery_price_label"
-                        android:textColor="@color/cart_highlight"
+                        android:textColor="@color/tv_highlight"
                         android:layout_alignParentRight="true"
                         />
             </RelativeLayout>

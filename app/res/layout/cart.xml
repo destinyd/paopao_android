@@ -38,7 +38,7 @@
                   android:paddingRight="5dp"
                   android:singleLine="true"
                   android:textSize="16dp"
-                  android:textColor="@color/cart_highlight"
+                  android:textColor="@color/tv_highlight"
                   android:id="@+id/tv_cart_total"
                   />
     </RelativeLayout>

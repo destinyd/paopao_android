@@ -27,15 +27,15 @@ public class DataProvider {
         return list;
     }
 
-    public static Cart get_cart() {
+    public static ICart get_cart() {
         return new Cart();
     }
 
-    public static Address get_default_address() {
+    public static IAddress get_default_address() {
         return new Address();
     }
 
-    public static Order get_order(String s) {
+    public static IOrder get_order(String s) {
         return new Order();
     }
 }

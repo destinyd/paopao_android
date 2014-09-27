@@ -34,6 +34,7 @@
         <activity android:name=".views.OrderActivity"/>
         <activity android:name=".views.IMActivity"/>
         <activity android:name=".views.NewAddressActivity"/>
+        <activity android:name=".views.OrderEditActivity"/>
     </application>
 
 </manifest>

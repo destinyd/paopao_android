@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/ActionBar">
+    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+            style="@style/ActionBarFATV"
+            android:id="@+id/fatv_cancel"
+            android:text="@string/fa_cancel"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/actionbar_icon"
+            />
+    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+            style="@style/ActionBarFATV"
+            android:id="@+id/fatv_submit"
+            android:text="@string/fa_checkmark"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/actionbar_icon"
+            />
+    <TextView
+            style="@style/ActionBarTitle"
+            android:id="@+id/title"
+            android:layout_toRightOf="@id/fatv_cancel"
+            android:layout_toLeftOf="@id/fatv_submit"
+            />
+</RelativeLayout>

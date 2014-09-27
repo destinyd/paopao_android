@@ -27,4 +27,6 @@
     <string name="fa_voice">@string/fa_microphone</string>
     <string name="fa_trash">&#xf1f8;</string>
     <string name="fa_save">&#xf00c;</string>
+    <string name="fa_times">&#xf00d;</string>
+    <string name="fa_cancel">@string/fa_times</string>
 </resources>

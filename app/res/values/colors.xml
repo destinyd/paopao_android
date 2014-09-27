@@ -20,7 +20,7 @@
     <color name="first_color_stressed">@color/deep_orange_50</color>
     <color name="actionbar_background">@color/first_color</color>
     <color name="tv_link">@color/first_color</color>
-    <color name="cart_highlight">@color/first_color</color>
+    <color name="tv_highlight">@color/first_color</color>
     <color name="ddd">#ddd</color>
     <color name="bbb">#bbb</color>
     <color name="menu_background">#F9F9F9</color>

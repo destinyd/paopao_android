@@ -25,7 +25,7 @@
                       android:id="@+id/tv_good_total"
                       android:gravity="center_vertical|right"
                       android:singleLine="true"
-                      android:textColor="@color/cart_highlight"
+                      android:textColor="@color/tv_highlight"
                     />
             <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                       android:layout_alignParentRight="true"
@@ -45,7 +45,7 @@
                     android:textSize="20dp"
                     android:id="@+id/fabtn_add"
                     android:text="@string/fa_plus_square"
-                    android:textColor="@color/cart_highlight"
+                    android:textColor="@color/tv_highlight"
                     android:layout_alignParentRight="true"
                     android:background="@android:color/transparent"
                     android:gravity="right"

@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.interfaces.ICart;
 import com.realityandapp.paopao_customer.models.test.Cart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
@@ -31,7 +32,7 @@ public class CartActivity extends PaopaoBaseActivity {
     TextView tv_cart_total;
     @InjectView(R.id.btn_submit)
     Button btn_submit;
-    private Cart cart;
+    private ICart cart;
 
     private static String FORMAT_CART_GOODS_COUNT = "共%d件商品";
 

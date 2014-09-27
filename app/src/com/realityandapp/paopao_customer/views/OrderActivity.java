@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.test.Order;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
@@ -44,7 +45,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     @InjectView(R.id.fatv_edit)
     FontAwesomeButton fatv_edit;
 
-    private Order order;
+    private IOrder order;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
