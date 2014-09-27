@@ -1,8 +1,12 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
@@ -12,6 +16,8 @@ import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 import java.util.List;
+
+import static com.realityandapp.paopao_customer.Constants.Extra.STEP;
 
 /**
  * Created by dd on 14-9-18.
@@ -58,5 +64,13 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
         ShopsAdapter adapter =
                 new ShopsAdapter(getLayoutInflater(), shops);
         gv_shops.setAdapter(adapter);
+        gv_shops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ShopsActivity.this, ShopGoodsActivity.class);
+                intent.putExtra(Constants.Extra.SHOP, shops.get(i));
+                startActivity(intent);
+            }
+        });
     }
 }

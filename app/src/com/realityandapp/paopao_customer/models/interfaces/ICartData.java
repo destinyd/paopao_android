@@ -11,4 +11,5 @@ public interface ICartData extends IBase {
     public int get_shop_discount();
     public List<ICartGoodsData> get_shop_goods_data();
     public float get_shop_delivery_price();
+    public IShop get_shop();
 }

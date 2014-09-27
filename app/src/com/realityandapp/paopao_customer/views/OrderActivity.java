@@ -1,17 +1,16 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
-import com.realityandapp.paopao_customer.models.test.Order;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
-import com.realityandapp.paopao_customer.views.adapter.CartToOrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
@@ -57,7 +56,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this){
+        new RoboAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -123,7 +122,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.fatv_edit:
                 edit_order();
                 break;
@@ -135,11 +134,29 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void edit_order() {
         // todo goto edit order
+        Intent intent = new Intent(OrderActivity.this, OrderEditActivity.class);
+        intent.putExtra(Constants.Extra.ORDER, order);
+        startActivityForResult(intent, Constants.Result.ORDER);
         System.out.println("edit_order");
     }
 
     private void destroy_order() {
         //todo destroy order
         System.out.println("destroy_order");
+//        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case Constants.Result.ORDER:
+                if(resultCode == RESULT_OK)
+                {
+                    System.out.println("changed");
+                    // todo get new order from intent
+                    //                    refresh()
+                }
+                break;
+        }
     }
 }

@@ -1,14 +1,20 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import com.google.inject.Inject;
 import com.mindpin.android.loadingview.LoadingView;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -18,12 +24,13 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class ShopGoodsActivity extends PaopaoBaseActivity {
+    @InjectExtra(Constants.Extra.SHOP)
+    private Shop shop;
     @InjectView(R.id.gv_shops)
     GridView gv_shops;
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IGood> goods;
-    private Shop shop;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,14 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
         GoodsAdapter adapter =
                 new GoodsAdapter(getLayoutInflater(), goods);
         gv_shops.setAdapter(adapter);
+        gv_shops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Intent intent = new Intent(ShopGoodsActivity.this, Good.class);
+//                intent.putExtra(Constants.Extra.GOOD, goods.get(i));
+//                startActivity(intent);
+            }
+        });
 
     }
 }

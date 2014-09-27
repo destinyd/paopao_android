@@ -58,4 +58,9 @@ public class CartData implements ICartData {
     public float get_shop_delivery_price() {
         return shop_delivery_price;
     }
+
+    @Override
+    public IShop get_shop() {
+        return shop;
+    }
 }

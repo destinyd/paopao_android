@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.views;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
@@ -178,7 +180,7 @@ public class OrderEditActivity extends PaopaoBaseActivity implements View.OnClic
                 submit();
                 break;
             case R.id.fatv_cancel:
-                if(!selected_address.get_id().equals(order.get_address().get_id())){
+                if (!selected_address.get_id().equals(order.get_address().get_id())) {
                     new AlertDialog.Builder(OrderEditActivity.this)
                             .setTitle("提示：订单地址已修改")
                             .setNegativeButton("取消修改", new DialogInterface.OnClickListener() {
@@ -190,8 +192,7 @@ public class OrderEditActivity extends PaopaoBaseActivity implements View.OnClic
                             .setNeutralButton("继续修改", null)
                             .create()
                             .show();
-                }
-                else
+                } else
                     finish();
                 break;
         }
@@ -200,6 +201,12 @@ public class OrderEditActivity extends PaopaoBaseActivity implements View.OnClic
     private void submit() {
         System.out.println("submit");
         //todo submit edit new address for order
+        if (!selected_address.get_id().equals(order.get_address().get_id())) {
+            Intent intent = new Intent();
+            intent.putExtra(Constants.Extra.ORDER, order);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     private void goto_new_address() {
