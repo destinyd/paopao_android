@@ -124,11 +124,21 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fatv_edit:
-                System.out.println("fatv edit click");
+                edit_order();
                 break;
             case R.id.fatv_destroy:
-                System.out.println("fatv destroy click");
+                destroy_order();
                 break;
         }
+    }
+
+    private void edit_order() {
+        // todo goto edit order
+        System.out.println("edit_order");
+    }
+
+    private void destroy_order() {
+        //todo destroy order
+        System.out.println("destroy_order");
     }
 }
