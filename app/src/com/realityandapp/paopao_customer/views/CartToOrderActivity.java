@@ -45,8 +45,6 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     TextView tv_edit_address;
     @InjectView(R.id.tv_add_address)
     TextView tv_add_address;
-    @InjectView(R.id.tv_delivery_price)
-    TextView tv_delivery_price;
     @InjectView(R.id.lv_cart_to_order_data)
     ListView lv_cart_to_order_data;
 
