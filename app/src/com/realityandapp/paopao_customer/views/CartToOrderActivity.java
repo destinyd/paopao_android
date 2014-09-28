@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.ICart;
@@ -28,9 +29,6 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
-    private static final String FORMAT_PRICE = "￥%.2f";
-    private static final String FORMAT_CONTACT = "%s(%s)";
-    private static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     @InjectView(R.id.btn_submit)
@@ -108,7 +106,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     }
 
     private void build_total() {
-        tv_cart_to_order_total.setText(String.format(FORMAT_PRICE, cart.get_total()));
+        tv_cart_to_order_total.setText(String.format(Constants.Format.FORMAT_PRICE, cart.get_total()));
     }
 
     private void build_address() {
@@ -120,7 +118,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
             btn_submit.setEnabled(false);
         }
         else {
-            tv_contact.setText(String.format(FORMAT_CONTACT, address.get_realname(), address.get_phone()));
+            tv_contact.setText(String.format(Constants.Format.FORMAT_CONTACT, address.get_realname(), address.get_phone()));
             tv_address.setVisibility(View.VISIBLE);
             tv_address.setText(address.get_address());
             tv_edit_address.setVisibility(View.VISIBLE);
@@ -142,7 +140,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
                     }
                 for (Address address : addresses) {
                     list_address_string.add(String.format(
-                            FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
+                            Constants.Format.FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
                     ));
                 }
                 addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);

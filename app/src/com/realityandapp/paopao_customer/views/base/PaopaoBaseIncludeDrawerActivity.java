@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.views.AddressesActivity;
 import com.realityandapp.paopao_customer.views.ShopsActivity;
 import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
@@ -71,6 +72,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
             case R.id.menu_orders:
                 break;
             case R.id.menu_addresses:
+                startActivity(new Intent(this, AddressesActivity.class));
                 break;
             case R.id.menu_settings:
                 break;

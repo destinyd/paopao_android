@@ -10,7 +10,15 @@ public class Constants {
         public static final String ORDER = "order";
     }
 
-    public static class Result {
+    public static class Request {
         public static final int ORDER = 11;
+        public static final int ADDRESS = 12;
+    }
+    
+    public static class Format{
+        public static final String FORMAT_PRICE = "￥%.2f";
+        public static final String FORMAT_CONTACT = "%s(%s)";
+        public static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
+        public static final String FORMAT_FULL_CONTACT_TOAST = "%s(%s)\n%s";
     }
 }

@@ -136,7 +136,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         // todo goto edit order
         Intent intent = new Intent(OrderActivity.this, OrderEditActivity.class);
         intent.putExtra(Constants.Extra.ORDER, order);
-        startActivityForResult(intent, Constants.Result.ORDER);
+        startActivityForResult(intent, Constants.Request.ORDER);
         System.out.println("edit_order");
     }
 
@@ -149,7 +149,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
-            case Constants.Result.ORDER:
+            case Constants.Request.ORDER:
                 if(resultCode == RESULT_OK)
                 {
                     System.out.println("changed");

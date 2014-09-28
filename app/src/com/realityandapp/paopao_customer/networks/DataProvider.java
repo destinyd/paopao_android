@@ -38,4 +38,13 @@ public class DataProvider {
     public static IOrder get_order(String s) {
         return new Order();
     }
+
+    public static List<IAddress> get_addresses() {
+        List<IAddress> addresses = new ArrayList<IAddress>();
+        for(int i=0; i< 10; i++) {
+            Address good = new Address();
+            addresses.add(good);
+        }
+        return addresses;
+    }
 }

@@ -29,4 +29,5 @@
     <string name="fa_save">&#xf00c;</string>
     <string name="fa_times">&#xf00d;</string>
     <string name="fa_cancel">@string/fa_times</string>
+    <string name="fa_plus">&#xf067;</string>
 </resources>
