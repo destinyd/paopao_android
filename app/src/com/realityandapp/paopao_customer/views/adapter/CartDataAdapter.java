@@ -7,13 +7,12 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.ICartData;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
-import com.realityandapp.paopao_customer.views.ShopGoodsActivity;
+import com.realityandapp.paopao_customer.views.ShopGoodsGridActivity;
 
 import java.util.List;
 
@@ -54,7 +53,7 @@ public class CartDataAdapter extends SingleTypeAdapter<ICartData> implements Vie
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_goto_shop:
-                Intent intent = new Intent(inflater.getContext(), ShopGoodsActivity.class);
+                Intent intent = new Intent(inflater.getContext(), ShopGoodsGridActivity.class);
                 intent.putExtra(Constants.Extra.SHOP, (IShop)view.getTag());
                 context.startActivity(intent);
                 break;

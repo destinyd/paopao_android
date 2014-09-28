@@ -1,11 +1,9 @@
 package com.realityandapp.paopao_customer.views;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import com.google.inject.Inject;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
@@ -23,7 +21,7 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class ShopGoodsActivity extends PaopaoBaseActivity {
+public class ShopGoodsGridActivity extends PaopaoBaseActivity {
     @InjectExtra(Constants.Extra.SHOP)
     private Shop shop;
     @InjectView(R.id.gv_shops)
@@ -35,7 +33,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.goods);
+        setContentView(R.layout.goods_grid);
 
         shop = new Shop();
         setTitle(shop.get_name() + " 的菜品");

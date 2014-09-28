@@ -17,8 +17,6 @@ import roboguice.util.RoboAsyncTask;
 
 import java.util.List;
 
-import static com.realityandapp.paopao_customer.Constants.Extra.STEP;
-
 /**
  * Created by dd on 14-9-18.
  */
@@ -67,7 +65,7 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
         gv_shops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ShopsActivity.this, ShopGoodsActivity.class);
+                Intent intent = new Intent(ShopsActivity.this, ShopGoodsGridActivity.class);
                 intent.putExtra(Constants.Extra.SHOP, shops.get(i));
                 startActivity(intent);
             }
