@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ArrowBubbleLayout">
+        <attr name="bubble_cornerRadius" format="dimension"/>
+        <attr name="bubble_pointerHeight" format="dimension"/>
+        <attr name="bubble_pointerWidth" format="dimension"/>
+        <attr name="bubble_color" format="color" />
+        <attr name="bubble_outlineColor" format="color" />
+        <attr name="bubble_shadowRadius" format="float" />
+        <attr name="bubble_shadowOffsetX" format="float" />
+        <attr name="bubble_shadowOffsetY" format="float" />
+        <attr name="bubble_shadowColor" format="color" />
+        <attr name="bubble_gradientTopColor" format="color" />
+        <attr name="bubble_gradientBottomColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundLayout">
+        <attr name="round_width" format="dimension"/>
+        <attr name="round_color" format="color"/>
+    </declare-styleable>
+</resources>

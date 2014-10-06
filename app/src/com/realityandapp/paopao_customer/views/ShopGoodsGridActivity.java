@@ -10,7 +10,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
-import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
+import com.realityandapp.paopao_customer.views.adapter.GoodsGridAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
@@ -64,8 +64,8 @@ public class ShopGoodsGridActivity extends PaopaoBaseActivity {
     }
 
     private void build_view() {
-        GoodsAdapter adapter =
-                new GoodsAdapter(getLayoutInflater(), goods);
+        GoodsGridAdapter adapter =
+                new GoodsGridAdapter(getLayoutInflater(), goods);
         gv_shops.setAdapter(adapter);
         gv_shops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

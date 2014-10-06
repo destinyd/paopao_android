@@ -20,6 +20,8 @@
     <color name="first_color_stressed">@color/deep_orange_50</color>
     <color name="actionbar_background">@color/first_color</color>
     <color name="tv_link">@color/first_color</color>
+    <color name="tv_link_click">@color/first_color_focus</color>
+    <color name="tv_link_disabled">@color/deep_orange_100</color>
     <color name="tv_highlight">@color/first_color</color>
     <color name="ddd">#ddd</color>
     <color name="bbb">#bbb</color>

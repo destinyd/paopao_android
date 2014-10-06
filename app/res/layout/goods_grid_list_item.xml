@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.realityandapp.paopao_customer.views.widget.SquareLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/iv_good_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="#ddd">
+    </ImageView>
+
+    <!--<LinearLayout-->
+            <!--android:id="@+id/count_section"-->
+            <!--style="@style/TopicCountSection"-->
+            <!-->-->
+        <!--<com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:textColor="#ddd"-->
+                <!--android:textSize="12dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/fa_book"-->
+                <!--/>-->
+
+        <!--<TextView-->
+                <!--android:id="@+id/topic_tutorial_count"-->
+                <!--style="@style/TopicTutorialCount"/>-->
+    <!--</LinearLayout>-->
+
+    <RelativeLayout
+            android:id="@+id/desc_section"
+            style="@style/DescSection"
+            >
+        <TextView
+                android:id="@+id/good_title"
+                style="@style/TopicTitle"/>
+
+        <TextView
+                android:id="@+id/good_desc"
+                style="@style/TopicDesc"
+                android:layout_below="@id/good_title"
+                />
+    </RelativeLayout>
+</com.realityandapp.paopao_customer.views.widget.SquareLayout>

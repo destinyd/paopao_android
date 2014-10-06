@@ -30,4 +30,5 @@
     <string name="fa_times">&#xf00d;</string>
     <string name="fa_cancel">@string/fa_times</string>
     <string name="fa_plus">&#xf067;</string>
+    <string name="fa_minus">&#xf068;</string>
 </resources>
