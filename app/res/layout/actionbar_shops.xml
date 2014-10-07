@@ -20,17 +20,18 @@
                 android:text="@string/fa_cart"
                 />
     </LinearLayout>
-    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
-            style="@style/ActionBarFATV"
-            android:id="@+id/fatv_search"
-            android:background="@drawable/actionbar_icon"
-            android:text="@string/fa_search"
-            android:layout_toLeftOf="@id/ll_cart"
-            />
+    <!--<com.realityandapp.paopao_customer.views.widget.FontAwesomeButton-->
+            <!--style="@style/ActionBarFATV"-->
+            <!--android:id="@+id/fatv_search"-->
+            <!--android:background="@drawable/actionbar_icon"-->
+            <!--android:text="@string/fa_search"-->
+            <!--android:layout_toLeftOf="@id/ll_cart"-->
+            <!--/>-->
     <TextView
             style="@style/ActionBarTitle"
             android:id="@+id/title"
-            android:layout_toLeftOf="@id/fatv_search"
+            android:layout_toLeftOf="@id/ll_cart"
             android:layout_toRightOf="@id/fatv_menu"
             />
+    <!--android:layout_toLeftOf="@id/fatv_search"-->
 </RelativeLayout>

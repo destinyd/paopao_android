@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.AddressesActivity;
+import com.realityandapp.paopao_customer.views.OrderActivity;
 import com.realityandapp.paopao_customer.views.ShopsActivity;
 import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
@@ -25,8 +26,8 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
     FontAwesomeButton fatv_menu;
     @InjectView(R.id.menu_home)
     LinearLayout menu_home;
-    @InjectView(R.id.menu_favorites)
-    LinearLayout menu_favorites;
+//    @InjectView(R.id.menu_favorites)
+//    LinearLayout menu_favorites;
     @InjectView(R.id.menu_orders)
     LinearLayout menu_orders;
     @InjectView(R.id.menu_addresses)
@@ -45,7 +46,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
     private void _init_views() {
         fatv_menu.setOnClickListener(this);
         menu_home.setOnClickListener(this);
-        menu_favorites.setOnClickListener(this);
+//        menu_favorites.setOnClickListener(this);
         menu_orders.setOnClickListener(this);
         menu_addresses.setOnClickListener(this);
         menu_settings.setOnClickListener(this);
@@ -67,14 +68,17 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
                     finish();
                 }
                 break;
-            case R.id.menu_favorites:
-                break;
+//            case R.id.menu_favorites:
+//                break;
             case R.id.menu_orders:
+                // todo goto orders activity
+                startActivity(new Intent(this, OrderActivity.class));
                 break;
             case R.id.menu_addresses:
                 startActivity(new Intent(this, AddressesActivity.class));
                 break;
             case R.id.menu_settings:
+                // todo goto settings activity
                 break;
             case R.id.menu_exit:
                 alert_exit();
