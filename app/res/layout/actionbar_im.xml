@@ -5,7 +5,7 @@
         >
     <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
-            android:id="@+id/fatv_back"
+            android:id="@+id/fabtn_back"
             android:background="@drawable/actionbar_icon"
             android:text="@string/fa_back"
             android:layout_alignParentLeft="true"
@@ -25,6 +25,6 @@
             style="@style/ActionBarTitle"
             android:id="@+id/title"
             android:layout_toLeftOf="@id/ll_cart"
-            android:layout_toRightOf="@id/fatv_back"
+            android:layout_toRightOf="@id/fabtn_back"
             />
 </RelativeLayout>

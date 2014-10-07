@@ -25,7 +25,7 @@ import java.util.List;
 public class AddressesActivity extends PaopaoBaseActivity implements View.OnClickListener {
     @InjectView(R.id.list)
     ListView list;
-    @InjectView(R.id.fatv_back)
+    @InjectView(R.id.fabtn_back)
     FontAwesomeButton fatv_back;
     @InjectView(R.id.fatv_add)
     FontAwesomeButton fatv_add;
@@ -98,7 +98,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.fatv_back:
+            case R.id.fabtn_back:
                 finish();
                 break;
             case R.id.fatv_add:

@@ -11,12 +11,11 @@ import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.ICart;
-import com.realityandapp.paopao_customer.models.interfaces.IShop;
-import com.realityandapp.paopao_customer.models.test.Cart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -24,8 +23,6 @@ import roboguice.util.RoboAsyncTask;
  * Created by dd on 14-9-18.
  */
 public class CartActivity extends PaopaoBaseActivity implements View.OnClickListener {
-    private static final String FORMAT_PRICE = "￥%.2f";
-    private static final String FORMAT_BTN_TOTAL = "结算(%d)";
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     @InjectView(R.id.cb_cart_goods_count)
@@ -36,9 +33,9 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     TextView tv_cart_total;
     @InjectView(R.id.btn_submit)
     Button btn_submit;
+    @InjectView(R.id.fabtn_back)
+    FontAwesomeButton fabtn_back;
     private ICart cart;
-
-    private static String FORMAT_CART_GOODS_COUNT = "共%d件商品";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +43,12 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
         setContentView(R.layout.cart);
 
         setTitle("购物车");
+        init_views();
         get_data();
+    }
+
+    private void init_views() {
+        fabtn_back.setOnClickListener(this);
     }
 
     private void get_data() {
@@ -78,8 +80,8 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     }
 
     private void build_rl_total() {
-        tv_cart_total.setText(String.format(FORMAT_PRICE, cart.get_total()));
-        btn_submit.setText(String.format(FORMAT_BTN_TOTAL, cart.get_amount_count()));
+        tv_cart_total.setText(String.format(Constants.Format.FORMAT_PRICE, cart.get_total()));
+        btn_submit.setText(String.format(Constants.Format.FORMAT_BTN_TOTAL, cart.get_amount_count()));
         btn_submit.setOnClickListener(this);
     }
 
@@ -91,7 +93,7 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     }
 
     private void build_cart_goods_count() {
-        cb_cart_goods_count.setText(String.format(FORMAT_CART_GOODS_COUNT, cart.get_goods_type_count()));
+        cb_cart_goods_count.setText(String.format(Constants.Format.FORMAT_CART_GOODS_COUNT, cart.get_goods_type_count()));
     }
 
     @Override
@@ -99,9 +101,12 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.btn_submit:
                 // todo submit order, goto pay activity when success and finish
-//                Intent intent = new Intent(this, PayActivity.class);
+                Intent intent = new Intent(this, CartToOrderActivity.class);
 //                intent.putExtra(Constants.Extra.ORDER, order);
-//                startActivity(intent);
+                startActivity(intent);
+                break;
+            case R.id.fabtn_back:
+                finish();
                 break;
         }
     }

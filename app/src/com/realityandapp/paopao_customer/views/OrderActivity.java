@@ -40,9 +40,11 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     @InjectView(R.id.lv_order_goods_data)
     ListView lv_order_goods_data;
     @InjectView(R.id.fatv_destroy)
-    FontAwesomeButton fatv_destroy;
-    @InjectView(R.id.fatv_edit)
+    FontAwesomeButton fabtn_destroy;
+    @InjectView(R.id.fabtn_edit)
     FontAwesomeButton fatv_edit;
+    @InjectView(R.id.fabtn_back)
+    FontAwesomeButton fabtn_back;
 
     private IOrder order;
 
@@ -89,7 +91,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void build_actionbar() {
         fatv_edit.setOnClickListener(this);
-        fatv_destroy.setOnClickListener(this);
+        fabtn_destroy.setOnClickListener(this);
+        fabtn_back.setOnClickListener(this);
     }
 
     private void build_deliveryman() {
@@ -123,11 +126,14 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fatv_edit:
+            case R.id.fabtn_edit:
                 edit_order();
                 break;
             case R.id.fatv_destroy:
                 destroy_order();
+                break;
+            case R.id.fabtn_back:
+                finish();
                 break;
         }
     }

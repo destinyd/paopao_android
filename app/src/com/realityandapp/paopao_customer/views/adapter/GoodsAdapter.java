@@ -112,7 +112,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     }
 
     public void set_amount(int position, Integer amount) {
-        if (amount >= 0)
+        if (amount >= 0 && amount <= 99)
             goods_amount.set(position, amount);
     }
 

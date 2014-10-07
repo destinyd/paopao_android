@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.views;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,6 +20,7 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -45,6 +47,8 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     TextView tv_add_address;
     @InjectView(R.id.lv_cart_to_order_data)
     ListView lv_cart_to_order_data;
+    @InjectView(R.id.fabtn_back)
+    FontAwesomeButton fabtn_back;
 
     private ICart cart;
     private IAddress address = null;
@@ -96,6 +100,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
         tv_edit_address.setOnClickListener(this);
         tv_add_address.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
+        fabtn_back.setOnClickListener(this);
     }
 
     private void build_cart_to_order() {
@@ -175,11 +180,16 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
             case R.id.btn_submit:
                 submit();
                 break;
+            case R.id.fabtn_back:
+                finish();
+                break;
         }
     }
 
     private void submit() {
         System.out.println("submit");
+        Intent intent = new Intent(this, OrderActivity.class);
+        startActivity(intent);
     }
 
     private void goto_new_address() {

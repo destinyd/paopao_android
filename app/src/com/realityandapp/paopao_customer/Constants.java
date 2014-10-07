@@ -21,5 +21,7 @@ public class Constants {
         public static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
         public static final String FORMAT_FULL_CONTACT_TOAST = "%s(%s)\n%s";
         public static final String FORMAT_PRICE_WITH_UNIT = "￥%.2f/%s";
+        public static final String FORMAT_BTN_TOTAL = "结算(%d)";
+        public static final String FORMAT_CART_GOODS_COUNT = "共%d件商品";
     }
 }

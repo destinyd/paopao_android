@@ -1,8 +1,8 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
@@ -11,8 +11,8 @@ import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
-import com.realityandapp.paopao_customer.views.adapter.GoodsGridAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -22,9 +22,13 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class ShopGoodsActivity extends PaopaoBaseActivity {
+public class ShopGoodsActivity extends PaopaoBaseActivity implements View.OnClickListener {
     @InjectExtra(Constants.Extra.SHOP)
     private Shop shop;
+    @InjectView(R.id.fabtn_back)
+    FontAwesomeButton fabtn_back;
+    @InjectView(R.id.fabtn_cart)
+    FontAwesomeButton fabtn_cart;
     @InjectView(R.id.lv_goods)
     ListView lv_goods;
     @InjectView(R.id.loading_view)
@@ -38,7 +42,13 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
         shop = new Shop();
         setTitle(shop.get_name() + " 的菜品");
+        init_views();
         get_datas();
+    }
+
+    private void init_views() {
+        fabtn_cart.setOnClickListener(this);
+        fabtn_back.setOnClickListener(this);
     }
 
     private void get_datas() {
@@ -65,11 +75,21 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void build_view() {
-        System.out.println("build_view");
         final GoodsAdapter adapter =
                 new GoodsAdapter(getLayoutInflater(), goods);
         lv_goods.setAdapter(adapter);
-        lv_goods.setClickable(true);
-        lv_goods.setLongClickable(true);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fabtn_cart:
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.fabtn_back:
+                finish();
+                break;
+        }
     }
 }

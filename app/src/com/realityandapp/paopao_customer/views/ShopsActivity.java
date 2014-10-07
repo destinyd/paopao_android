@@ -12,6 +12,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
+import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -26,13 +27,20 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IShop> shops;
+    @InjectView(R.id.fabtn_cart)
+    FontAwesomeButton fabtn_cart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shops);
         setTitle("您周围的餐厅");
+        init_views();
         get_datas();
+    }
+
+    private void init_views() {
+        fabtn_cart.setOnClickListener(this);
     }
 
     private void get_datas() {
@@ -70,5 +78,16 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fabtn_cart:
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+                return;
+        }
+        super.onClick(v);
     }
 }
