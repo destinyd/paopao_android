@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="plus_tags">
+        <item>不辣</item>
+        <item>不葱</item>
+        <item>不香菜</item>
+        <item>去冰</item>
+        <item>微辣</item>
+        <item>切粉</item>
+        <item>炸粉</item>
+    </string-array>
+</resources>
