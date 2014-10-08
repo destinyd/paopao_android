@@ -41,7 +41,7 @@
                     android:layout_height="30dp"
                     android:textSize="16dp"
                     android:textColor="#222"
-                    android:id="@+id/tv_number"
+                    android:id="@+id/tv_amount"
                     android:gravity="center"
                     android:background="@drawable/rounded_button"
                     />

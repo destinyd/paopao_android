@@ -27,33 +27,66 @@
                       android:paddingLeft="5dp"
                       android:paddingRight="5dp"
                       android:orientation="horizontal"
+                      android:minWidth="100dp"
+                      android:id="@+id/ll_amount"
+                      android:visibility="visible"
                 >
             <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:textSize="30dp"
-                    android:id="@+id/fabtn_reduce"
-                    android:text="@string/fa_minus_square"
-                    android:textColor="@color/tv_highlight"
-                    android:layout_alignParentLeft="true"
-                    android:background="@android:color/transparent"
-                    android:padding="2dp"
+                    style="@style/ActionBarFATV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="20dp"
+                    android:id="@+id/fatv_minus"
+                    android:text="@string/fa_minus"
+                    android:textColor="@drawable/color_tv_link"
+                    android:background="@drawable/rounded_button"
                     />
-            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-                      android:id="@+id/tv_amount"
-                      android:gravity="center"
-                      android:singleLine="true"
-                      android:textColor="@color/tv_highlight"
-                      android:padding="2dp"
+            <!--android:textColor="@color/tv_link"-->
+            <TextView
+                    style="@style/ActionBarFATV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="16dp"
+                    android:textColor="#222"
+                    android:id="@+id/tv_amount"
+                    android:gravity="center"
+                    android:background="@drawable/rounded_button"
                     />
             <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:textSize="30dp"
-                    android:id="@+id/fabtn_increase"
-                    android:text="@string/fa_plus_square"
+                    style="@style/ActionBarFATV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="20dp"
+                    android:id="@+id/fatv_add"
+                    android:text="@string/fa_plus"
+                    android:textColor="@drawable/color_tv_link"
+                    android:background="@drawable/rounded_button"
+                    />
+        </LinearLayout>
+
+
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                      android:layout_toLeftOf="@+id/tv_unit_price"
+                      android:layout_toRightOf="@+id/cb_good"
+                      android:paddingLeft="5dp"
+                      android:paddingRight="5dp"
+                      android:orientation="horizontal"
+                      android:minWidth="100dp"
+                      android:visibility="invisible"
+                      android:id="@+id/ll_amount_none"
+                      android:gravity="center"
+                >
+            <TextView
+                    style="@style/ActionBarFATV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="16dp"
                     android:textColor="@color/tv_highlight"
-                    android:layout_alignParentLeft="true"
-                    android:background="@android:color/transparent"
-                    android:padding="2dp"
+                    android:id="@+id/tv_add_to_cart"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:text="@string/dian"
+                    android:background="@drawable/rounded_button"
                     />
         </LinearLayout>
     </RelativeLayout>

@@ -45,7 +45,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     @Override
     protected int[] getChildViewIds() {
         return new int[]{
-                R.id.iv_good_icon, R.id.good_title, R.id.good_price, R.id.good_desc, R.id.tv_number,
+                R.id.iv_good_icon, R.id.good_title, R.id.good_price, R.id.good_desc, R.id.tv_amount,
                 R.id.fatv_minus, R.id.fatv_add, R.id.tv_add_to_cart, R.id.ll_amount, R.id.ll_amount_none};
     }
 
@@ -64,10 +64,10 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
         getView(9, LinearLayout.class).setVisibility(is_show ? View.INVISIBLE : View.VISIBLE);
     }
 
-    private void initFontAwesomeButton(int id, int position) {
-        FontAwesomeButton fatv_add = getView(id, FontAwesomeButton.class);
-        fatv_add.setTag(position);
-        fatv_add.setOnClickListener(this);
+    private void init_font_awesome_button(int id, int position) {
+        FontAwesomeButton fabtn = getView(id, FontAwesomeButton.class);
+        fabtn.setTag(position);
+        fabtn.setOnClickListener(this);
     }
 
     //
@@ -104,7 +104,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     }
 
     private void update_amount_from_view(View v, int position) {
-        ((TextView) ((RelativeLayout) v.getParent().getParent()).findViewById(R.id.tv_number)).setText(String.valueOf(goods_amount.get(position)));
+        ((TextView) ((RelativeLayout) v.getParent().getParent()).findViewById(R.id.tv_amount)).setText(String.valueOf(goods_amount.get(position)));
     }
 
     public Integer get_amount(int position) {
@@ -119,8 +119,8 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
-        initFontAwesomeButton(5, position);
-        initFontAwesomeButton(6, position);
+        init_font_awesome_button(5, position);
+        init_font_awesome_button(6, position);
         TextView textView = getView(7, TextView.class);
         textView.setTag(position);
         textView.setOnClickListener(this);
