@@ -11,7 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,12 +15,11 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.ICart;
 import com.realityandapp.paopao_customer.models.test.Address;
-import com.realityandapp.paopao_customer.models.test.Cart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 

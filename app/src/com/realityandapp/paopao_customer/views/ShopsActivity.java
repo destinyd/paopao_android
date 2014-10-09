@@ -12,7 +12,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 

@@ -1,24 +1,24 @@
-package com.realityandapp.paopao_customer.views.widget;
+package com.realityandapp.paopao_customer.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.TextView;
+import android.widget.Button;
 import com.realityandapp.paopao_customer.utils.UiFont;
 
-public class FontAwesomeTextView extends TextView {
+public class FontAwesomeButton extends Button {
 
-    public FontAwesomeTextView(Context context) {
+    public FontAwesomeButton(Context context) {
         super(context);
         init();
     }
 
-    public FontAwesomeTextView(Context context, AttributeSet attrs) {
+    public FontAwesomeButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public FontAwesomeTextView(Context context, AttributeSet attrs, int defStyle) {
+    public FontAwesomeButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }

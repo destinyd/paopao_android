@@ -1,13 +1,11 @@
 package com.realityandapp.paopao_customer.views;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import com.google.inject.Inject;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 
 /**

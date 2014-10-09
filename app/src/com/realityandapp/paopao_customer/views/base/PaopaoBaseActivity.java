@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.activity.RoboFragmentActivity;
 
 /**

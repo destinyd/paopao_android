@@ -11,7 +11,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.AddressesActivity;
 import com.realityandapp.paopao_customer.views.OrderActivity;
 import com.realityandapp.paopao_customer.views.ShopsActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 
 /**

@@ -1,4 +1,4 @@
-package com.realityandapp.paopao_customer.views.widget;
+package com.realityandapp.paopao_customer.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

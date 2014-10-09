@@ -10,7 +10,7 @@ import android.widget.EditText;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.List;
 

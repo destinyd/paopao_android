@@ -2,14 +2,14 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/ActionBar">
-    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+    <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
             android:id="@+id/fatv_cancel"
             android:text="@string/fa_cancel"
             android:layout_alignParentLeft="true"
             android:background="@drawable/actionbar_icon"
             />
-    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+    <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
             android:id="@+id/fatv_submit"
             android:text="@string/fa_checkmark"

@@ -2,7 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 style="@style/ActionBar">
-    <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+    <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
             android:id="@+id/fabtn_back"
             android:text="@string/fa_back"

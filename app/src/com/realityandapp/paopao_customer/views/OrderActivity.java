@@ -13,7 +13,7 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
-import com.realityandapp.paopao_customer.views.widget.FontAwesomeButton;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 

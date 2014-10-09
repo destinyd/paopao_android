@@ -47,7 +47,7 @@
                   <!--android:id="@+id/tv_delivery_type_label"-->
                   <!--android:layout_alignParentLeft="true"-->
                 <!--/>-->
-        <!--<com.realityandapp.paopao_customer.views.widget.FontAwesomeButton-->
+        <!--<com.realityandapp.paopao_customer.widget.FontAwesomeButton-->
                 <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
                 <!--android:textSize="20dp"-->
                 <!--android:id="@+id/fabtn_caret_down"-->

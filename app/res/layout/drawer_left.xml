@@ -12,7 +12,7 @@
             android:id="@+id/menu_home"
             style="@style/MenuLine"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
                 style="@style/MenuLineFATV"
                 android:text="@string/fa_home"
                 />
@@ -25,7 +25,7 @@
             <!--android:id="@+id/menu_favorites"-->
             <!--style="@style/MenuLine"-->
             <!-->-->
-        <!--<com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView-->
+        <!--<com.realityandapp.paopao_customer.widget.FontAwesomeTextView-->
                 <!--style="@style/MenuLineFATV"-->
                 <!--android:text="@string/fa_heart"-->
                 <!--/>-->
@@ -38,7 +38,7 @@
             android:id="@+id/menu_orders"
             style="@style/MenuLine"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
                 style="@style/MenuLineFATV"
                 android:text="@string/fa_note"
                 />
@@ -51,7 +51,7 @@
             android:id="@+id/menu_addresses"
             style="@style/MenuLine"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
                 style="@style/MenuLineFATV"
                 android:text="@string/fa_map_marker"
                 />
@@ -64,7 +64,7 @@
             android:id="@+id/menu_settings"
             style="@style/MenuLine"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
                 style="@style/MenuLineFATV"
                 android:text="@string/fa_cog"
                 />
@@ -77,7 +77,7 @@
             android:id="@+id/menu_exit"
             style="@style/MenuLine"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeTextView
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
                 style="@style/MenuLineFATV"
                 android:text="@string/fa_sign_out"
                 />

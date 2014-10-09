@@ -31,7 +31,7 @@
                       android:id="@+id/ll_amount"
                       android:visibility="visible"
                 >
-            <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+            <com.realityandapp.paopao_customer.widget.FontAwesomeButton
                     style="@style/ActionBarFATV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
@@ -52,7 +52,7 @@
                     android:gravity="center"
                     android:background="@drawable/rounded_button"
                     />
-            <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+            <com.realityandapp.paopao_customer.widget.FontAwesomeButton
                     style="@style/ActionBarFATV"
                     android:layout_width="30dp"
                     android:layout_height="30dp"

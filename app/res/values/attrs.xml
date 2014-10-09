@@ -13,9 +13,4 @@
         <attr name="bubble_gradientTopColor" format="color" />
         <attr name="bubble_gradientBottomColor" format="color" />
     </declare-styleable>
-
-    <declare-styleable name="RoundLayout">
-        <attr name="round_width" format="dimension"/>
-        <attr name="round_color" format="color"/>
-    </declare-styleable>
 </resources>

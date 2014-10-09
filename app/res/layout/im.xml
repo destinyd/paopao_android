@@ -10,7 +10,7 @@
                     android:id="@+id/rl_input"
                     android:background="@color/im_input_background"
             >
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+        <com.realityandapp.paopao_customer.widget.FontAwesomeButton
                 style="@style/IMInputFATV"
                 android:id="@+id/fatv_voice"
                 android:background="@drawable/actionbar_icon"
@@ -18,7 +18,7 @@
                 android:layout_alignParentLeft="true"
                 />
 
-        <com.realityandapp.paopao_customer.views.widget.FontAwesomeButton
+        <com.realityandapp.paopao_customer.widget.FontAwesomeButton
                 style="@style/IMInputFATV"
                 android:id="@+id/fatv_plus"
                 android:background="@drawable/actionbar_icon"
