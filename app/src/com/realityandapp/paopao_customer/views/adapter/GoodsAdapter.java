@@ -46,7 +46,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     protected int[] getChildViewIds() {
         return new int[]{
                 R.id.iv_good_icon, R.id.good_title, R.id.good_price, R.id.good_desc, R.id.tv_amount,
-                R.id.fatv_minus, R.id.fatv_add, R.id.tv_add_to_cart, R.id.ll_amount, R.id.ll_amount_none};
+                R.id.fabtn_minus, R.id.fabtn_add, R.id.tv_add_to_cart, R.id.ll_amount, R.id.ll_amount_none};
     }
 
     @Override
@@ -74,10 +74,10 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fatv_minus:
+            case R.id.fabtn_minus:
                 update_amount(v, -1);
                 break;
-            case R.id.fatv_add:
+            case R.id.fabtn_add:
                 update_amount(v, 1);
                 break;
             case R.id.tv_add_to_cart:

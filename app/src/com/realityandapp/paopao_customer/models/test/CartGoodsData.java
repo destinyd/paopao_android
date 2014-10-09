@@ -27,7 +27,6 @@ public class CartGoodsData implements ICartGoodsData {
         unit = "份";
         amount = 1 + new Random().nextInt(3);
         plus = "good plus" + _id;
-        plus = null;
     }
 
     @Override

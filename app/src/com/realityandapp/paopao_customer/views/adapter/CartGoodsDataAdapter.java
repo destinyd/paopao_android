@@ -40,7 +40,7 @@ public class CartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> impl
     protected int[] getChildViewIds() {
         return new int[]{
                 R.id.cb_good, R.id.tv_amount, R.id.tv_unit_price, R.id.ll_amount, R.id.ll_amount_none,
-                R.id.fatv_minus, R.id.fatv_add, R.id.tv_add_to_cart
+                R.id.fabtn_minus, R.id.fabtn_add, R.id.tv_add_to_cart
         };
     }
 
@@ -68,10 +68,10 @@ public class CartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> impl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.fatv_minus:
+            case R.id.fabtn_minus:
                 update_amount(v, -1);
                 break;
-            case R.id.fatv_add:
+            case R.id.fabtn_add:
                 update_amount(v, 1);
                 break;
             case R.id.tv_add_to_cart:

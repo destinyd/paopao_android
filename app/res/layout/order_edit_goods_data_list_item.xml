@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:id="@+id/rl_cart_to_order_goods"
+                    android:padding="10dp"
+            >
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:id="@+id/rl_cart_to_order_good_data_top"
+                        android:gravity="center_vertical"
+                >
+            <TextView android:layout_width="100dp" android:layout_height="match_parent"
+                      android:layout_alignParentLeft="true"
+                      android:id="@+id/tv_good_name"
+                      android:gravity="center_vertical|left"
+                      android:singleLine="true"
+                    />
+            <TextView android:layout_width="100dp" android:layout_height="match_parent"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/tv_good_total"
+                      android:gravity="center_vertical|right"
+                      android:singleLine="true"
+                      android:textColor="@color/tv_highlight"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                      android:layout_alignParentRight="true"
+                      android:id="@+id/tv_unit_price"
+                      android:gravity="center"
+                      android:singleLine="true"
+                      android:layout_toLeftOf="@id/tv_good_total"
+                      android:layout_toRightOf="@id/tv_good_name"
+                    />
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_below="@id/rl_cart_to_order_good_data_top"
+                >
+            <com.realityandapp.paopao_customer.widget.FontAwesomeButton
+                    style="@style/ActionBarFATV"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:textSize="20dp"
+                    android:id="@+id/fabtn_add_plus_tag"
+                    android:text="@string/fa_plus"
+                    android:textColor="@drawable/color_tv_link"
+                    android:background="@drawable/rounded_button"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    />
+            <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:id="@+id/et_plus"
+                      android:gravity="center_vertical|left"
+                      android:layout_toLeftOf="@id/fabtn_add_plus_tag"
+                      android:textSize="16dp"
+                      android:lineSpacingExtra="4dp"
+                      android:maxLines="4"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

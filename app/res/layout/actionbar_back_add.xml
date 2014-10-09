@@ -12,7 +12,7 @@
             />
     <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
-            android:id="@+id/fatv_add"
+            android:id="@+id/fabtn_add"
             android:background="@drawable/actionbar_icon"
             android:text="@string/fa_plus"
             android:layout_alignParentRight="true"
@@ -20,7 +20,7 @@
     <TextView
             style="@style/ActionBarTitle"
             android:id="@+id/title"
-            android:layout_toLeftOf="@id/fatv_add"
+            android:layout_toLeftOf="@id/fabtn_add"
             android:layout_toRightOf="@id/fabtn_back"
             />
 </RelativeLayout>

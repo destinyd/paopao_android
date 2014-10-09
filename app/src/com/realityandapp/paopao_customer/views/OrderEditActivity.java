@@ -17,6 +17,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
+import com.realityandapp.paopao_customer.views.adapter.OrderEditGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectView;
@@ -107,8 +108,8 @@ public class OrderEditActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_order() {
-        OrderGoodsDataAdapter adapter =
-                new OrderGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
+        OrderEditGoodsDataAdapter adapter =
+                new OrderEditGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
         lv_order_data.setAdapter(adapter);
         ListViewUtils.setListViewHeightBasedOnChildren(lv_order_data);
     }

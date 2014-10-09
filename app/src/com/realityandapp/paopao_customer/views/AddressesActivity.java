@@ -27,8 +27,8 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     ListView list;
     @InjectView(R.id.fabtn_back)
     FontAwesomeButton fatv_back;
-    @InjectView(R.id.fatv_add)
-    FontAwesomeButton fatv_add;
+    @InjectView(R.id.fabtn_add)
+    FontAwesomeButton fabtn_add;
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IAddress> addresses;
@@ -45,7 +45,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
 
     private void bind_views() {
         fatv_back.setOnClickListener(this);
-        fatv_add.setOnClickListener(this);
+        fabtn_add.setOnClickListener(this);
     }
 
     private void get_datas() {
@@ -101,7 +101,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
             case R.id.fabtn_back:
                 finish();
                 break;
-            case R.id.fatv_add:
+            case R.id.fabtn_add:
                 startActivityForResult(new Intent(this, NewAddressActivity.class), Constants.Request.ADDRESS);
                 break;
         }
