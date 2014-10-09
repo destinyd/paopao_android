@@ -59,4 +59,8 @@ public class DataProvider {
     public static void save_order(IOrder order) {
         // todo save order
     }
+
+    public static void set_default_address(IAddress address) {
+        // todo set default address
+    }
 }

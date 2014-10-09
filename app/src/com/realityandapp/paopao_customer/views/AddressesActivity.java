@@ -81,18 +81,38 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
                 adapter.set_address_default(address);
                 adapter.notifyDataSetChanged();
                 System.out.println("default address:" + adapter.get_address_default().get_address());
-                //todo change default address
-//                Intent intent = new Intent(ShopGoodsActivity.this, Good.class);
-//                intent.putExtra(Constants.Extra.GOOD, goods.get(i));
-//                startActivity(intent);
+                set_default_address(address);
+            }
+        });
+
+    }
+
+    private void set_default_address(final IAddress address) {
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            public Void call() throws Exception {
+                DataProvider.set_default_address(address);
+                return null;
+            }
+
+            @Override
+            protected void onException(Exception e) throws RuntimeException {
+                Toast.makeText(AddressesActivity.this
+                        ,"设置默认地址出错,请检查网络是否畅通。"
+                        , Toast.LENGTH_LONG
+                ).show();
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
                 Toast.makeText(AddressesActivity.this
                         ,"默认地址修改为：\n" + String.format(Constants.Format.FORMAT_FULL_CONTACT_TOAST
                                 , address.get_address(), address.get_realname(), address.get_phone())
                         , Toast.LENGTH_LONG
                 ).show();
             }
-        });
-
+        }.execute();
     }
 
     @Override
