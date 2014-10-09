@@ -137,7 +137,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
                 .setNegativeButton("新建地址", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        goto_new_address();
+                        go_to_new_address();
                     }
                 })
                 .setNeutralButton("取消", null);
@@ -196,7 +196,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
                 get_addresses();
                 break;
             case R.id.tv_add_address:
-                goto_new_address();
+                go_to_new_address();
                 break;
             case R.id.fatv_submit:
                 submit();
@@ -245,7 +245,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
         }.execute();
     }
 
-    private void goto_new_address() {
+    private void go_to_new_address() {
         Intent intent = new Intent(this, NewAddressActivity.class);
         startActivityForResult(intent, Constants.Request.ADDRESS);
     }

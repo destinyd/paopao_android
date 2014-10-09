@@ -14,7 +14,6 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.ICart;
-import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
@@ -57,7 +56,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     private List<String> list_address_string = new ArrayList<String>();
     private ArrayAdapter<String> addressesAdapter;
     AlertDialog addressesDialog;
-    private ArrayList<Address> addresses = new ArrayList<Address>();
+    private List<IAddress> addresses = new ArrayList<IAddress>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -139,44 +138,10 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_edit_address:
-                //todo a progress dialog to loading addresses
-                if (addresses.size() == 0)
-                    for (int i = 0; i < 20; i++) {
-                        addresses.add(new Address());
-                    }
-                for (Address address : addresses) {
-                    list_address_string.add(String.format(
-                            Constants.Format.FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
-                    ));
-                }
-                addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
-
-                AlertDialog.Builder dialog_builder = new AlertDialog.Builder(CartToOrderActivity.this)
-                        .setTitle("请选择您所在地址")
-                        .setAdapter(addressesAdapter, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-//                                select_address = list_address_string.get(which);
-                                selection = which;
-                                address = addresses.get(which);
-                                build_address();
-//                                System.out.println(select_address);
-                                dialog.cancel();
-                            }
-                        })
-                        .setNegativeButton("新建地址", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //todo goto new address activity
-                                goto_new_address();
-                            }
-                        })
-                        .setNeutralButton("取消", null);
-                addressesDialog = dialog_builder.create();
-                addressesDialog.show();
-                addressesDialog.getListView().setSelection(0);
+                get_addresses();
                 break;
             case R.id.tv_add_address:
-                goto_new_address();
+                go_to_new_address();
                 break;
             case R.id.btn_submit:
                 submit();
@@ -187,13 +152,86 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
         }
     }
 
+
+
+    private void get_addresses() {
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                addresses = DataProvider.get_addresses();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                show_and_select_address();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    private void show_and_select_address() {
+        for (IAddress address : addresses) {
+            list_address_string.add(String.format(
+                    Constants.Format.FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
+            ));
+        }
+        addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
+
+        AlertDialog.Builder dialog_builder = new AlertDialog.Builder(CartToOrderActivity.this)
+                .setTitle("请选择您所在地址")
+                .setAdapter(addressesAdapter, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+//                                select_address = list_address_string.get(which);
+                        selection = which;
+                        refresh_for_change_address_to(addresses.get(which));
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("新建地址", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        go_to_new_address();
+                    }
+                })
+                .setNeutralButton("取消", null);
+        addressesDialog = dialog_builder.create();
+        addressesDialog.show();
+        addressesDialog.getListView().setSelection(0);
+    }
+
+    private void refresh_for_change_address_to(IAddress iAddress) {
+        address = iAddress;
+        build_address();
+    }
+
     private void submit() {
-        System.out.println("submit");
         Intent intent = new Intent(this, OrderActivity.class);
         startActivity(intent);
     }
 
-    private void goto_new_address() {
-        System.out.println("新建地址");
+    private void go_to_new_address() {
+        Intent intent = new Intent(this, NewAddressActivity.class);
+        startActivityForResult(intent, Constants.Request.ADDRESS);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Constants.Request.ADDRESS:
+                if (resultCode == RESULT_OK) {
+                    IAddress address = (IAddress) data.getSerializableExtra(Constants.Extra.ADDRESS);
+                    refresh_for_change_address_to(address);
+                }
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
