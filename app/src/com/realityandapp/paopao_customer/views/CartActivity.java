@@ -52,7 +52,7 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this){
+        new RoboAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -98,16 +98,30 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btn_submit:
-                // todo submit order, goto pay activity when success and finish
-                Intent intent = new Intent(this, CartToOrderActivity.class);
-//                intent.putExtra(Constants.Extra.ORDER, order);
-                startActivity(intent);
+                go_to_cart_to_order();
                 break;
             case R.id.fabtn_back:
                 finish();
                 break;
+        }
+    }
+
+    private void go_to_cart_to_order() {
+        Intent intent = new Intent(this, CartToOrderActivity.class);
+        intent.putExtra(Constants.Extra.CART, cart);
+        startActivityForResult(intent, Constants.Request.CART);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Constants.Request.CART:
+                if(resultCode == RESULT_OK)
+                    get_data(); // refresh if cart already to order
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

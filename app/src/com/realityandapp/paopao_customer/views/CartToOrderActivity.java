@@ -20,6 +20,7 @@ import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
+import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -30,6 +31,9 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
+    @InjectExtra(Constants.Extra.CART)
+    ICart cart;
+
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     @InjectView(R.id.btn_submit)
@@ -49,7 +53,6 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     @InjectView(R.id.fabtn_back)
     FontAwesomeButton fabtn_back;
 
-    private ICart cart;
     private IAddress address = null;
     private List<String> list_address_string = new ArrayList<String>();
     private ArrayAdapter<String> addressesAdapter;
@@ -75,7 +78,6 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
 
             @Override
             public Void call() throws Exception {
-                cart = DataProvider.get_cart();
                 address = DataProvider.get_default_address();
                 return null;
             }

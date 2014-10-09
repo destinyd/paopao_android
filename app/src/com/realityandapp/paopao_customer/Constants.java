@@ -10,11 +10,13 @@ public class Constants {
         public static final String ORDER = "order";
         public static final String DELIVERYMAN = "deliveryman";
         public static final String ADDRESS = "address";
+        public static final String CART = "cart";
     }
 
     public static class Request {
         public static final int ORDER = 11;
         public static final int ADDRESS = 12;
+        public static final int CART = 13;
     }
     
     public static class Format{
