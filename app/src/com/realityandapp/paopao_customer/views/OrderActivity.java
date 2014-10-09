@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
@@ -48,6 +49,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     FontAwesomeButton fabtn_back;
     @InjectView(R.id.btn_submit)
     Button btn_submit;
+    @InjectView(R.id.rl_deliveryman)
+    RelativeLayout rl_deliveryman;
 
     private IOrder order;
 
@@ -111,6 +114,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_deliveryman() {
+        rl_deliveryman.setOnClickListener(this);
         tv_deliveryman.setText(order.get_deliveryman().get_realname());
     }
 
@@ -153,7 +157,16 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
             case R.id.btn_submit:
                 submit();
                 break;
+            case R.id.rl_deliveryman:
+                go_to_im();
+                break;
         }
+    }
+
+    private void go_to_im() {
+        Intent intent = new Intent(this, IMActivity.class);
+        intent.putExtra(Constants.Extra.DELIVERYMAN, order.get_deliveryman());
+        startActivity(intent);
     }
 
     private void submit() {

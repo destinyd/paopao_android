@@ -8,6 +8,7 @@ public class Constants {
         public static final String SHOP = "shop";
         public static final String STEP = "step";
         public static final String ORDER = "order";
+        public static final String DELIVERYMAN = "deliveryman";
     }
 
     public static class Request {

@@ -74,6 +74,7 @@
                             android:padding="10dp"
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/white_with_bbb_bottom_border"
+                            android:id="@+id/rl_deliveryman"
                     >
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:gravity="center_vertical"
