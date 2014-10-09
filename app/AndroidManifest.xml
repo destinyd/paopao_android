@@ -34,7 +34,7 @@
         <activity android:name=".views.OrderActivity"/>
         <activity android:name=".views.IMActivity"/>
         <activity android:name=".views.NewAddressActivity"/>
-        <activity android:name=".views.OrderEditActivity"/>
+        <activity android:name=".views.EditOrderActivity"/>
         <activity android:name=".views.AddressesActivity"/>
         <activity android:name=".views.ShopGoodsActivity"/>
         <activity android:name=".views.PayActivity"/>

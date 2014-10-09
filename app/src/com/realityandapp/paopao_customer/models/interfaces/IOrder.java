@@ -17,6 +17,7 @@ public interface IOrder extends IBase {
     public IAddress get_address();
     public float get_total();
     public String get_status();
-    public Deliveryman get_deliveryman();
+    public IDeliveryman get_deliveryman();
     public void destroy();
+    public void set_address(IAddress address);
 }

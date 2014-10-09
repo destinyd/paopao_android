@@ -1,8 +1,6 @@
 package com.realityandapp.paopao_customer.models.test;
 
-import com.realityandapp.paopao_customer.models.interfaces.IAddress;
-import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
-import com.realityandapp.paopao_customer.models.interfaces.IOrder;
+import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
@@ -16,9 +14,9 @@ public class Order implements IOrder {
     public static int i = 0;
     public String _id;
     public String status;
-    public Shop shop;
-    public Address address;
-    public Deliveryman deliveryman;
+    public IShop shop;
+    public IAddress address;
+    public IDeliveryman deliveryman;
     public int shop_discount;
     public float shop_delivery_price;
     public float total = 0;
@@ -81,13 +79,18 @@ public class Order implements IOrder {
     }
 
     @Override
-    public Deliveryman get_deliveryman() {
+    public IDeliveryman get_deliveryman() {
         return deliveryman;
     }
 
     @Override
     public void destroy() {
         DataProvider.destroy_order(get_id());
+    }
+
+    @Override
+    public void set_address(IAddress address) {
+        this.address = address;
     }
 
     @Override

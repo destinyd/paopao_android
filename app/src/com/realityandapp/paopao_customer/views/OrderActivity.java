@@ -195,7 +195,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void edit_order() {
-        Intent intent = new Intent(OrderActivity.this, OrderEditActivity.class);
+        Intent intent = new Intent(OrderActivity.this, EditOrderActivity.class);
         intent.putExtra(Constants.Extra.ORDER, order);
         startActivityForResult(intent, Constants.Request.ORDER);
         System.out.println("edit_order");

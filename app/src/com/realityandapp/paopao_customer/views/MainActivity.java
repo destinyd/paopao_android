@@ -39,7 +39,7 @@ public class MainActivity extends ListActivity {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         addItem(data, "pay", PayActivity.class);
         addItem(data, "addresses", AddressesActivity.class);
-        addItem(data, "edit order", OrderEditActivity.class);
+        addItem(data, "edit order", EditOrderActivity.class);
         addItem(data, "sign in", SignInActivity.class);
         addItem(data, "sign up", SignUpActivity.class);
         addItem(data, "shops", ShopsActivity.class);
