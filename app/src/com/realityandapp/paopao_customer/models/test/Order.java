@@ -3,6 +3,7 @@ package com.realityandapp.paopao_customer.models.test;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
+import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +83,11 @@ public class Order implements IOrder {
     @Override
     public Deliveryman get_deliveryman() {
         return deliveryman;
+    }
+
+    @Override
+    public void destroy() {
+        DataProvider.destroy_order(get_id());
     }
 
     @Override

@@ -18,4 +18,5 @@ public interface IOrder extends IBase {
     public float get_total();
     public String get_status();
     public Deliveryman get_deliveryman();
+    public void destroy();
 }

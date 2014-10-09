@@ -1,12 +1,11 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
@@ -53,6 +52,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     RelativeLayout rl_deliveryman;
 
     private IOrder order;
+    private AlertDialog dialog_confirm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,11 +98,10 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void build_submit() {
         btn_submit.setOnClickListener(this);
-        if("等待支付".equals(order.get_status())) {
+        if ("等待支付".equals(order.get_status())) {
             btn_submit.setText("支付");
             btn_submit.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             btn_submit.setVisibility(View.INVISIBLE);
         }
     }
@@ -149,7 +148,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
                 edit_order();
                 break;
             case R.id.fatv_destroy:
-                destroy_order();
+                confirm_destroy();
                 break;
             case R.id.fabtn_back:
                 finish();
@@ -163,6 +162,20 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         }
     }
 
+    private void confirm_destroy() {
+        AlertDialog.Builder dialog_builder = new AlertDialog.Builder(this)
+                .setTitle("确定删除吗？")
+                .setNeutralButton("取消", null)
+                .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        destroy_order();
+                    }
+                });
+        dialog_confirm = dialog_builder.create();
+        dialog_confirm.show();
+    }
+
     private void go_to_im() {
         Intent intent = new Intent(this, IMActivity.class);
         intent.putExtra(Constants.Extra.DELIVERYMAN, order.get_deliveryman());
@@ -171,19 +184,17 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void submit() {
         System.out.println("submit");
-        if("等待支付".equals(order.get_status())) {
+        if ("等待支付".equals(order.get_status())) {
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra(Constants.Extra.ORDER, order);
             startActivity(intent);
-        }
-        else{
+        } else {
 //            todo for other status
             btn_submit.setVisibility(View.INVISIBLE);
         }
     }
 
     private void edit_order() {
-        // todo goto edit order
         Intent intent = new Intent(OrderActivity.this, OrderEditActivity.class);
         intent.putExtra(Constants.Extra.ORDER, order);
         startActivityForResult(intent, Constants.Request.ORDER);
@@ -191,23 +202,36 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void destroy_order() {
-        //todo destroy order
-        System.out.println("destroy_order");
-//        finish();
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                order.destroy();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                loading_view.hide();
+                finish();
+            }
+        }.execute();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case Constants.Request.ORDER:
-                if(resultCode == RESULT_OK)
-                {
-                    System.out.println("changed");
-                    // todo get new order from intent
-                    //                    refresh()
+                if (resultCode == RESULT_OK) {
                     get_data();
                 }
-                break;
+
+            break;
         }
     }
 }

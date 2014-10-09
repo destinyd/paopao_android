@@ -47,4 +47,8 @@ public class DataProvider {
         }
         return addresses;
     }
+
+    public static void destroy_order(String id) {
+        //todo destroy order
+    }
 }
