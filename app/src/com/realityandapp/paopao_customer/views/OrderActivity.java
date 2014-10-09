@@ -3,6 +3,7 @@ package com.realityandapp.paopao_customer.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
@@ -45,6 +46,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     FontAwesomeButton fatv_edit;
     @InjectView(R.id.fabtn_back)
     FontAwesomeButton fabtn_back;
+    @InjectView(R.id.btn_submit)
+    Button btn_submit;
 
     private IOrder order;
 
@@ -87,6 +90,18 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         build_delivery();
         build_address();
         build_cart_to_order();
+        build_submit();
+    }
+
+    private void build_submit() {
+        btn_submit.setOnClickListener(this);
+        if("等待支付".equals(order.get_status())) {
+            btn_submit.setText("支付");
+            btn_submit.setVisibility(View.VISIBLE);
+        }
+        else{
+            btn_submit.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void build_actionbar() {
@@ -135,6 +150,22 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
             case R.id.fabtn_back:
                 finish();
                 break;
+            case R.id.btn_submit:
+                submit();
+                break;
+        }
+    }
+
+    private void submit() {
+        System.out.println("submit");
+        if("等待支付".equals(order.get_status())) {
+            Intent intent = new Intent(this, PayActivity.class);
+            intent.putExtra(Constants.Extra.ORDER, order);
+            startActivity(intent);
+        }
+        else{
+//            todo for other status
+            btn_submit.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -161,6 +192,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
                     System.out.println("changed");
                     // todo get new order from intent
                     //                    refresh()
+                    get_data();
                 }
                 break;
         }
