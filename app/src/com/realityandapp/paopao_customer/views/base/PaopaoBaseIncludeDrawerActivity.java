@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.AddressesActivity;
+import com.realityandapp.paopao_customer.views.MyOrdersActivity;
 import com.realityandapp.paopao_customer.views.OrderActivity;
 import com.realityandapp.paopao_customer.views.ShopsActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -71,8 +72,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
 //            case R.id.menu_favorites:
 //                break;
             case R.id.menu_orders:
-                // todo goto orders activity
-                startActivity(new Intent(this, OrderActivity.class));
+                startActivity(new Intent(this, MyOrdersActivity.class));
                 break;
             case R.id.menu_addresses:
                 startActivity(new Intent(this, AddressesActivity.class));

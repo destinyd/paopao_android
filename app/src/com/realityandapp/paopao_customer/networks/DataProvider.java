@@ -63,4 +63,13 @@ public class DataProvider {
     public static void set_default_address(IAddress address) {
         // todo set default address
     }
+
+    public static List<IOrder> get_orders() {
+        List<IOrder> orders = new ArrayList<IOrder>();
+        for(int i=0; i< 5; i++) {
+            Order order = new Order();
+            orders.add(order);
+        }
+        return orders;
+    }
 }

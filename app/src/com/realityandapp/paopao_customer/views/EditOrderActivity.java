@@ -119,7 +119,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     private void show_and_select_address() {
         for (IAddress address : addresses) {
             list_address_string.add(String.format(
-                    Constants.Format.FORMAT_FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
+                    Constants.Format.FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
             ));
         }
         addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
@@ -172,11 +172,11 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_total() {
-        tv_order_total.setText(String.format(Constants.Format.FORMAT_PRICE, order.get_total()));
+        tv_order_total.setText(String.format(Constants.Format.PRICE, order.get_total()));
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(Constants.Format.FORMAT_CONTACT, selected_address.get_realname(), selected_address.get_phone()));
+        tv_contact.setText(String.format(Constants.Format.CONTACT, selected_address.get_realname(), selected_address.get_phone()));
         tv_address.setVisibility(View.VISIBLE);
         tv_address.setText(selected_address.get_address());
         tv_edit_address.setVisibility(View.VISIBLE);
@@ -184,7 +184,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_delivery_price() {
-        tv_delivery_price.setText(String.format(Constants.Format.FORMAT_PRICE, order.get_delivery_price()));
+        tv_delivery_price.setText(String.format(Constants.Format.PRICE, order.get_delivery_price()));
     }
 
     Integer selection = -1;

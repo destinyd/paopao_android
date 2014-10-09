@@ -111,7 +111,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     }
 
     private void build_total() {
-        tv_cart_to_order_total.setText(String.format(Constants.Format.FORMAT_PRICE, cart.get_total()));
+        tv_cart_to_order_total.setText(String.format(Constants.Format.PRICE, cart.get_total()));
     }
 
     private void build_address() {
@@ -123,7 +123,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
             btn_submit.setEnabled(false);
         }
         else {
-            tv_contact.setText(String.format(Constants.Format.FORMAT_CONTACT, address.get_realname(), address.get_phone()));
+            tv_contact.setText(String.format(Constants.Format.CONTACT, address.get_realname(), address.get_phone()));
             tv_address.setVisibility(View.VISIBLE);
             tv_address.setText(address.get_address());
             tv_edit_address.setVisibility(View.VISIBLE);
@@ -179,7 +179,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     private void show_and_select_address() {
         for (IAddress address : addresses) {
             list_address_string.add(String.format(
-                    Constants.Format.FORMAT_FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
+                    Constants.Format.FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
             ));
         }
         addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);

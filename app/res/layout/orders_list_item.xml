@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:id="@+id/rl_order"
+            >
+        <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_action"
+                android:text="支付"
+                android:layout_centerVertical="true"
+                />
+        <RelativeLayout
+                android:id="@+id/desc_section"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_toLeftOf="@id/btn_action"
+                android:layout_alignParentRight="true"
+                >
+            <TextView
+                    android:id="@+id/order_shop_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:layout_alignParentTop="true"
+                    android:gravity="left|top"
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    />
+            <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="left|bottom"
+                    android:singleLine="true"
+                    android:textColor="@color/tv_link"
+                    android:textSize="12dp"
+                    />
+            <TextView
+                    android:id="@+id/order_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_above="@id/order_status"
+                    android:layout_below="@id/order_shop_name"
+                    android:textStyle="italic"
+                    android:textSize="12dp"
+                    />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

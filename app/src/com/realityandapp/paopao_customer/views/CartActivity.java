@@ -80,8 +80,8 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     }
 
     private void build_rl_total() {
-        tv_cart_total.setText(String.format(Constants.Format.FORMAT_PRICE, cart.get_total()));
-        btn_submit.setText(String.format(Constants.Format.FORMAT_BTN_TOTAL, cart.get_amount_count()));
+        tv_cart_total.setText(String.format(Constants.Format.PRICE, cart.get_total()));
+        btn_submit.setText(String.format(Constants.Format.BTN_TOTAL, cart.get_amount_count()));
         btn_submit.setOnClickListener(this);
     }
 
@@ -93,7 +93,7 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
     }
 
     private void build_cart_goods_count() {
-        cb_cart_goods_count.setText(String.format(Constants.Format.FORMAT_CART_GOODS_COUNT, cart.get_goods_type_count()));
+        cb_cart_goods_count.setText(String.format(Constants.Format.CART_GOODS_COUNT, cart.get_goods_type_count()));
     }
 
     @Override

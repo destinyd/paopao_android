@@ -107,7 +107,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 Toast.makeText(AddressesActivity.this
-                        ,"默认地址修改为：\n" + String.format(Constants.Format.FORMAT_FULL_CONTACT_TOAST
+                        ,"默认地址修改为：\n" + String.format(Constants.Format.FULL_CONTACT_TOAST
                                 , address.get_address(), address.get_realname(), address.get_phone())
                         , Toast.LENGTH_LONG
                 ).show();

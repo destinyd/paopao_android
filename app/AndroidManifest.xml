@@ -38,6 +38,7 @@
         <activity android:name=".views.AddressesActivity"/>
         <activity android:name=".views.ShopGoodsActivity"/>
         <activity android:name=".views.PayActivity"/>
+        <activity android:name=".views.MyOrdersActivity"/>
     </application>
 
 </manifest>

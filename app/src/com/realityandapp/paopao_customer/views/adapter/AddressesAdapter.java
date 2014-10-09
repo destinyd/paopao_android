@@ -2,7 +2,6 @@ package com.realityandapp.paopao_customer.views.adapter;
 
 import android.view.LayoutInflater;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
@@ -40,7 +39,7 @@ public class AddressesAdapter extends SingleTypeAdapter<IAddress> {
     @Override
     protected void update(int position, IAddress item) {
         setChecked(0, address_default == item);
-        setText(1, String.format(Constants.Format.FORMAT_CONTACT, item.get_realname(), item.get_phone()));
+        setText(1, String.format(Constants.Format.CONTACT, item.get_realname(), item.get_phone()));
         setText(2, item.get_address());
     }
 
