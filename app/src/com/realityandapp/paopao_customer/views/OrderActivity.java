@@ -36,8 +36,6 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     TextView tv_address;
     @InjectView(R.id.tv_order_status)
     TextView tv_order_status;
-    @InjectView(R.id.tv_deliveryman)
-    TextView tv_deliveryman;
     @InjectView(R.id.lv_order_goods_data)
     ListView lv_order_goods_data;
     @InjectView(R.id.fatv_destroy)
@@ -48,6 +46,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     FontAwesomeButton fabtn_back;
     @InjectView(R.id.btn_submit)
     Button btn_submit;
+    @InjectView(R.id.tv_deliveryman)
+    TextView tv_deliveryman;
     @InjectView(R.id.rl_deliveryman)
     RelativeLayout rl_deliveryman;
 
@@ -145,7 +145,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fabtn_edit:
-                edit_order();
+                go_to_edit_order();
                 break;
             case R.id.fatv_destroy:
                 confirm_destroy();
@@ -194,11 +194,10 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         }
     }
 
-    private void edit_order() {
+    private void go_to_edit_order() {
         Intent intent = new Intent(OrderActivity.this, EditOrderActivity.class);
         intent.putExtra(Constants.Extra.ORDER, order);
         startActivityForResult(intent, Constants.Request.ORDER);
-        System.out.println("edit_order");
     }
 
     private void destroy_order() {
@@ -228,7 +227,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         switch (requestCode) {
             case Constants.Request.ORDER:
                 if (resultCode == RESULT_OK) {
-                    get_data();
+                    order = (IOrder) data.getSerializableExtra(Constants.Extra.ORDER);
+                    build_views();
                 }
 
             break;

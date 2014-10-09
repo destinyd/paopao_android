@@ -50,6 +50,11 @@ public class CartGoodsData implements ICartGoodsData {
     }
 
     @Override
+    public void set_plus(String s) {
+        plus = s;
+    }
+
+    @Override
     public String get_unit() {
         return unit;
     }

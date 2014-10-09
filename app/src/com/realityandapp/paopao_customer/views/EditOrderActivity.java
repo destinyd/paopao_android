@@ -15,8 +15,9 @@ import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
-import com.realityandapp.paopao_customer.views.adapter.OrderEditGoodsDataAdapter;
+import com.realityandapp.paopao_customer.views.adapter.EditOrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -27,9 +28,8 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
-    private static final String FORMAT_PRICE = "￥%.2f";
-    private static final String FORMAT_CONTACT = "%s(%s)";
-    private static final String FORMAT_FULL_CONTACT = "%s %s(%s)";
+    @InjectExtra(Constants.Extra.ORDER)
+    IOrder order;
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     @InjectView(R.id.tv_order_total)
@@ -51,7 +51,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     private ArrayAdapter<String> addressesAdapter;
     AlertDialog addressesDialog;
     private List<IAddress> addresses = null;
-    private IOrder order;
+    //    private IOrder order;
     private IAddress selected_address;
 
     @Override
@@ -79,7 +79,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
 
             @Override
             public Void call() throws Exception {
-                order = DataProvider.get_order("1");
+//                order = DataProvider.get_order("1");
                 selected_address = order.get_address();
                 addresses = DataProvider.get_addresses();
                 return null;
@@ -119,7 +119,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     private void show_and_select_address() {
         for (IAddress address : addresses) {
             list_address_string.add(String.format(
-                    FORMAT_FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
+                    Constants.Format.FORMAT_FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
             ));
         }
         addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
@@ -165,18 +165,18 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_order() {
-        OrderEditGoodsDataAdapter adapter =
-                new OrderEditGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
+        EditOrderGoodsDataAdapter adapter =
+                new EditOrderGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
         lv_order_data.setAdapter(adapter);
         ListViewUtils.setListViewHeightBasedOnChildren(lv_order_data);
     }
 
     private void build_total() {
-        tv_order_total.setText(String.format(FORMAT_PRICE, order.get_total()));
+        tv_order_total.setText(String.format(Constants.Format.FORMAT_PRICE, order.get_total()));
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(FORMAT_CONTACT, selected_address.get_realname(), selected_address.get_phone()));
+        tv_contact.setText(String.format(Constants.Format.FORMAT_CONTACT, selected_address.get_realname(), selected_address.get_phone()));
         tv_address.setVisibility(View.VISIBLE);
         tv_address.setText(selected_address.get_address());
         tv_edit_address.setVisibility(View.VISIBLE);
@@ -184,7 +184,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_delivery_price() {
-        tv_delivery_price.setText(String.format(FORMAT_PRICE, order.get_delivery_price()));
+        tv_delivery_price.setText(String.format(Constants.Format.FORMAT_PRICE, order.get_delivery_price()));
     }
 
     Integer selection = -1;
@@ -221,33 +221,46 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void submit() {
-        System.out.println("submit");
-        //todo submit edit new address for order
-        if (!selected_address.get_id().equals(order.get_address().get_id())) {
-            Intent intent = new Intent();
-            intent.putExtra(Constants.Extra.ORDER, order);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                order.save();
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                Intent intent = new Intent();
+                intent.putExtra(Constants.Extra.ORDER, order);
+                setResult(RESULT_OK, intent);
+                finish();
+                loading_view.hide();
+            }
+        }.execute();
     }
 
     private void goto_new_address() {
-        System.out.println("新建地址");
         Intent intent = new Intent(this, NewAddressActivity.class);
         startActivityForResult(intent, Constants.Request.ADDRESS);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case Constants.Request.ADDRESS:
-                if(requestCode == RESULT_OK)
-                {
+                if (resultCode == RESULT_OK) {
                     IAddress address = (IAddress) data.getSerializableExtra(Constants.Extra.ADDRESS);
                     refresh_for_change_address_to(address);
                 }
                 break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }

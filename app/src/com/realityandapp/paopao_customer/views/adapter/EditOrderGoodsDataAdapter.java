@@ -2,6 +2,9 @@ package com.realityandapp.paopao_customer.views.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,7 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class OrderEditGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener {
+public class EditOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_TOTAL_CALCULATE = "￥%.2f X %d %s";
     private final List<ICartGoodsData> cart_data;
@@ -27,9 +30,9 @@ public class OrderEditGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData>
     Integer selection = -1;
     private AlertDialog plus_tags_dialog;
 
-    public OrderEditGoodsDataAdapter(LayoutInflater inflater,
+    public EditOrderGoodsDataAdapter(LayoutInflater inflater,
                                      final List<ICartGoodsData> items) {
-        super(inflater, R.layout.order_edit_goods_data_list_item);
+        super(inflater, R.layout.edit_order_goods_data_list_item);
         this.inflater = inflater;
         cart_data = items;
         init();
@@ -61,10 +64,35 @@ public class OrderEditGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData>
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
+        bind_fa_add(position);
+        bind_et_plus(position);
+        return view;
+    }
+
+    private void bind_et_plus(final int position) {
+        final EditText view = getView(3, EditText.class);
+        view.setTag(position);
+        view.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                getItem(position).set_plus(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+    }
+
+    private void bind_fa_add(int position) {
         FontAwesomeButton fa_btn = getView(4, FontAwesomeButton.class);
         fa_btn.setTag(position);
         fa_btn.setOnClickListener(this);
-        return view;
     }
 
     @Override

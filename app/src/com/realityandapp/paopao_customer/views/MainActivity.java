@@ -37,6 +37,7 @@ public class MainActivity extends ListActivity {
 
     private List<? extends Map<String, ?>> getData() {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+        addItem(data, "order", OrderActivity.class);
         addItem(data, "pay", PayActivity.class);
         addItem(data, "addresses", AddressesActivity.class);
         addItem(data, "edit order", EditOrderActivity.class);
@@ -46,7 +47,6 @@ public class MainActivity extends ListActivity {
         addItem(data, "goods grid", ShopGoodsGridActivity.class);
         addItem(data, "cart", CartActivity.class);
         addItem(data, "cart to order", CartToOrderActivity.class);
-        addItem(data, "order", OrderActivity.class);
         addItem(data, "im", IMActivity.class);
         addItem(data, "new address", NewAddressActivity.class);
 

@@ -20,4 +20,5 @@ public interface IOrder extends IBase {
     public IDeliveryman get_deliveryman();
     public void destroy();
     public void set_address(IAddress address);
+    public void save();
 }

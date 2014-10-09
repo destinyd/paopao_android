@@ -18,4 +18,11 @@
               android:background="#f00"
             >
     </LinearLayout>
+
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            style="@style/LoadingViewWithActionBar"
+            android:visibility="gone"
+            />
+
 </RelativeLayout>

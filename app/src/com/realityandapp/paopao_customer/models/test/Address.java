@@ -1,6 +1,7 @@
 package com.realityandapp.paopao_customer.models.test;
 
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
+import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +62,11 @@ public class Address implements IAddress {
     @Override
     public Float get_lng() {
         return coordinates == null ? null : coordinates.get(2);
+    }
+
+    @Override
+    public void save() {
+        DataProvider.create_address(this);
     }
 
     @Override

@@ -51,4 +51,12 @@ public class DataProvider {
     public static void destroy_order(String id) {
         //todo destroy order
     }
+
+    public static void create_address(IAddress address) {
+        // todo create address
+    }
+
+    public static void save_order(IOrder order) {
+        // todo save order
+    }
 }

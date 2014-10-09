@@ -94,6 +94,11 @@ public class Order implements IOrder {
     }
 
     @Override
+    public void save() {
+        DataProvider.save_order(this);
+    }
+
+    @Override
     public String get_id() {
         return _id;
     }

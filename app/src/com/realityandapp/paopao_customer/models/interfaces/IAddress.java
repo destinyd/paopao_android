@@ -13,4 +13,5 @@ public interface IAddress extends IBase {
     public List<Float> get_coordinates();
     public Float get_lat();
     public Float get_lng();
+    public void save();
 }
