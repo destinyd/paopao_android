@@ -10,38 +10,41 @@ import java.util.Random;
  */
 public class CartGoodsData implements ICartGoodsData {
     private static int i = 0;
+    private IGood good;
     private int amount;
-    private String unit;
-    private float price;
     private String _id;
-    private String name;
-    private String description;
     private String plus;
 
     public CartGoodsData() {
         i++;
         _id = String.valueOf(i);
-        name = "good" + _id;
-        description = "good description" + _id;
-        price = 1 + new Random().nextInt(20);
-        unit = "份";
-        amount = 1 + new Random().nextInt(3);
+        good = new Good();
+        amount = 1 + new Random().nextInt(5);
         plus = "good plus" + _id;
     }
 
+    public CartGoodsData(String good_id) {
+        i++;
+        plus = "";
+        _id = String.valueOf(i);
+        this.good = new Good(good_id);
+        amount = 0;
+    }
+
+
     @Override
     public String get_name() {
-        return name;
+        return good.get_name();
     }
 
     @Override
     public String get_description() {
-        return description;
+        return good.get_description();
     }
 
     @Override
     public float get_price() {
-        return price;
+        return good.get_price();
     }
 
     @Override
@@ -55,8 +58,13 @@ public class CartGoodsData implements ICartGoodsData {
     }
 
     @Override
+    public void set_amount(int i) {
+        amount = i;
+    }
+
+    @Override
     public String get_unit() {
-        return unit;
+        return good.get_unit();
     }
 
     @Override
@@ -67,6 +75,11 @@ public class CartGoodsData implements ICartGoodsData {
     @Override
     public String get_id() {
         return _id;
+    }
+
+    @Override
+    public String get_good_id() {
+        return good.get_id();
     }
 
 }

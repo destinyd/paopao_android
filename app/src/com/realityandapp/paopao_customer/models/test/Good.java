@@ -25,6 +25,16 @@ public class Good implements IGood {
         image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
 
+    public Good(String id) {
+        i++;
+        _id = id;
+        name = "good" + _id;
+        description = "good description" + _id;
+        price = i;
+        unit = "份";
+        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+    }
+
     @Override
     public String get_name() {
         return name;

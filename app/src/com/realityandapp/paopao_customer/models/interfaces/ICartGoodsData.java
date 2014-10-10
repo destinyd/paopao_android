@@ -10,5 +10,7 @@ public interface ICartGoodsData extends IBase {
     public int get_amount();
     public float get_price();
     public String get_plus();
-    void set_plus(String s);
+    public void set_plus(String s);
+    public void set_amount(int i);
+    public String get_good_id();
 }

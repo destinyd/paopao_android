@@ -10,11 +10,12 @@ import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
+import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.models.test.Shop;
+import com.realityandapp.paopao_customer.models.test.ShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
-import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -27,7 +28,7 @@ import java.util.List;
 public class ShopGoodsActivity extends PaopaoBaseActivity {
     @InjectExtra(Constants.Extra.SHOP)
     private Shop shop;
-//    @InjectView(R.id.fabtn_back)
+    //    @InjectView(R.id.fabtn_back)
 //    FontAwesomeButton fabtn_back;
 //    @InjectView(R.id.fabtn_cart)
 //    FontAwesomeButton fabtn_cart;
@@ -40,6 +41,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     @InjectView(R.id.tv_goods_total)
     TextView tv_goods_total;
     private List<IGood> goods;
+    private IShopCart cart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,14 +51,14 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
         setTitle(shop.get_name() + " 的菜品");
         init_views();
-        get_datas();
+        get_data();
     }
 
     private void init_views() {
         btn_submit.setOnClickListener(this);
     }
 
-    private void get_datas() {
+    private void get_data() {
         new RoboAsyncTask<Void>(this) {
 
             @Override
@@ -67,6 +69,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             @Override
             public Void call() throws Exception {
                 goods = DataProvider.get_goods(shop.get_id());
+                cart = new ShopCart();
                 return null;
             }
 
@@ -79,14 +82,31 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void build_view() {
+        build_list();
+        build_total();
+    }
+
+    public void build_total() {
+        tv_goods_total.setText(String.format(Constants.Format.PRICE, cart.get_goods_total()));
+        int amount = cart.get_goods_amount();
+        if (amount > 0) {
+            btn_submit.setText(String.format(Constants.Format.BTN_TOTAL, cart.get_goods_amount()));
+            btn_submit.setEnabled(true);
+        } else {
+            btn_submit.setText("结算");
+            btn_submit.setEnabled(false);
+        }
+    }
+
+    private void build_list() {
         final GoodsAdapter adapter =
-                new GoodsAdapter(getLayoutInflater(), goods);
+                new GoodsAdapter(this, goods, cart);
         lv_goods.setAdapter(adapter);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 //            case R.id.fabtn_cart:
 //                Intent intent = new Intent(this, CartActivity.class);
 //                startActivity(intent);
@@ -98,12 +118,13 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
                 submit();
                 break;
             default:
-                onClick(v);
+                super.onClick(v);
         }
     }
 
     private void submit() {
-        // todo go to carttoorder
-
+        Intent intent = new Intent(this, CartToOrderActivity.class);
+        intent.putExtra(Constants.Extra.CART, cart);
+        startActivityForResult(intent, Constants.Request.CART);
     }
 }

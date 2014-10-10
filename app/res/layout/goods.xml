@@ -11,6 +11,10 @@
                     android:id="@+id/rl_cart"
                     android:gravity="center_vertical"
                     android:background="@drawable/white_with_777_top_border"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
             >
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                   android:gravity="center_vertical"
@@ -21,12 +25,19 @@
         <Button android:layout_width="wrap_content" android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:id="@+id/btn_submit"
+                android:background="@drawable/background_cart_submit_button"
+                android:textColor="@android:color/white"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 />
         <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
                   android:gravity="center_vertical"
                   android:id="@+id/tv_goods_total"
                   android:layout_toRightOf="@id/tv_goods_total_label"
                   android:layout_toLeftOf="@id/btn_submit"
+                  android:textColor="@color/tv_highlight"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
                 />
     </RelativeLayout>
 
