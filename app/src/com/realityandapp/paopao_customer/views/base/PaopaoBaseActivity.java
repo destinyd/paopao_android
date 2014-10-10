@@ -40,18 +40,18 @@ public class PaopaoBaseActivity extends RoboFragmentActivity implements View.OnC
         ((TextView)findViewById(R.id.title)).setText(titleId);
     }
 
-    protected void set_cart_count(int count){
-        FontAwesomeButton fatv_cart = (FontAwesomeButton) findViewById(R.id.fabtn_cart);
-        if(fatv_cart != null && count >= 0) {
-            BadgeView badge = new BadgeView(this, fatv_cart);
-            badge.setTextSize(getResources().getDimensionPixelSize(R.dimen.cart_badge_text_size));
-            if(count > 99)
-                badge.setText("99+");
-            else
-                badge.setText(String.valueOf(count));
-            badge.show();
-        }
-    }
+//    protected void set_cart_count(int count){
+//        FontAwesomeButton fatv_cart = (FontAwesomeButton) findViewById(R.id.fabtn_cart);
+//        if(fatv_cart != null && count >= 0) {
+//            BadgeView badge = new BadgeView(this, fatv_cart);
+//            badge.setTextSize(getResources().getDimensionPixelSize(R.dimen.cart_badge_text_size));
+//            if(count > 99)
+//                badge.setText("99+");
+//            else
+//                badge.setText(String.valueOf(count));
+//            badge.show();
+//        }
+//    }
 
     @Override
     public void onClick(View v) {

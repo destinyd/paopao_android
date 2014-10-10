@@ -4,16 +4,40 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-    <include layout="@layout/actionbar_shop_goods" android:id="@+id/actionbar"/>
+    <include layout="@layout/actionbar_back" android:id="@+id/actionbar"/>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/rl_cart"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/white_with_777_top_border"
+            >
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:text="@string/goods_total_label"
+                  android:layout_alignParentLeft="true"
+                  android:id="@+id/tv_goods_total_label"
+                />
+        <Button android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_submit"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:id="@+id/tv_goods_total"
+                  android:layout_toRightOf="@id/tv_goods_total_label"
+                  android:layout_toLeftOf="@id/btn_submit"
+                />
+    </RelativeLayout>
 
     <ListView
             android:id="@+id/lv_goods"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_below="@id/actionbar"
             android:clickable="false"
             android:longClickable="false"
+            android:layout_above="@+id/rl_cart"
             >
     </ListView>
 

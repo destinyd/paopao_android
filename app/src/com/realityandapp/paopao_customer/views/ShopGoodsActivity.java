@@ -3,7 +3,9 @@ package com.realityandapp.paopao_customer.views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
@@ -22,17 +24,21 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class ShopGoodsActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class ShopGoodsActivity extends PaopaoBaseActivity {
     @InjectExtra(Constants.Extra.SHOP)
     private Shop shop;
-    @InjectView(R.id.fabtn_back)
-    FontAwesomeButton fabtn_back;
-    @InjectView(R.id.fabtn_cart)
-    FontAwesomeButton fabtn_cart;
+//    @InjectView(R.id.fabtn_back)
+//    FontAwesomeButton fabtn_back;
+//    @InjectView(R.id.fabtn_cart)
+//    FontAwesomeButton fabtn_cart;
     @InjectView(R.id.lv_goods)
     ListView lv_goods;
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
+    @InjectView(R.id.btn_submit)
+    Button btn_submit;
+    @InjectView(R.id.tv_goods_total)
+    TextView tv_goods_total;
     private List<IGood> goods;
 
     @Override
@@ -40,15 +46,14 @@ public class ShopGoodsActivity extends PaopaoBaseActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods);
 
-        shop = new Shop();
+
         setTitle(shop.get_name() + " 的菜品");
         init_views();
         get_datas();
     }
 
     private void init_views() {
-        fabtn_cart.setOnClickListener(this);
-        fabtn_back.setOnClickListener(this);
+        btn_submit.setOnClickListener(this);
     }
 
     private void get_datas() {
@@ -69,7 +74,6 @@ public class ShopGoodsActivity extends PaopaoBaseActivity implements View.OnClic
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
-                set_cart_count(99);
             }
         }.execute();
     }
@@ -83,13 +87,23 @@ public class ShopGoodsActivity extends PaopaoBaseActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.fabtn_cart:
-                Intent intent = new Intent(this, CartActivity.class);
-                startActivity(intent);
+//            case R.id.fabtn_cart:
+//                Intent intent = new Intent(this, CartActivity.class);
+//                startActivity(intent);
+//                break;
+//            case R.id.fabtn_back:
+//                finish();
+//                break;
+            case R.id.btn_submit:
+                submit();
                 break;
-            case R.id.fabtn_back:
-                finish();
-                break;
+            default:
+                onClick(v);
         }
+    }
+
+    private void submit() {
+        // todo go to carttoorder
+
     }
 }

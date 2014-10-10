@@ -34,5 +34,6 @@
     <string name="exit">退出</string>
     <string name="setting">设置</string>
     <string name="la_carte">点餐</string>
+    <string name="goods_total_label">总计:</string>
 
 </resources>

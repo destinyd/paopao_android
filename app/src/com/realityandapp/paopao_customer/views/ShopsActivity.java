@@ -27,20 +27,20 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IShop> shops;
-    @InjectView(R.id.fabtn_cart)
-    FontAwesomeButton fabtn_cart;
+//    @InjectView(R.id.fabtn_cart)
+//    FontAwesomeButton fabtn_cart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shops);
         setTitle("您周围的餐厅");
-        init_views();
+//        init_views();
         get_datas();
     }
 
     private void init_views() {
-        fabtn_cart.setOnClickListener(this);
+//        fabtn_cart.setOnClickListener(this);
     }
 
     private void get_datas() {
@@ -61,7 +61,7 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
-                set_cart_count(101);
+//                set_cart_count(101);
             }
         }.execute();
     }
