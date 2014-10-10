@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <include layout="@layout/actionbar_back" android:id="@+id/actionbar"/>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/white_with_777_top_border"
+                    android:id="@+id/rl_cart_total"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3dp"
+            >
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:layout_alignParentLeft="true"
+                  android:textSize="16dp"
+                  android:gravity="center_vertical"
+                  android:id="@+id/tv_cart_total_label"
+                  android:text="@string/total_with_delivery_label"
+                />
+        <Button android:layout_width="wrap_content" android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:id="@+id/btn_submit"
+                android:background="@drawable/background_cart_submit_button"
+                android:textColor="@android:color/white"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/determine_purchase"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                  android:layout_toLeftOf="@+id/tv_goto_shop"
+                  android:layout_toRightOf="@+id/tv_cart_total_label"
+                  android:gravity="center"
+                  android:paddingLeft="5dp"
+                  android:paddingRight="5dp"
+                  android:singleLine="true"
+                  android:textSize="16dp"
+                  android:textColor="@color/tv_highlight"
+                  android:id="@+id/tv_cart_to_order_total"
+                />
+    </RelativeLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_below="@id/actionbar"
+                android:layout_above="@id/rl_cart_total"
+            >
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:id="@+id/rl_cart_to_order_address"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                            android:padding="10dp"
+                    >
+                <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                                android:id="@+id/rl_cart_to_order_address_contact"
+                                android:gravity="center_vertical"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginBottom="10dp"
+                        >
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                              android:gravity="center_vertical|right"
+                              android:textColor="@color/tv_link"
+                              android:text="@string/edit_address"
+                              android:layout_alignParentRight="true"
+                              android:id="@+id/tv_edit_address"
+                            />
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                              android:gravity="center_vertical|right"
+                              android:textColor="@color/tv_link"
+                              android:text="@string/create_address"
+                              android:layout_alignParentRight="true"
+                              android:id="@+id/tv_add_address"
+                              android:visibility="gone"
+                            />
+                    <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                              android:gravity="center_vertical|left"
+                              android:singleLine="true"
+                              android:layout_alignParentLeft="true"
+                              android:id="@+id/tv_contact"
+                              android:layout_toLeftOf="@id/tv_edit_address"
+                            />
+                </RelativeLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:gravity="center_vertical|left"
+                          android:id="@+id/tv_address"
+                          android:layout_alignParentBottom="true"
+                          android:layout_below="@id/rl_cart_to_order_address_contact"
+                        />
+            </RelativeLayout>
+
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                            android:padding="10dp"
+                    >
+                <!--android:layout_height="40dp"-->
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:layout_alignParentRight="true"
+                          android:id="@+id/tv_distance"
+                          android:gravity="center_vertical|right"
+                          android:singleLine="true"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                          android:id="@+id/tv_shop_name"
+                          android:layout_toLeftOf="@+id/tv_distance"
+                          android:singleLine="true"
+                          android:gravity="center_vertical|left"
+                          android:layout_alignParentLeft="true"
+                        />
+            </RelativeLayout>
+
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="40dp"
+                            android:padding="10dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/white_with_bbb_bottom_border"
+                    >
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:gravity="center_vertical"
+                          android:text="@string/delivery_price"
+                          android:id="@+id/tv_delivery_price_label"
+                        />
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_delivery_price"
+                        android:gravity="center_vertical|right"
+                        android:layout_toRightOf="@id/tv_delivery_price_label"
+                        android:textColor="@color/tv_highlight"
+                        android:layout_alignParentRight="true"
+                        />
+            </RelativeLayout>
+
+            <ListView
+                    android:id="@+id/lv_cart_goods"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@color/bbb"
+                    android:dividerHeight="1dp"
+                    android:layout_below="@id/rl_cart_to_order_address"
+                    >
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            style="@style/LoadingViewWithActionBar"/>
+</RelativeLayout>

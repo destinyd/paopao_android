@@ -11,12 +11,14 @@ public class Constants {
         public static final String DELIVERYMAN = "deliveryman";
         public static final String ADDRESS = "address";
         public static final String CART = "cart";
+        public static final String SHOP_CART = "shop_cart";
     }
 
     public static class Request {
         public static final int ORDER = 11;
         public static final int ADDRESS = 12;
         public static final int CART = 13;
+        public static final int SHOP_CART = 14;
     }
     
     public static class Format{
@@ -28,5 +30,7 @@ public class Constants {
         public static final String BTN_TOTAL = "结算(%d)";
         public static final String CART_GOODS_COUNT = "共%d件商品";
         public static final String ORDER_DESC = "总价: %.2f元";// 商品数量: %d";
+        public static final String TOTAL_CALCULATE = "￥%.2f X %d%s";
+        public static final String DISTANCT = "%d米";
     }
 }

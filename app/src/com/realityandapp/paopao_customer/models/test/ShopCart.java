@@ -104,6 +104,11 @@ public class ShopCart implements IShopCart {
         return f;
     }
 
+    @Override
+    public float get_total() {
+        return get_goods_total() + get_shop_delivery_price();
+    }
+
     public ICartGoodsData get_good_data_by_id(String good_id){
         for(ICartGoodsData good : goods){
             if(good.get_good_id().equals(good_id)){

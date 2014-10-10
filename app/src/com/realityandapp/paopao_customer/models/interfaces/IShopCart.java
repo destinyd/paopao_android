@@ -16,4 +16,5 @@ public interface IShopCart extends IBase {
     public int get_good_amount(String id);
     public float get_goods_total();
     public int get_goods_amount();
+    public float get_total();
 }

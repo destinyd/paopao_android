@@ -41,7 +41,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     @InjectView(R.id.tv_goods_total)
     TextView tv_goods_total;
     private List<IGood> goods;
-    private IShopCart cart;
+    private IShopCart shop_cart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             @Override
             public Void call() throws Exception {
                 goods = DataProvider.get_goods(shop.get_id());
-                cart = new ShopCart();
+                shop_cart = new ShopCart();
                 return null;
             }
 
@@ -87,10 +87,10 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     public void build_total() {
-        tv_goods_total.setText(String.format(Constants.Format.PRICE, cart.get_goods_total()));
-        int amount = cart.get_goods_amount();
+        tv_goods_total.setText(String.format(Constants.Format.PRICE, shop_cart.get_goods_total()));
+        int amount = shop_cart.get_goods_amount();
         if (amount > 0) {
-            btn_submit.setText(String.format(Constants.Format.BTN_TOTAL, cart.get_goods_amount()));
+            btn_submit.setText(String.format(Constants.Format.BTN_TOTAL, shop_cart.get_goods_amount()));
             btn_submit.setEnabled(true);
         } else {
             btn_submit.setText("结算");
@@ -100,7 +100,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
     private void build_list() {
         final GoodsAdapter adapter =
-                new GoodsAdapter(this, goods, cart);
+                new GoodsAdapter(this, goods, shop_cart);
         lv_goods.setAdapter(adapter);
     }
 
@@ -123,8 +123,8 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void submit() {
-        Intent intent = new Intent(this, CartToOrderActivity.class);
-        intent.putExtra(Constants.Extra.CART, cart);
-        startActivityForResult(intent, Constants.Request.CART);
+        Intent intent = new Intent(this, ShopCartActivity.class);
+        intent.putExtra(Constants.Extra.SHOP_CART, shop_cart);
+        startActivityForResult(intent, Constants.Request.SHOP_CART);
     }
 }
