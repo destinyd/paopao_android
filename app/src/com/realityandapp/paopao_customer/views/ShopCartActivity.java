@@ -5,21 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
+import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
+import com.realityandapp.paopao_customer.models.test.ShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
-import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
 import com.realityandapp.paopao_customer.views.adapter.ShopCartGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
-import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -155,7 +152,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
                 go_to_new_address();
                 break;
             case R.id.btn_submit:
-                submit();
+                submit_cart();
                 break;
             default:
                 super.onClick(view);
@@ -219,9 +216,42 @@ public class ShopCartActivity extends PaopaoBaseActivity {
         build_address();
     }
 
-    private void submit() {
+    private void submit_cart() {
+        new RoboAsyncTask<IOrder>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public IOrder call() throws Exception {
+               return DataProvider.shop_cart_to_order(shop_cart);
+            }
+
+            @Override
+            protected void onSuccess(IOrder order) throws Exception {
+                if(order != null){
+                    go_to_order(order);
+                }
+                else{
+                    Toast.makeText(getContext(), "提交失败", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    private void go_to_order(IOrder order) {
         Intent intent = new Intent(this, OrderActivity.class);
+        intent.putExtra(Constants.Extra.ORDER, order);
         startActivity(intent);
+        finish();
     }
 
     private void go_to_new_address() {

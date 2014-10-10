@@ -38,6 +38,17 @@ public class Order implements IOrder {
         deliveryman = new Deliveryman();
     }
 
+    public Order(IShopCart shop_cart) {
+        shop = shop_cart.get_shop();
+        shop_discount = shop_cart.get_shop_discount();
+        shop_delivery_price = shop_cart.get_shop_delivery_price();
+        goods = shop_cart.get_cart_goods();
+        total = shop_cart.get_total();
+        address = shop_cart.get_shop().get_address();
+        status = "等待支付";
+        deliveryman = new Deliveryman();
+    }
+
     @Override
     public String get_shop_id() {
         return shop.get_id();

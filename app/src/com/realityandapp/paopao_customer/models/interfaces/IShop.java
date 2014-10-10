@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public interface IShop extends IBase {
     public String get_name();
-    public String get_address();
+    public IAddress get_address();
     public String get_description();
     public String get_contact();
     public String get_coordinates();

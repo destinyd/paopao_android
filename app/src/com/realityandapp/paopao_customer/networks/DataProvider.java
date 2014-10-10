@@ -76,4 +76,9 @@ public class DataProvider {
     public static void sign_out() {
         // todo sign out
     }
+
+    public static IOrder shop_cart_to_order(IShopCart shop_cart) {
+        // todo submit cart and get order
+        return new Order(shop_cart);
+    }
 }
