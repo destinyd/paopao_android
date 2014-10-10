@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class EditOrderActivity extends PaopaoBaseActivity {
     @InjectExtra(Constants.Extra.ORDER)
     IOrder order;
     @InjectView(R.id.loading_view)
@@ -59,13 +59,18 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_order);
 
-        bind_actions();
         setTitle("订单修改");
         get_data();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        bind_actions();
+    }
+
     private void bind_actions() {
-        findViewById(R.id.fatv_cancel).setOnClickListener(this);
+        findViewById(R.id.fabtn_cancel).setOnClickListener(this);
         findViewById(R.id.fatv_submit).setOnClickListener(this);
     }
 
@@ -119,7 +124,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
     private void show_and_select_address() {
         for (IAddress address : addresses) {
             list_address_string.add(String.format(
-                    Constants.Format.FULL_CONTACT, order.get_address().get_address(), order.get_address().get_realname(), order.get_address().get_phone()
+                    Constants.Format.FULL_CONTACT, address.get_address(), address.get_realname(), address.get_phone()
             ));
         }
         addressesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list_address_string);
@@ -148,7 +153,6 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
 
     private void refresh_for_change_address_to(IAddress iAddress) {
         selected_address = iAddress;
-        order.set_address(selected_address);
         build_address();
     }
 
@@ -201,7 +205,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
             case R.id.fatv_submit:
                 submit();
                 break;
-            case R.id.fatv_cancel:
+            case R.id.fabtn_cancel:
                 if (!selected_address.get_id().equals(order.get_address().get_id())) {
                     new AlertDialog.Builder(EditOrderActivity.this)
                             .setTitle("提示：订单地址已修改")
@@ -230,6 +234,7 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
 
             @Override
             public Void call() throws Exception {
+                order.set_address(selected_address);
                 order.save();
                 return null;
             }

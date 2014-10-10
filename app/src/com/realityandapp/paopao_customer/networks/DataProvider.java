@@ -72,4 +72,8 @@ public class DataProvider {
         }
         return orders;
     }
+
+    public static void sign_out() {
+        // todo sign out
+    }
 }

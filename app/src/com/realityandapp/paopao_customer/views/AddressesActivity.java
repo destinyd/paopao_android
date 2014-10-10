@@ -25,8 +25,6 @@ import java.util.List;
 public class AddressesActivity extends PaopaoBaseActivity implements View.OnClickListener {
     @InjectView(R.id.list)
     ListView list;
-    @InjectView(R.id.fabtn_back)
-    FontAwesomeButton fatv_back;
     @InjectView(R.id.fabtn_add)
     FontAwesomeButton fabtn_add;
     @InjectView(R.id.loading_view)
@@ -44,7 +42,6 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void bind_views() {
-        fatv_back.setOnClickListener(this);
         fabtn_add.setOnClickListener(this);
     }
 
@@ -118,9 +115,6 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.fabtn_back:
-                finish();
-                break;
             case R.id.fabtn_add:
                 startActivityForResult(new Intent(this, NewAddressActivity.class), Constants.Request.ADDRESS);
                 break;

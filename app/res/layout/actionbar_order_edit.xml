@@ -4,7 +4,7 @@
                 style="@style/ActionBar">
     <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
-            android:id="@+id/fatv_cancel"
+            android:id="@+id/fabtn_cancel"
             android:text="@string/fa_cancel"
             android:layout_alignParentLeft="true"
             android:background="@drawable/actionbar_icon"
@@ -19,7 +19,7 @@
     <TextView
             style="@style/ActionBarTitle"
             android:id="@+id/title"
-            android:layout_toRightOf="@id/fatv_cancel"
+            android:layout_toRightOf="@id/fabtn_cancel"
             android:layout_toLeftOf="@id/fatv_submit"
             />
 </RelativeLayout>
