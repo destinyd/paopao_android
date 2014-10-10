@@ -237,7 +237,6 @@ public class EditOrderActivity extends PaopaoBaseActivity implements View.OnClic
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.Extra.ORDER, order);
                 setResult(RESULT_OK, intent);
                 finish();
                 loading_view.hide();

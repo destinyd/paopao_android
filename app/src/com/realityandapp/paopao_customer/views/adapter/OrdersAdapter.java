@@ -81,7 +81,7 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
             go_to_pay(order);
         }
         else{
-
+            // todo for other status
         }
     }
 

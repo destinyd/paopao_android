@@ -39,7 +39,6 @@ public class MainActivity extends ListActivity {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         addItem(data, "my orders", MyOrdersActivity.class);
         addItem(data, "cart", CartActivity.class);
-        addItem(data, "order", OrderActivity.class);
         addItem(data, "pay", PayActivity.class);
         addItem(data, "addresses", AddressesActivity.class);
         addItem(data, "sign in", SignInActivity.class);

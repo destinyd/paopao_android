@@ -15,6 +15,7 @@ import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
+import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -22,8 +23,9 @@ import roboguice.util.RoboAsyncTask;
  * Created by dd on 14-9-18.
  */
 public class OrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
-    private static final String FORMAT_PRICE = "￥%.2f";
-    private static final String FORMAT_CONTACT = "%s(%s)";
+    @InjectExtra(Constants.Extra.ORDER)
+    IOrder order;
+
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     @InjectView(R.id.tv_order_total)
@@ -51,7 +53,6 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     @InjectView(R.id.rl_deliveryman)
     RelativeLayout rl_deliveryman;
 
-    private IOrder order;
     private AlertDialog dialog_confirm;
 
     @Override
@@ -60,7 +61,12 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         setContentView(R.layout.order);
 
         setTitle("订单详情");
-        get_data();
+        init();
+    }
+
+    private void init() {
+        build_views();
+        loading_view.hide();
     }
 
     private void get_data() {
@@ -73,7 +79,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
             @Override
             public Void call() throws Exception {
-                order = DataProvider.get_order("1");
+                order = DataProvider.get_order(order.get_id());
                 return null;
             }
 
@@ -122,7 +128,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_delivery() {
-        tv_delivery_price.setText(String.format(FORMAT_PRICE, order.get_delivery_price()));
+        tv_delivery_price.setText(String.format(Constants.Format.PRICE, order.get_delivery_price()));
     }
 
     private void build_cart_to_order() {
@@ -133,11 +139,11 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_total() {
-        tv_order_total.setText(String.format(FORMAT_PRICE, order.get_total()));
+        tv_order_total.setText(String.format(Constants.Format.PRICE, order.get_total()));
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(FORMAT_CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
+        tv_contact.setText(String.format(Constants.Format.CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
         tv_address.setText(order.get_address().get_address());
     }
 
@@ -227,8 +233,9 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         switch (requestCode) {
             case Constants.Request.ORDER:
                 if (resultCode == RESULT_OK) {
-                    order = (IOrder) data.getSerializableExtra(Constants.Extra.ORDER);
-                    build_views();
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK, intent);
+                    get_data();
                 }
 
             break;

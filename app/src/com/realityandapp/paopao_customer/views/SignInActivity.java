@@ -39,7 +39,6 @@ public class SignInActivity extends PaopaoBaseActivity {
                 System.out.println(et_login.getText().toString());
                 System.out.println(et_password.getText().toString());
                 // 关闭软键盘
-                // TODO
                 // 如果不关闭软键盘会触发下个页面的抽屉导航BUG，从而使页面显示不正常
                 // 先用关闭软键盘的方式避免触发抽屉导航BUG
                 InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
