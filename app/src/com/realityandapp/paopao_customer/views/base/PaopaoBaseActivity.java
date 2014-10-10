@@ -21,10 +21,10 @@ public class PaopaoBaseActivity extends RoboFragmentActivity implements View.OnC
     protected void onStart() {
         super.onStart();
         bind_click(R.id.fabtn_back);
-        bind_click(R.id.fabtn_cancel);
     }
 
     private void bind_click(int id) {
+        System.out.println("bind fabtn back");
         View view = findViewById(id);
         if(view != null)
             view.setOnClickListener(this);
@@ -58,6 +58,7 @@ public class PaopaoBaseActivity extends RoboFragmentActivity implements View.OnC
         switch (v.getId()){
             case R.id.fabtn_back:
                 finish();
+                break;
         }
     }
 }

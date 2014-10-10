@@ -18,7 +18,7 @@ import roboguice.util.RoboAsyncTask;
 /**
  * Created by dd on 14-9-24.
  */
-public class NewAddressActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class NewAddressActivity extends PaopaoBaseActivity {
     @InjectView(R.id.fatv_save)
     FontAwesomeButton fatv_save;
     @InjectView(R.id.et_address)
@@ -45,9 +45,10 @@ public class NewAddressActivity extends PaopaoBaseActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.fatv_save:
-                System.out.println("fatv save");
                 create_address_and_return();
                 break;
+            default:
+                super.onClick(view);
         }
     }
 
