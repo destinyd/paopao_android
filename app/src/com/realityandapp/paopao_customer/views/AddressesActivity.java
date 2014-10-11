@@ -118,6 +118,8 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
             case R.id.fabtn_add:
                 startActivityForResult(new Intent(this, NewAddressActivity.class), Constants.Request.ADDRESS);
                 break;
+            default:
+                super.onClick(view);
         }
     }
 }
