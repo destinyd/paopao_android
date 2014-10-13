@@ -49,7 +49,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
         setContentView(R.layout.goods);
 
 
-        setTitle(shop.get_name() + " 的菜品");
+        setTitle(shop.get_name() + " 的商品");
         init_views();
         get_data();
     }
@@ -93,7 +93,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             btn_submit.setText(String.format(Constants.Format.BTN_TOTAL, shop_cart.get_goods_amount()));
             btn_submit.setEnabled(true);
         } else {
-            btn_submit.setText("结算");
+            btn_submit.setText("请点单");
             btn_submit.setEnabled(false);
         }
     }
