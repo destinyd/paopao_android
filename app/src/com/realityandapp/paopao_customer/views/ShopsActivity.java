@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import com.mindpin.android.loadingview.LoadingView;
+import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
@@ -27,6 +28,8 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IShop> shops;
+    @InjectView(R.id.fabtn_messages)
+    FontAwesomeButton fabtn_messages;
 //    @InjectView(R.id.fabtn_cart)
 //    FontAwesomeButton fabtn_cart;
 
@@ -35,11 +38,12 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shops);
         setTitle("您周围的餐厅");
-//        init_views();
+        init_views();
         get_datas();
     }
 
     private void init_views() {
+        fabtn_messages.setOnClickListener(this);
 //        fabtn_cart.setOnClickListener(this);
     }
 
@@ -61,7 +65,7 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
-//                set_cart_count(101);
+                set_messages_count(101);
             }
         }.execute();
     }
@@ -83,11 +87,31 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.fabtn_cart:
-                Intent intent = new Intent(this, CartActivity.class);
+            case R.id.fabtn_messages:
+                Intent intent = new Intent(this, IMActivity.class);
                 startActivity(intent);
                 return;
+            default:
+                super.onClick(v);
         }
-        super.onClick(v);
+    }
+
+    protected void set_messages_count(int count){
+        FontAwesomeButton fabtn_messages = (FontAwesomeButton) findViewById(R.id.fabtn_messages);
+        if(fabtn_messages != null && count >= 0) {
+            BadgeView badge = new BadgeView(this, fabtn_messages);
+            badge.setTextSize(getResources().getDimensionPixelSize(R.dimen.cart_badge_text_size));
+            int show_count = count;
+            if(show_count > 99)
+                show_count = 99;
+            if(show_count < 0)
+                show_count = 0;
+            if(show_count == 0)
+                badge.hide();
+            else {
+                badge.setText(String.valueOf(show_count));
+                badge.show();
+            }
+        }
     }
 }

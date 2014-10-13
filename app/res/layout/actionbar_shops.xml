@@ -15,9 +15,9 @@
             >
         <com.realityandapp.paopao_customer.widget.FontAwesomeButton
                 style="@style/ActionBarFATV"
-                android:id="@+id/fabtn_cart"
+                android:id="@+id/fabtn_messages"
                 android:background="@drawable/actionbar_icon"
-                android:text="@string/fa_cart"
+                android:text="@string/fa_comment"
                 />
     </LinearLayout>
     <!--<com.realityandapp.paopao_customer.widget.FontAwesomeButton-->

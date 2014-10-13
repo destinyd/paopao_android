@@ -15,7 +15,7 @@ import roboguice.inject.InjectView;
 /**
  * Created by dd on 14-9-18.
  */
-public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implements View.OnClickListener {
+public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
     @InjectView(R.id.drawer_layout)
     DrawerLayout drawer_layout;
     @InjectView(R.id.left_drawer)
@@ -80,6 +80,8 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity implemen
             case R.id.menu_exit:
                 alert_exit();
                 break;
+            default:
+                super.onClick(v);
         }
     }
 
