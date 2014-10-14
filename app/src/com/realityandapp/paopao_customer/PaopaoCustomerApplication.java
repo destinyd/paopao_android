@@ -99,13 +99,11 @@ public class PaopaoCustomerApplication extends Application {
                 EMMessage.ChatType chatType = message.getChatType();
                 if (chatType == EMMessage.ChatType.Chat) { // 单聊信息
                     intent.putExtra("userId", message.getFrom());
-                    //todo  un comment
-//					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
+					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
                 } else { // 群聊信息
                     // message.getTo()为群聊id
                     intent.putExtra("groupId", message.getTo());
-                    // todo un comment
-//					intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+					intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
                 }
                 return intent;
             }
@@ -161,9 +159,6 @@ public class PaopaoCustomerApplication extends Application {
                 Toast.makeText(getApplicationContext(), "登录失败: " + message, 0).show();
             }
         });
-
-//        getInstance().setUserName("test1");
-//        getInstance().setPassword("123456");
     }
 
     private void init_image_config() {
@@ -348,12 +343,12 @@ public class PaopaoCustomerApplication extends Application {
 
         @Override
         public void onDisConnected(String errorString) {
-            if (errorString != null && errorString.contains("conflict")) {
-                Intent intent = new Intent(applicationContext, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("conflict", true);
-                startActivity(intent);
-            }
+//            if (errorString != null && errorString.contains("conflict")) {
+//                Intent intent = new Intent(applicationContext, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.putExtra("conflict", true);
+//                startActivity(intent);
+//            }
 
         }
 

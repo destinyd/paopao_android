@@ -13,6 +13,8 @@
  */
 package com.realityandapp.paopao_customer.views.im;
 
+import android.app.*;
+import android.app.AlertDialog;
 import android.content.*;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -133,13 +135,13 @@ public class MainActivity extends FragmentActivity {
 		case R.id.btn_conversation:
 			index = 0;
 			break;
-		case R.id.btn_address_list:
-			index = 1;
-			break;
-		case R.id.btn_setting:
-			index = 2;
-			break;
-		}
+//		case R.id.btn_address_list:
+//			index = 1;
+//			break;
+//		case R.id.btn_setting:
+//			index = 2;
+//			break;
+        }
 		if (currentTabIndex != index) {
 			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
 			trx.hide(fragments[currentTabIndex]);
@@ -670,7 +672,7 @@ public class MainActivity extends FragmentActivity {
 		return super.onKeyDown(keyCode, event);
 	}
 
-	private android.app.AlertDialog.Builder conflictBuilder;
+	private AlertDialog.Builder conflictBuilder;
 	private boolean isConflictDialogShow;
 
 	/**
