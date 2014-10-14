@@ -61,8 +61,8 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
                     drawer_layout.openDrawer(left_drawer);
                 break;
             case R.id.menu_home:
-                if(this.getClass() != ShopsActivity.class) {
-                    startActivity(new Intent(this, ShopsActivity.class));
+                if(this.getClass() != RealMainActivity.class) {
+                    startActivity(new Intent(this, RealMainActivity.class));
                     finish();
                 }
                 break;

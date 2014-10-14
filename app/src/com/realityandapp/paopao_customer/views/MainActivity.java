@@ -40,7 +40,7 @@ public class MainActivity extends ListActivity {
     private List<? extends Map<String, ?>> getData() {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
         addItem(data, "im", com.realityandapp.paopao_customer.views.im.MainActivity.class);
-        addItem(data, "shops", ShopsActivity.class);
+        addItem(data, "main", RealMainActivity.class);
         addItem(data, "my orders", MyOrdersActivity.class);
         addItem(data, "addresses", AddressesActivity.class);
         addItem(data, "sign in", SignInActivity.class);

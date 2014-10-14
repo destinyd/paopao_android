@@ -39,7 +39,7 @@
 		</activity>
         <activity android:name=".views.SignUpActivity"/>
         <activity android:name=".views.SignInActivity"/>
-        <activity android:name=".views.ShopsActivity"/>
+        <activity android:name=".views.RealMainActivity"/>
         <activity android:name=".views.ShopGoodsGridActivity"/>
         <activity android:name=".views.CartActivity"/>
         <activity android:name=".views.CartToOrderActivity"/>

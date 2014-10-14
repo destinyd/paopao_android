@@ -1,34 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <RelativeLayout
-            android:orientation="vertical"
+        android:layout_height="match_parent"
+        >
+    <GridView
+            android:id="@+id/gv_shops"
+            android:numColumns="2"
+            android:gravity="center"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:stretchMode="columnWidth"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <include layout="@layout/actionbar_shops" android:id="@+id/actionbar"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/actionbar"
+            >
+    </GridView>
 
-        <GridView
-                android:id="@+id/gv_shops"
-                android:numColumns="2"
-                android:gravity="center"
-                android:horizontalSpacing="5dp"
-                android:verticalSpacing="5dp"
-                android:stretchMode="columnWidth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@id/actionbar"
-                >
-        </GridView>
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            style="@style/LoadingViewWithActionBar"/>
 
-        <com.mindpin.android.loadingview.LoadingView
-                android:id="@+id/loading_view"
-                style="@style/LoadingViewWithActionBar"/>
-
-    </RelativeLayout>
-
-    <include layout="@layout/drawer_left"/>
-</android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

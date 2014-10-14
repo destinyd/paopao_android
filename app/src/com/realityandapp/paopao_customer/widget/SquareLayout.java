@@ -41,14 +41,14 @@ public class SquareLayout extends RelativeLayout {
 
         height = child_width;
 
-        Log.i("child_width 大小 ", Integer.toString(child_width));
+//        Log.i("child_width 大小 ", Integer.toString(child_width));
         // Log.i("child_height 大小 ", Integer.toString(child_height));
 
         heightMeasureSpec = widthMeasureSpec =
                 MeasureSpec.makeMeasureSpec(child_width, MeasureSpec.EXACTLY);
 
-        Log.i("widthMeasureSpec 大小 ", Integer.toString(widthMeasureSpec));
-        Log.i("heightMeasureSpec 大小 ", Integer.toString(heightMeasureSpec));
+//        Log.i("widthMeasureSpec 大小 ", Integer.toString(widthMeasureSpec));
+//        Log.i("heightMeasureSpec 大小 ", Integer.toString(heightMeasureSpec));
 
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
 

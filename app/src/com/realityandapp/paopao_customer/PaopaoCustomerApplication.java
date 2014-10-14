@@ -54,14 +54,13 @@ public class PaopaoCustomerApplication extends Application {
 
         init_im();
 //        register_receive();
-        login();
+//        login();
     }
 
     private void register_receive() {
         NewMessageBroadcastReceiver msgReceiver = new NewMessageBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
-//        intentFilter.setPriority(3);
-        intentFilter.setPriority(999);
+        intentFilter.setPriority(3);
         registerReceiver(msgReceiver, intentFilter);
 
     }
@@ -142,7 +141,7 @@ public class PaopaoCustomerApplication extends Application {
 
         // 设置收到消息是否有新消息通知，默认为true
         options.setNotificationEnable(PreferenceUtils.getInstance(applicationContext).getSettingMsgNotification());
-//        options.setShowNotificationInBackgroud(true);
+        options.setShowNotificationInBackgroud(true);
 
         // 没有作用
 //		// 取消注释，app在后台，有新消息来时，状态栏的消息提示换成自己写的

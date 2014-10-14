@@ -20,6 +20,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.test.im.IMUser;
 import com.realityandapp.paopao_customer.models.test.im.InviteMessgeDao;
 import com.realityandapp.paopao_customer.views.adapter.im.ChatAllHistoryAdapter;
+import com.realityandapp.paopao_customer.views.base.PaopaoBaseFragment;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.*;
@@ -27,7 +28,7 @@ import java.util.*;
 /**
  * 显示所有会话记录，比较简单的实现，更好的可能是把陌生人存入本地，这样取到的聊天记录是可控的
  */
-public class ChatAllHistoryFragment extends Fragment {
+public class ChatAllHistoryFragment extends PaopaoBaseFragment {
 
     private InputMethodManager inputMethodManager;
     private ListView listView;
@@ -111,7 +112,7 @@ public class ChatAllHistoryFragment extends Fragment {
             }
         });
         // 标题
-        ((TextView) getView().findViewById(R.id.title)).setText("会话");
+        setTitle("会话");
         // 搜索框
         query = (EditText) getView().findViewById(R.id.query);
         // 搜索框中清除button
