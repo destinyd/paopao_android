@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import com.easemob.chat.EMChat;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class MainActivity extends ListActivity {
                 )
         );
         getListView().setScrollbarFadingEnabled(false);
+        EMChat.getInstance().setAppInited();
     }
 
     @SuppressWarnings("unchecked")
@@ -37,13 +39,13 @@ public class MainActivity extends ListActivity {
 
     private List<? extends Map<String, ?>> getData() {
         List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
+        addItem(data, "im", com.realityandapp.paopao_customer.views.im.MainActivity.class);
         addItem(data, "shops", ShopsActivity.class);
         addItem(data, "my orders", MyOrdersActivity.class);
         addItem(data, "addresses", AddressesActivity.class);
         addItem(data, "sign in", SignInActivity.class);
         addItem(data, "sign up", SignUpActivity.class);
         addItem(data, "pay", PayActivity.class);
-        addItem(data, "im", IMActivity.class);
         addItem(data, "new address", NewAddressActivity.class);
 
         return data;

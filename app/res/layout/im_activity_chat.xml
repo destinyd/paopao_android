@@ -9,8 +9,9 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_top_bar"
-        android:background="@color/top_bar_normal_bg"
+        android:background="@color/actionbar_background"
         android:gravity="center_vertical" >
+        <!--android:background="@color/top_bar_normal_bg"-->
 
         <include layout="@layout/im_commom_back_btn" />
 

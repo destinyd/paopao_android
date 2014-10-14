@@ -2,15 +2,15 @@ package com.realityandapp.paopao_customer;
 
 import android.app.ActivityManager;
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 import com.easemob.EMCallBack;
 import com.easemob.chat.*;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.EMLog;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -53,6 +53,38 @@ public class PaopaoCustomerApplication extends Application {
         init_image_config();
 
         init_im();
+//        register_receive();
+        login();
+    }
+
+    private void register_receive() {
+        NewMessageBroadcastReceiver msgReceiver = new NewMessageBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
+//        intentFilter.setPriority(3);
+        intentFilter.setPriority(999);
+        registerReceiver(msgReceiver, intentFilter);
+
+    }
+
+    // 消息提示需要自己写 因为需要在非Chat界面也有提示
+    private class NewMessageBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //消息id
+            String msgId = intent.getStringExtra("msgid");
+            //发消息的人的username(userid)
+            String msgFrom = intent.getStringExtra("from");
+            //消息类型，文本，图片，语音消息等,这里返回的值为msg.type.ordinal()。
+            //所以消息type实际为是enum类型
+            int msgType = intent.getIntExtra("type", 0);
+            //消息body，为一个json字符串
+            String msgBody = intent.getStringExtra("body");
+            Log.d("main", "new message id:" + msgId + " from:" + msgFrom + " type:" + msgType + " body:" + msgBody);
+
+            //更方便的方法是通过msgId直接获取整个message
+            EMMessage message = EMChatManager.getInstance().getMessage(msgId);
+
+        }
     }
 
     private void init_im() {
@@ -81,9 +113,8 @@ public class PaopaoCustomerApplication extends Application {
         // 获取到EMChatOptions对象
         EMChatOptions options = EMChatManager.getInstance().getChatOptions();
         // 默认添加好友时，是不需要验证的，改成需要验证
-        options.setAcceptInvitationAlways(false);
-        // 设置收到消息是否有新消息通知，默认为true
-        options.setNotificationEnable(PreferenceUtils.getInstance(applicationContext).getSettingMsgNotification());
+        // todo true don't need accept
+        options.setAcceptInvitationAlways(true);
         // 设置收到消息是否有声音提示，默认为true
         options.setNoticeBySound(PreferenceUtils.getInstance(applicationContext).getSettingMsgSound());
         // 设置收到消息是否震动 默认为true
@@ -99,41 +130,50 @@ public class PaopaoCustomerApplication extends Application {
                 EMMessage.ChatType chatType = message.getChatType();
                 if (chatType == EMMessage.ChatType.Chat) { // 单聊信息
                     intent.putExtra("userId", message.getFrom());
-					intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
+                    intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
                 } else { // 群聊信息
                     // message.getTo()为群聊id
                     intent.putExtra("groupId", message.getTo());
-					intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
+                    intent.putExtra("chatType", ChatActivity.CHATTYPE_GROUP);
                 }
                 return intent;
             }
         });
-        login();
+
+        // 设置收到消息是否有新消息通知，默认为true
+        options.setNotificationEnable(PreferenceUtils.getInstance(applicationContext).getSettingMsgNotification());
+//        options.setShowNotificationInBackgroud(true);
+
+        // 没有作用
+//		// 取消注释，app在后台，有新消息来时，状态栏的消息提示换成自己写的
+//        options.setNotifyText(new OnMessageNotifyListener() {
+//
+//            @Override
+//            public String onNewMessageNotify(EMMessage message) {
+//                System.out.println("notify onNewMessageNotify message:" + message);
+//                // 可以根据message的类型提示不同文字(可参考微信或qq)，demo简单的覆盖了原来的提示
+//                return "你的好基友" + message.getFrom() + "发来了一条消息哦";
+//            }
+//
+//            @Override
+//            public String onLatestMessageNotify(EMMessage message, int fromUsersNum, int messageNum) {
+//                System.out.println("notify onLatestMessageNotify message:" + message);
+//                System.out.println("notify onLatestMessageNotify fromUsersNum:" + fromUsersNum);
+//                System.out.println("notify onLatestMessageNotify messageNum:" + messageNum);
+//                return fromUsersNum + "个基友，发来了" + messageNum + "条消息";
+//            }
+//
+//            @Override
+//            public String onSetNotificationTitle(EMMessage message) {
+//                //修改标题
+//                return "环信notification";
+//            }
+//
+//
+//        });
 
         // 设置一个connectionlistener监听账户重复登陆
         EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
-//		// 取消注释，app在后台，有新消息来时，状态栏的消息提示换成自己写的
-//		options.setNotifyText(new OnMessageNotifyListener() {
-//
-//			@Override
-//			public String onNewMessageNotify(EMMessage message) {
-//				// 可以根据message的类型提示不同文字(可参考微信或qq)，demo简单的覆盖了原来的提示
-//				return "你的好基友" + message.getFrom() + "发来了一条消息哦";
-//			}
-//
-//			@Override
-//			public String onLatestMessageNotify(EMMessage message, int fromUsersNum, int messageNum) {
-//				return fromUsersNum + "个基友，发来了" + messageNum + "条消息";
-//			}
-//
-//			@Override
-//			public String onSetNotificationTitle(EMMessage message) {
-//				//修改标题
-//				return "环信notification";
-//			}
-//
-//
-//		});
     }
 
     private void login() {
@@ -159,6 +199,13 @@ public class PaopaoCustomerApplication extends Application {
                 Toast.makeText(getApplicationContext(), "登录失败: " + message, 0).show();
             }
         });
+//        try {
+//            EMContactManager.getInstance().addContact("test1", "add");
+//        } catch (EaseMobException e) {
+//            e.printStackTrace();
+//        }
+
+
     }
 
     private void init_image_config() {

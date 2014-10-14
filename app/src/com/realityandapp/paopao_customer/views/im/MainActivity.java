@@ -49,269 +49,267 @@ import java.util.UUID;
 
 public class MainActivity extends FragmentActivity {
 
-	protected static final String TAG = "MainActivity";
-	// 未读消息textview
-	private TextView unreadLabel;
-	// 未读通讯录textview
-	private TextView unreadAddressLable;
+    protected static final String TAG = "MainActivity";
+    // 未读消息textview
+//	private TextView unreadLabel;
+    // 未读通讯录textview
+//	private TextView unreadAddressLable;
 
-	private Button[] mTabs;
-	private ChatAllHistoryFragment chatHistoryFragment;
-	private Fragment[] fragments;
-	private int index;
-	private RelativeLayout[] tab_containers;
-	// 当前fragment的index
-	private int currentTabIndex;
-	private NewMessageBroadcastReceiver msgReceiver;
-	// 账号在别处登录
-	private boolean isConflict = false;
+    //	private Button[] mTabs;
+    private ChatAllHistoryFragment chatHistoryFragment;
+    private Fragment[] fragments;
+    private int index;
+    private RelativeLayout[] tab_containers;
+    // 当前fragment的index
+    private int currentTabIndex;
+    private NewMessageBroadcastReceiver msgReceiver;
+    // 账号在别处登录
+    private boolean isConflict = false;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.im_main);
-		initView();
-		inviteMessgeDao = new InviteMessgeDao(this);
-		userDao = new IMUserDao(this);
-		//这个fragment只显示好友和群组的聊天记录
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.im_main);
+        initView();
+        inviteMessgeDao = new InviteMessgeDao(this);
+        userDao = new IMUserDao(this);
+        //这个fragment只显示好友和群组的聊天记录
 //		chatHistoryFragment = new ChatHistoryFragment();
-		//显示所有人消息记录的fragment
-		chatHistoryFragment = new ChatAllHistoryFragment();
-		fragments = new Fragment[] { chatHistoryFragment };
-		// 添加显示第一个fragment
-		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, chatHistoryFragment)
-				.show(chatHistoryFragment)
-				.commit();
+        //显示所有人消息记录的fragment
+        chatHistoryFragment = new ChatAllHistoryFragment();
+        fragments = new Fragment[]{chatHistoryFragment};
+        // 添加显示第一个fragment
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, chatHistoryFragment)
+                .show(chatHistoryFragment)
+                .commit();
 
-		// 注册一个接收消息的BroadcastReceiver
-		msgReceiver = new NewMessageBroadcastReceiver();
-		IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
-		intentFilter.setPriority(3);
-		registerReceiver(msgReceiver, intentFilter);
+        // 注册一个接收消息的BroadcastReceiver
+        msgReceiver = new NewMessageBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
+        intentFilter.setPriority(3);
+        registerReceiver(msgReceiver, intentFilter);
 
-		// 注册一个ack回执消息的BroadcastReceiver
-		IntentFilter ackMessageIntentFilter = new IntentFilter(EMChatManager.getInstance()
-				.getAckMessageBroadcastAction());
-		ackMessageIntentFilter.setPriority(3);
-		registerReceiver(ackMessageReceiver, ackMessageIntentFilter);
+        // 注册一个ack回执消息的BroadcastReceiver
+        IntentFilter ackMessageIntentFilter = new IntentFilter(EMChatManager.getInstance()
+                .getAckMessageBroadcastAction());
+        ackMessageIntentFilter.setPriority(3);
+        registerReceiver(ackMessageReceiver, ackMessageIntentFilter);
 
-		// 注册一个离线消息的BroadcastReceiver
-		IntentFilter offlineMessageIntentFilter = new IntentFilter(EMChatManager.getInstance()
-				.getOfflineMessageBroadcastAction());
-		registerReceiver(offlineMessageReceiver, offlineMessageIntentFilter);
-		
-		// setContactListener监听联系人的变化等
+        // 注册一个离线消息的BroadcastReceiver
+        IntentFilter offlineMessageIntentFilter = new IntentFilter(EMChatManager.getInstance()
+                .getOfflineMessageBroadcastAction());
+        registerReceiver(offlineMessageReceiver, offlineMessageIntentFilter);
+
+        // setContactListener监听联系人的变化等
 //		EMContactManager.getInstance().setContactListener(new MyContactListener());
-		// 注册一个监听连接状态的listener
-		EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
-		// 注册群聊相关的listener
+        // 注册一个监听连接状态的listener
+        EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
+        // 注册群聊相关的listener
 //		EMGroupManager.getInstance().addGroupChangeListener(new MyGroupChangeListener());
-		// 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
-		EMChat.getInstance().setAppInited();
-	}
+        // 通知sdk，UI 已经初始化完毕，注册了相应的receiver和listener, 可以接受broadcast了
+        EMChat.getInstance().setAppInited();
+    }
 
-	/**
-	 * 初始化组件
-	 */
-	private void initView() {
-		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
-		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
-		mTabs = new Button[3];
-		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
-		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
-		mTabs[2] = (Button) findViewById(R.id.btn_setting);
-		// 把第一个tab设为选中状态
-		mTabs[0].setSelected(true);
+    /**
+     * 初始化组件
+     */
+    private void initView() {
+//		unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
+//		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
+//		mTabs = new Button[3];
+//		mTabs[0] = (Button) findViewById(R.id.btn_conversation);
+//		mTabs[1] = (Button) findViewById(R.id.btn_address_list);
+//		mTabs[2] = (Button) findViewById(R.id.btn_setting);
+//		// 把第一个tab设为选中状态
+//		mTabs[0].setSelected(true);
 
-	}
+    }
 
-	/**
-	 * button点击事件
-	 * 
-	 * @param view
-	 */
-	public void onTabClicked(View view) {
-		switch (view.getId()) {
-		case R.id.btn_conversation:
-			index = 0;
-			break;
-//		case R.id.btn_address_list:
-//			index = 1;
+    /**
+     * button点击事件
+     *
+     * @param view
+     */
+//	public void onTabClicked(View view) {
+//		switch (view.getId()) {
+//		case R.id.btn_conversation:
+//			index = 0;
 //			break;
-//		case R.id.btn_setting:
-//			index = 2;
-//			break;
+////		case R.id.btn_address_list:
+////			index = 1;
+////			break;
+////		case R.id.btn_setting:
+////			index = 2;
+////			break;
+//        }
+//		if (currentTabIndex != index) {
+//			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
+//			trx.hide(fragments[currentTabIndex]);
+//			if (!fragments[index].isAdded()) {
+//				trx.add(R.id.fragment_container, fragments[index]);
+//			}
+//			trx.show(fragments[index]).commit();
+//		}
+//		mTabs[currentTabIndex].setSelected(false);
+//		// 把当前tab设为选中状态
+//		mTabs[index].setSelected(true);
+//		currentTabIndex = index;
+//	}
+    @Override
+    protected void onDestroy() {
+        System.out.println("on destroy");
+        super.onDestroy();
+        // 注销广播接收者
+        try {
+            unregisterReceiver(msgReceiver);
+        } catch (Exception e) {
         }
-		if (currentTabIndex != index) {
-			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
-			trx.hide(fragments[currentTabIndex]);
-			if (!fragments[index].isAdded()) {
-				trx.add(R.id.fragment_container, fragments[index]);
-			}
-			trx.show(fragments[index]).commit();
-		}
-		mTabs[currentTabIndex].setSelected(false);
-		// 把当前tab设为选中状态
-		mTabs[index].setSelected(true);
-		currentTabIndex = index;
-	}
+        try {
+            unregisterReceiver(ackMessageReceiver);
+        } catch (Exception e) {
+        }
+        try {
+            unregisterReceiver(offlineMessageReceiver);
+        } catch (Exception e) {
+        }
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		// 注销广播接收者
-		try {
-			unregisterReceiver(msgReceiver);
-		} catch (Exception e) {
-		}
-		try {
-			unregisterReceiver(ackMessageReceiver);
-		} catch (Exception e) {
-		}
-		try {
-			unregisterReceiver(offlineMessageReceiver);
-		} catch (Exception e) {
-		}
+        if (conflictBuilder != null) {
+            conflictBuilder.create().dismiss();
+            conflictBuilder = null;
+        }
 
-		if (conflictBuilder != null) {
-			conflictBuilder.create().dismiss();
-			conflictBuilder = null;
-		}
+    }
 
-	}
+//	/**
+//	 * 刷新未读消息数
+//	 */
+//	public void updateUnreadLabel() {
+//		int count = getUnreadMsgCountTotal();
+//		if (count > 0) {
+//			unreadLabel.setText(String.valueOf(count));
+//			unreadLabel.setVisibility(View.VISIBLE);
+//		} else {
+//			unreadLabel.setVisibility(View.INVISIBLE);
+//		}
+//	}
 
-	/**
-	 * 刷新未读消息数
-	 */
-	public void updateUnreadLabel() {
-		int count = getUnreadMsgCountTotal();
-		if (count > 0) {
-			unreadLabel.setText(String.valueOf(count));
-			unreadLabel.setVisibility(View.VISIBLE);
-		} else {
-			unreadLabel.setVisibility(View.INVISIBLE);
-		}
-	}
+//	/**
+//	 * 刷新申请与通知消息数
+//	 */
+//	public void updateUnreadAddressLable() {
+//		runOnUiThread(new Runnable() {
+//			public void run() {
+//				int count = getUnreadAddressCountTotal();
+//				if (count > 0) {
+//					unreadAddressLable.setText(String.valueOf(count));
+//					unreadAddressLable.setVisibility(View.VISIBLE);
+//				} else {
+//					unreadAddressLable.setVisibility(View.INVISIBLE);
+//				}
+//			}
+//		});
+//
+//	}
 
-	/**
-	 * 刷新申请与通知消息数
-	 */
-	public void updateUnreadAddressLable() {
-		runOnUiThread(new Runnable() {
-			public void run() {
-				int count = getUnreadAddressCountTotal();
-				if (count > 0) {
-					unreadAddressLable.setText(String.valueOf(count));
-					unreadAddressLable.setVisibility(View.VISIBLE);
-				} else {
-					unreadAddressLable.setVisibility(View.INVISIBLE);
-				}
-			}
-		});
+    /**
+     * 获取未读申请与通知消息
+     *
+     * @return
+     */
+    public int getUnreadAddressCountTotal() {
+        int unreadAddressCountTotal = 0;
+        if (PaopaoCustomerApplication.getInstance().getContactList().get(IMConstant.NEW_FRIENDS_USERNAME) != null)
+            unreadAddressCountTotal = PaopaoCustomerApplication.getInstance().getContactList().get(IMConstant.NEW_FRIENDS_USERNAME)
+                    .getUnreadMsgCount();
+        return unreadAddressCountTotal;
+    }
 
-	}
+    /**
+     * 获取未读消息数
+     *
+     * @return
+     */
+    public int getUnreadMsgCountTotal() {
+        int unreadMsgCountTotal = 0;
+        unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
+        return unreadMsgCountTotal;
+    }
 
-	/**
-	 * 获取未读申请与通知消息
-	 * 
-	 * @return
-	 */
-	public int getUnreadAddressCountTotal() {
-		int unreadAddressCountTotal = 0;
-		if (PaopaoCustomerApplication.getInstance().getContactList().get(IMConstant.NEW_FRIENDS_USERNAME) != null)
-			unreadAddressCountTotal = PaopaoCustomerApplication.getInstance().getContactList().get(IMConstant.NEW_FRIENDS_USERNAME)
-					.getUnreadMsgCount();
-		return unreadAddressCountTotal;
-	}
+    /**
+     * 新消息广播接收者
+     */
+    private class NewMessageBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //主页面收到消息后，主要为了提示未读，实际消息内容需要到chat页面查看
 
-	/**
-	 * 获取未读消息数
-	 * 
-	 * @return
-	 */
-	public int getUnreadMsgCountTotal() {
-		int unreadMsgCountTotal = 0;
-		unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
-		return unreadMsgCountTotal;
-	}
+            // 消息id
+            String msgId = intent.getStringExtra("msgid");
+            // 收到这个广播的时候，message已经在db和内存里了，可以通过id获取mesage对象
+            EMMessage message =
+            EMChatManager.getInstance().getMessage(msgId);
 
-	/**
-	 * 新消息广播接收者
-	 * 
-	 * 
-	 */
-	private class NewMessageBroadcastReceiver extends BroadcastReceiver {
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			//主页面收到消息后，主要为了提示未读，实际消息内容需要到chat页面查看
-			
-			// 消息id
-			String msgId = intent.getStringExtra("msgid");
-			// 收到这个广播的时候，message已经在db和内存里了，可以通过id获取mesage对象
-			// EMMessage message =
-			// EMChatManager.getInstance().getMessage(msgId);
+            // 刷新bottom bar消息未读数
+//			updateUnreadLabel();
+            if (currentTabIndex == 0) {
+                // 当前页面如果为聊天历史页面，刷新此页面
+                if (chatHistoryFragment != null) {
+                    chatHistoryFragment.refresh();
+                }
+            }
+            // 注销广播，否则在ChatActivity中会收到这个广播
+            abortBroadcast();
+        }
+    }
 
-			// 刷新bottom bar消息未读数
-			updateUnreadLabel();
-			if (currentTabIndex == 0) {
-				// 当前页面如果为聊天历史页面，刷新此页面
-				if (chatHistoryFragment != null) {
-					chatHistoryFragment.refresh();
-				}
-			}
-			// 注销广播，否则在ChatActivity中会收到这个广播
-			abortBroadcast();
-		}
-	}
+    /**
+     * 消息回执BroadcastReceiver
+     */
+    private BroadcastReceiver ackMessageReceiver = new BroadcastReceiver() {
 
-	/**
-	 * 消息回执BroadcastReceiver
-	 */
-	private BroadcastReceiver ackMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String msgid = intent.getStringExtra("msgid");
+            String from = intent.getStringExtra("from");
+            EMConversation conversation = EMChatManager.getInstance().getConversation(from);
+            if (conversation != null) {
+                // 把message设为已读
+                EMMessage msg = conversation.getMessage(msgid);
+                if (msg != null) {
+                    msg.isAcked = true;
+                }
+            }
+            abortBroadcast();
+        }
+    };
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			String msgid = intent.getStringExtra("msgid");
-			String from = intent.getStringExtra("from");
-			EMConversation conversation = EMChatManager.getInstance().getConversation(from);
-			if (conversation != null) {
-				// 把message设为已读
-				EMMessage msg = conversation.getMessage(msgid);
-				if (msg != null) {
-					msg.isAcked = true;
-				}
-			}
-			abortBroadcast();
-		}
-	};
+    /**
+     * 离线消息BroadcastReceiver
+     * sdk 登录后，服务器会推送离线消息到client，这个receiver，是通知UI 有哪些人发来了离线消息
+     * UI 可以做相应的操作，比如下载用户信息
+     */
+    private BroadcastReceiver offlineMessageReceiver = new BroadcastReceiver() {
 
-	/**
-	 * 离线消息BroadcastReceiver
-	 * sdk 登录后，服务器会推送离线消息到client，这个receiver，是通知UI 有哪些人发来了离线消息
-	 * UI 可以做相应的操作，比如下载用户信息
-	 */
-	private BroadcastReceiver offlineMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String[] users = intent.getStringArrayExtra("fromuser");
+            String[] groups = intent.getStringArrayExtra("fromgroup");
+            if (users != null) {
+                for (String user : users) {
+                    System.out.println("收到user离线消息：" + user);
+                }
+            }
+            if (groups != null) {
+                for (String group : groups) {
+                    System.out.println("收到group离线消息：" + group);
+                }
+            }
+            abortBroadcast();
+        }
+    };
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			String[] users = intent.getStringArrayExtra("fromuser");
-			String[] groups = intent.getStringArrayExtra("fromgroup");
-			if (users != null) {
-				for (String user : users) {
-					System.out.println("收到user离线消息：" + user);
-				}
-			}
-			if (groups != null) {
-				for (String group : groups) {
-					System.out.println("收到group离线消息：" + group);
-				}
-			}
-			abortBroadcast();
-		}
-	};
-	
-	private InviteMessgeDao inviteMessgeDao;
-	private IMUserDao userDao;
+    private InviteMessgeDao inviteMessgeDao;
+    private IMUserDao userDao;
 
 //	/***
 //	 * 好友变化listener
@@ -412,11 +410,11 @@ public class MainActivity extends FragmentActivity {
 //
 //	}
 
-	/**
-	 * 保存提示新消息
-	 * 
-	 * @param msg
-	 */
+    /**
+     * 保存提示新消息
+     *
+     * @param msg
+     */
 //	private void notifyNewIviteMessage(InviteMessage msg) {
 //		saveInviteMsg(msg);
 //		// 提示有新消息
@@ -428,93 +426,95 @@ public class MainActivity extends FragmentActivity {
 //		if (currentTabIndex == 1)
 //			contactListFragment.refresh();
 //	}
-	/**
-	 * 保存邀请等msg
-	 * @param msg
-	 */
-	private void saveInviteMsg(InviteMessage msg) {
-		// 保存msg
-		inviteMessgeDao.saveMessage(msg);
-		// 未读数加1
+
+    /**
+     * 保存邀请等msg
+     *
+     * @param msg
+     */
+    private void saveInviteMsg(InviteMessage msg) {
+        // 保存msg
+        inviteMessgeDao.saveMessage(msg);
+        // 未读数加1
         IMUser user = PaopaoCustomerApplication.getInstance().getContactList().get(IMConstant.NEW_FRIENDS_USERNAME);
-		user.setUnreadMsgCount(user.getUnreadMsgCount() + 1);
-	}
-	
-	
-	/**
-	 * set head
-	 * @param username
-	 * @return
-	 */
+        user.setUnreadMsgCount(user.getUnreadMsgCount() + 1);
+    }
+
+
+    /**
+     * set head
+     *
+     * @param username
+     * @return
+     */
     IMUser setUserHead(String username) {
         IMUser user = new IMUser();
-		user.setUsername(username);
-		String headerName = null;
-		if (!TextUtils.isEmpty(user.getNick())) {
-			headerName = user.getNick();
-		} else {
-			headerName = user.getUsername();
-		}
-		if (username.equals(IMConstant.NEW_FRIENDS_USERNAME)) {
-			user.setHeader("");
-		} else if (Character.isDigit(headerName.charAt(0))) {
-			user.setHeader("#");
-		} else {
-			user.setHeader(HanziToPinyin.getInstance().get(headerName.substring(0, 1)).get(0).target.substring(
-					0, 1).toUpperCase());
-			char header = user.getHeader().toLowerCase().charAt(0);
-			if (header < 'a' || header > 'z') {
-				user.setHeader("#");
-			}
-		}
-		return user;
-	}
+        user.setUsername(username);
+        String headerName = null;
+        if (!TextUtils.isEmpty(user.getNick())) {
+            headerName = user.getNick();
+        } else {
+            headerName = user.getUsername();
+        }
+        if (username.equals(IMConstant.NEW_FRIENDS_USERNAME)) {
+            user.setHeader("");
+        } else if (Character.isDigit(headerName.charAt(0))) {
+            user.setHeader("#");
+        } else {
+            user.setHeader(HanziToPinyin.getInstance().get(headerName.substring(0, 1)).get(0).target.substring(
+                    0, 1).toUpperCase());
+            char header = user.getHeader().toLowerCase().charAt(0);
+            if (header < 'a' || header > 'z') {
+                user.setHeader("#");
+            }
+        }
+        return user;
+    }
 
 
-	/**
-	 * 连接监听listener
-	 * 
-	 */
-	private class MyConnectionListener implements ConnectionListener {
+    /**
+     * 连接监听listener
+     */
+    private class MyConnectionListener implements ConnectionListener {
 
-		@Override
-		public void onConnected() {
-			chatHistoryFragment.errorItem.setVisibility(View.GONE);
-		}
+        @Override
+        public void onConnected() {
+            chatHistoryFragment.errorItem.setVisibility(View.GONE);
+        }
 
-		@Override
-		public void onDisConnected(String errorString) {
-			if (errorString != null && errorString.contains("conflict")) {
-				// 显示帐号在其他设备登陆dialog
-				showConflictDialog();
-			} else {
-				chatHistoryFragment.errorItem.setVisibility(View.VISIBLE);
-				if(NetUtils.hasNetwork(MainActivity.this))
-					chatHistoryFragment.errorText.setText("连接不到聊天服务器");
-				else
-					chatHistoryFragment.errorText.setText("当前网络不可用，请检查网络设置");
-					
-			}
-		}
+        @Override
+        public void onDisConnected(String errorString) {
+            if (errorString != null && errorString.contains("conflict")) {
+                // 显示帐号在其他设备登陆dialog
+                showConflictDialog();
+            } else {
+                chatHistoryFragment.errorItem.setVisibility(View.VISIBLE);
+                if (NetUtils.hasNetwork(MainActivity.this))
+                    chatHistoryFragment.errorText.setText("连接不到聊天服务器");
+                else
+                    chatHistoryFragment.errorText.setText("当前网络不可用，请检查网络设置");
 
-		@Override
-		public void onReConnected() {
-			chatHistoryFragment.errorItem.setVisibility(View.GONE);
-		}
+            }
+        }
 
-		@Override
-		public void onReConnecting() {
-		}
+        @Override
+        public void onReConnected() {
+            chatHistoryFragment.errorItem.setVisibility(View.GONE);
+        }
 
-		@Override
-		public void onConnecting(String progress) {
-		}
+        @Override
+        public void onReConnecting() {
+        }
 
-	}
+        @Override
+        public void onConnecting(String progress) {
+        }
 
-	/**
-	 * MyGroupChangeListener
-	 */
+    }
+
+    /**
+     * MyGroupChangeListener
+     */
 //	private class MyGroupChangeListener implements GroupChangeListener {
 //
 //		@Override
@@ -651,71 +651,74 @@ public class MainActivity extends FragmentActivity {
 //		}
 //
 //	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isConflict) {
+//			updateUnreadLabel();
+//			updateUnreadAddressLable();
+            EMChatManager.getInstance().activityResumed();
+        }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (!isConflict) {
-			updateUnreadLabel();
-			updateUnreadAddressLable();
-			EMChatManager.getInstance().activityResumed();
-		}
+    }
 
-	}
+    //    // 不给退出？
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            boolean b = moveTaskToBack(false);
+            System.out.println("b:" + b);
+//            finish();
+//            return true;
+//            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			moveTaskToBack(false);
-			return true;
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+    private AlertDialog.Builder conflictBuilder;
+    private boolean isConflictDialogShow;
 
-	private AlertDialog.Builder conflictBuilder;
-	private boolean isConflictDialogShow;
-
-	/**
-	 * 显示帐号在别处登录dialog
-	 */
-	private void showConflictDialog() {
-		isConflictDialogShow = true;
+    /**
+     * 显示帐号在别处登录dialog
+     */
+    private void showConflictDialog() {
+        isConflictDialogShow = true;
         PaopaoCustomerApplication.getInstance().logout();
 
-		if (!MainActivity.this.isFinishing()) {
-			// clear up global variables
-			try {
-				if (conflictBuilder == null)
-					conflictBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
-				conflictBuilder.setTitle("下线通知");
-				conflictBuilder.setMessage(R.string.connect_conflict);
-				conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        if (!MainActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (conflictBuilder == null)
+                    conflictBuilder = new android.app.AlertDialog.Builder(MainActivity.this);
+                conflictBuilder.setTitle("下线通知");
+                conflictBuilder.setMessage(R.string.connect_conflict);
+                conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						conflictBuilder = null;
-						finish();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        conflictBuilder = null;
+                        finish();
 //						startActivity(new Intent(MainActivity.this, LoginActivity.class));
-						startActivity(new Intent(MainActivity.this, SignInActivity.class));
+                        startActivity(new Intent(MainActivity.this, SignInActivity.class));
 
-					}
-				});
-				conflictBuilder.setCancelable(false);
-				conflictBuilder.create().show();
-				isConflict = true;
-			} catch (Exception e) {
-				Log.e("###", "---------color conflictBuilder error" + e.getMessage());
-			}
+                    }
+                });
+                conflictBuilder.setCancelable(false);
+                conflictBuilder.create().show();
+                isConflict = true;
+            } catch (Exception e) {
+                Log.e("###", "---------color conflictBuilder error" + e.getMessage());
+            }
 
-		}
+        }
 
-	}
-	
-	@Override
-	protected void onNewIntent(Intent intent) {
-		super.onNewIntent(intent);
-		if(getIntent().getBooleanExtra("conflict", false) && !isConflictDialogShow)
-			showConflictDialog();
-	}
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (getIntent().getBooleanExtra("conflict", false) && !isConflictDialogShow)
+            showConflictDialog();
+    }
 }

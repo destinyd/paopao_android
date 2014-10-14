@@ -20,6 +20,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.test.im.IMUser;
 import com.realityandapp.paopao_customer.models.test.im.InviteMessgeDao;
 import com.realityandapp.paopao_customer.views.adapter.im.ChatAllHistoryAdapter;
+import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.*;
 
@@ -109,10 +110,13 @@ public class ChatAllHistoryFragment extends Fragment {
                 return false;
             }
         });
+        // 标题
+        ((TextView) getView().findViewById(R.id.title)).setText("会话");
         // 搜索框
         query = (EditText) getView().findViewById(R.id.query);
         // 搜索框中清除button
         clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
+        FontAwesomeButton button = (FontAwesomeButton) getView().findViewById(R.id.fabtn_back);
         query.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
@@ -160,7 +164,7 @@ public class ChatAllHistoryFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             // 更新消息未读数
-            ((MainActivity) getActivity()).updateUnreadLabel();
+//            ((MainActivity) getActivity()).updateUnreadLabel();
 
             return true;
         }
