@@ -62,6 +62,7 @@ import com.realityandapp.paopao_customer.views.adapter.im.ExpressionPagerAdapter
 import com.realityandapp.paopao_customer.views.adapter.im.ForwardMessageActivity;
 import com.realityandapp.paopao_customer.views.adapter.im.MessageAdapter;
 import com.realityandapp.paopao_customer.views.adapter.im.VoicePlayClickListener;
+import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.im.ExpandGridView;
 import com.realityandapp.paopao_customer.widget.im.PasteEditText;
 
@@ -75,7 +76,7 @@ import java.util.List;
 /**
  * 聊天页面
  */
-public class ChatActivity extends BaseActivity implements OnClickListener {
+public class ChatActivity extends PaopaoBaseActivity {
     //
     private static final int REQUEST_CODE_EMPTY_HISTORY = 2;
     public static final int REQUEST_CODE_CONTEXT_MENU = 3;
@@ -164,7 +165,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
     private EMGroup group;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.im_activity_chat);
         initView();
@@ -283,13 +284,16 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
         if (chatType == CHATTYPE_SINGLE) { // 单聊
             toChatUsername = getIntent().getStringExtra("userId");
-            ((TextView) findViewById(R.id.name)).setText(toChatUsername);
+            setTitle(toChatUsername);
+            // set title
+//            ((TextView) findViewById(R.id.name)).setText(toChatUsername);
             // conversation =
             // EMChatManager.getInstance().getConversation(toChatUsername,false);
         } else {
             // 群聊
-            findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
-            findViewById(R.id.container_remove).setVisibility(View.GONE);
+            // todo top right action
+//            findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
+//            findViewById(R.id.container_remove).setVisibility(View.GONE);
             toChatUsername = getIntent().getStringExtra("groupId");
             group = EMGroupManager.getInstance().getGroup(toChatUsername);
             ((TextView) findViewById(R.id.name)).setText(group.getGroupName());
@@ -557,12 +561,15 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
             expressionContainer.setVisibility(View.GONE);
             more.setVisibility(View.GONE);
 
-        } else if (id == R.id.btn_video) {
-            // 点击摄像图标
-            Intent intent = new Intent(ChatActivity.this, ImageGridActivity.class);
-            startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
-        } else if (id == R.id.btn_file) { // 点击文件图标
-            selectFileFromLocal();
+//        } else if (id == R.id.btn_video) {
+//            // 点击摄像图标
+//            Intent intent = new Intent(ChatActivity.this, ImageGridActivity.class);
+//            startActivityForResult(intent, REQUEST_CODE_SELECT_VIDEO);
+//        } else if (id == R.id.btn_file) { // 点击文件图标
+//            selectFileFromLocal();
+            // todo hide video and file, useless
+        } else {
+            super.onClick(view);
         }
     }
 

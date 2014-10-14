@@ -5,60 +5,7 @@
     android:layout_height="match_parent"
     android:background="#f2f0eb" >
 
-    <RelativeLayout
-        android:id="@+id/top_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/actionbar_background"
-        android:gravity="center_vertical" >
-        <!--android:background="@color/top_bar_normal_bg"-->
-
-        <include layout="@layout/im_commom_back_btn" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-
-        <RelativeLayout
-            android:id="@+id/container_remove"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/im_common_tab_bg"
-            android:onClick="emptyHistory" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="9dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/im_mm_title_remove" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/container_to_group"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/im_common_tab_bg"
-            android:onClick="toGroupDetails"
-            android:visibility="gone" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:scaleType="centerInside"
-                android:src="@drawable/im_to_group_details_normal" />
-        </RelativeLayout>
-    </RelativeLayout>
+    <include layout="@layout/actionbar_back" android:id="@+id/actionbar"/>
 
     <LinearLayout
         android:id="@+id/bar_bottom"
@@ -321,35 +268,35 @@
                             android:textColor="#727171" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="vertical" >-->
 
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="64dp"-->
+                            <!--android:layout_height="64dp" >-->
 
-                            <ImageView
-                                android:id="@+id/btn_video"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/im_chat_video_selector" />
-                        </RelativeLayout>
+                            <!--<ImageView-->
+                                <!--android:id="@+id/btn_video"-->
+                                <!--android:layout_width="56dp"-->
+                                <!--android:layout_height="56dp"-->
+                                <!--android:layout_centerInParent="true"-->
+                                <!--android:clickable="true"-->
+                                <!--android:onClick="onClick"-->
+                                <!--android:scaleType="fitCenter"-->
+                                <!--android:src="@drawable/im_chat_video_selector" />-->
+                        <!--</RelativeLayout>-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="视频"
-                            android:textColor="#727171" />
-                    </LinearLayout>
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="视频"-->
+                            <!--android:textColor="#727171" />-->
+                    <!--</LinearLayout>-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -359,35 +306,35 @@
                     android:layout_marginTop="6dp"
                     android:weightSum="4" >
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical" >
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:gravity="center"-->
+                        <!--android:orientation="vertical" >-->
 
-                        <RelativeLayout
-                            android:layout_width="64dp"
-                            android:layout_height="64dp" >
+                        <!--<RelativeLayout-->
+                            <!--android:layout_width="64dp"-->
+                            <!--android:layout_height="64dp" >-->
 
-                            <ImageView
-                                android:id="@+id/btn_file"
-                                android:layout_width="56dp"
-                                android:layout_height="56dp"
-                                android:layout_centerInParent="true"
-                                android:background="@drawable/im_chat_file_selector"
-                                android:clickable="true"
-                                android:onClick="onClick"
-                                android:scaleType="fitCenter" />
-                        </RelativeLayout>
+                            <!--<ImageView-->
+                                <!--android:id="@+id/btn_file"-->
+                                <!--android:layout_width="56dp"-->
+                                <!--android:layout_height="56dp"-->
+                                <!--android:layout_centerInParent="true"-->
+                                <!--android:background="@drawable/im_chat_file_selector"-->
+                                <!--android:clickable="true"-->
+                                <!--android:onClick="onClick"-->
+                                <!--android:scaleType="fitCenter" />-->
+                        <!--</RelativeLayout>-->
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/attach_file"
-                            android:textColor="#727171" />
-                    </LinearLayout>
+                        <!--<TextView-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:gravity="center"-->
+                            <!--android:text="@string/attach_file"-->
+                            <!--android:textColor="#727171" />-->
+                    <!--</LinearLayout>-->
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -397,7 +344,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bar_bottom"
-        android:layout_below="@id/top_bar" >
+        android:layout_below="@id/actionbar" >
 
         <ProgressBar
             android:id="@+id/pb_load_more"

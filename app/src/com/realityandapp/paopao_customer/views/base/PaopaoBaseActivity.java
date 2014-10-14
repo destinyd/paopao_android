@@ -3,6 +3,7 @@ package com.realityandapp.paopao_customer.views.base;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import com.easemob.chat.EMChatManager;
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -57,8 +58,15 @@ public class PaopaoBaseActivity extends RoboFragmentActivity implements View.OnC
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fabtn_back:
+                System.out.println("onClick fabtn_back");
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        EMChatManager.getInstance().activityResumed();
     }
 }
