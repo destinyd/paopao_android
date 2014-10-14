@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import com.easemob.chat.EMChatManager;
 import com.mindpin.android.loadingview.LoadingView;
 import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.Constants;
@@ -66,7 +67,7 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
-                set_messages_count(101);
+                set_messages_count(EMChatManager.getInstance().getUnreadMsgsCount());
             }
         }.execute();
     }
