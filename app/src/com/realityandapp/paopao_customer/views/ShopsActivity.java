@@ -13,6 +13,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
+import com.realityandapp.paopao_customer.views.im.*;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -88,7 +89,7 @@ public class ShopsActivity extends PaopaoBaseIncludeDrawerActivity {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fabtn_messages:
-                Intent intent = new Intent(this, IMActivity.class);
+                Intent intent = new Intent(this, com.realityandapp.paopao_customer.views.im.MainActivity.class);
                 startActivity(intent);
                 return;
             default:
