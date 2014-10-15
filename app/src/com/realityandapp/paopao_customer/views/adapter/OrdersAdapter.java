@@ -76,7 +76,7 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
 
     private void go_to_order(IOrder order) {
         Intent intent = new Intent(activity, OrderActivity.class);
-        intent.putExtra(Constants.Extra.ORDER, order);
+        intent.putExtra(Constants.Extra.ORDER_ID, order.get_id());
         activity.startActivityForResult(intent, Constants.Request.ORDER);
     }
 
@@ -91,7 +91,7 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
 
     private void go_to_pay(IOrder order) {
         Intent intent = new Intent(activity, PayActivity.class);
-        intent.putExtra(Constants.Extra.ORDER, order);
+        intent.putExtra(Constants.Extra.ORDER_ID, order.get_id());
         activity.startActivityForResult(intent, Constants.Request.ORDER);
     }
 

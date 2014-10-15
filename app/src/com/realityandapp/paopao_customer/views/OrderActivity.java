@@ -28,8 +28,8 @@ import java.beans.Visibility;
  * Created by dd on 14-9-18.
  */
 public class OrderActivity extends PaopaoBaseActivity implements View.OnClickListener {
-    @InjectExtra(Constants.Extra.ORDER)
-    IOrder order;
+    @InjectExtra(Constants.Extra.ORDER_ID)
+    public String order_id;
 
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
@@ -60,19 +60,15 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private AlertDialog dialog_confirm;
 
+    private IOrder order;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
-        System.out.println("order id:" + order.get_id());
         setTitle("订单详情");
-        init();
-    }
-
-    private void init() {
-        build_views();
-        loading_view.hide();
+        get_data();
     }
 
     private void get_data() {
@@ -85,7 +81,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
             @Override
             public Void call() throws Exception {
-                order = DataProvider.my_order(order.get_id());
+                order = DataProvider.my_order(order_id);
                 return null;
             }
 

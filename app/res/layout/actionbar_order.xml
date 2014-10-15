@@ -16,6 +16,7 @@
             android:background="@drawable/actionbar_icon"
             android:text="@string/fa_trash"
             android:layout_alignParentRight="true"
+            android:visibility="gone"
             />
     <com.realityandapp.paopao_customer.widget.FontAwesomeButton
             style="@style/ActionBarFATV"
@@ -23,11 +24,12 @@
             android:background="@drawable/actionbar_icon"
             android:text="@string/fa_pencil_square_o"
             android:layout_toLeftOf="@id/fatv_destroy"
+            android:visibility="gone"
             />
     <TextView
             style="@style/ActionBarTitle"
             android:id="@+id/title"
-            android:layout_toLeftOf="@id/fabtn_edit"
             android:layout_toRightOf="@id/fabtn_back"
+            android:layout_alignParentRight="true"
             />
 </RelativeLayout>
