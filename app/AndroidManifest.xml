@@ -44,7 +44,6 @@
         <activity android:name=".views.CartActivity"/>
         <activity android:name=".views.CartToOrderActivity"/>
         <activity android:name=".views.OrderActivity"/>
-        <activity android:name=".views.IMActivity"/>
         <activity android:name=".views.NewAddressActivity"/>
         <activity android:name=".views.EditOrderActivity"/>
         <activity android:name=".views.AddressesActivity"/>

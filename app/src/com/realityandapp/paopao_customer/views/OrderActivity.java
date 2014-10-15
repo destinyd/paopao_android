@@ -14,6 +14,7 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
+import com.realityandapp.paopao_customer.views.im.ChatActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
@@ -183,8 +184,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void go_to_im() {
-        Intent intent = new Intent(this, IMActivity.class);
-        intent.putExtra(Constants.Extra.DELIVERYMAN, order.get_deliveryman());
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra("userId", order.get_deliveryman().get_realname());
         startActivity(intent);
     }
 
