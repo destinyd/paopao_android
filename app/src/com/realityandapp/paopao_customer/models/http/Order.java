@@ -1,6 +1,10 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
 import com.realityandapp.paopao_customer.models.interfaces.*;
+import com.realityandapp.paopao_customer.models.test.Address;
+import com.realityandapp.paopao_customer.models.test.CartGoodsData;
+import com.realityandapp.paopao_customer.models.test.Deliveryman;
+import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ public class Order implements IOrder {
     public IDeliveryman deliveryman;
     public int shop_discount;
     public float shop_delivery_price;
-    public float total = 0;
+    public float human_total = 0f;
     public List<ICartGoodsData> goods = new ArrayList<ICartGoodsData>();
 
     public Order() {
@@ -30,9 +34,9 @@ public class Order implements IOrder {
         for(int i=0; i < 1 + new Random().nextInt(5); i++){
             CartGoodsData good = new CartGoodsData();
             goods.add(good);
-            total += good.get_price() * good.get_amount();
+            human_total += good.get_price() * good.get_amount();
         }
-        total += shop_delivery_price;
+        human_total += shop_delivery_price;
         address = new Address();
 //        status = OrderStatus.pending;
         status = OrderStatus.values()[new Random().nextInt(9)];
@@ -44,7 +48,7 @@ public class Order implements IOrder {
         shop_discount = shop_cart.get_shop_discount();
         shop_delivery_price = shop_cart.get_shop_delivery_price();
         goods = shop_cart.get_cart_goods();
-        total = shop_cart.get_total();
+        human_total = shop_cart.get_total();
         address = shop_cart.get_shop().get_address();
         status = OrderStatus.pending;
         deliveryman = new Deliveryman();
@@ -82,7 +86,7 @@ public class Order implements IOrder {
 
     @Override
     public float get_total() {
-        return total;
+        return human_total;
     }
 
     @Override

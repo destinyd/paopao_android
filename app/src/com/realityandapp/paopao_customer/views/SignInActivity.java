@@ -8,7 +8,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.mindpin.android.authenticator.AuthCallback;
+import com.mindpin.android.authenticator.IUser;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
+import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectView;
 
@@ -16,7 +20,10 @@ import roboguice.inject.InjectView;
  * Created by dd on 14-6-12.
  */
 public class SignInActivity extends PaopaoBaseActivity {
-//    AuthenticatorsController myAuthenticator;
+    AuthenticatorsController myAuthenticator;
+    User current_user;
+
+    //    AuthenticatorsController myAuthenticator;
 //    User current_user;
     @InjectView(R.id.et_login)
     EditText et_login;
@@ -31,7 +38,7 @@ public class SignInActivity extends PaopaoBaseActivity {
 
         setContentView(R.layout.sign_in);
         setTitle("登录");
-//        myAuthenticator = new AuthenticatorsController(this);
+        myAuthenticator = new AuthenticatorsController(this);
 //        current_user = User.current();
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,28 +54,29 @@ public class SignInActivity extends PaopaoBaseActivity {
                 }
 
                 btn_signin.setEnabled(false);
-//                myAuthenticator.sign_in(
-//                        et_login.getText().toString(),
-//                        et_password.getText().toString(),
-//                        new AuthCallback() {
-//                            @Override
-//                            public void success(IUser user) {
-//                                SignInActivity.this.finish();
-//                                startActivity(new Intent(SignInActivity.this, DashboardActivity.class));
-//                            }
-//
-//                            @Override
-//                            public void failure() {
-//                                Toast.makeText(SignInActivity.this, "用户和密码不正确", Toast.LENGTH_LONG).show();
-//                                btn_signin.setEnabled(true);
-//                            }
-//
-//                            @Override
-//                            public void error() {
-//                                Toast.makeText(SignInActivity.this, "连接服务器出错", Toast.LENGTH_LONG).show();
-//                                btn_signin.setEnabled(true);
-//                            }
-//                        });
+                System.out.println("get_sign_in_url():" + myAuthenticator.get_sign_in_url());
+                myAuthenticator.sign_in(
+                        et_login.getText().toString(),
+                        et_password.getText().toString(),
+                        new AuthCallback() {
+                            @Override
+                            public void success(IUser user) {
+                                SignInActivity.this.finish();
+                                startActivity(new Intent(SignInActivity.this, RealMainActivity.class));
+                            }
+
+                            @Override
+                            public void failure() {
+                                Toast.makeText(SignInActivity.this, "用户和密码不正确", Toast.LENGTH_LONG).show();
+                                btn_signin.setEnabled(true);
+                            }
+
+                            @Override
+                            public void error() {
+                                Toast.makeText(SignInActivity.this, "连接服务器出错", Toast.LENGTH_LONG).show();
+                                btn_signin.setEnabled(true);
+                            }
+                        });
             }
         });
     }

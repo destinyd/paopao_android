@@ -1,0 +1,5 @@
+<resources>
+    <integer name="versionCode">1</integer>
+    <string name="versionName">1.0</string>
+    <integer name="AA_DB_VERSION">1410151617</integer>
+</resources>

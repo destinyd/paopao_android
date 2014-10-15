@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
+import com.activeandroid.ActiveAndroid;
 import com.easemob.EMCallBack;
 import com.easemob.chat.*;
 import com.easemob.exceptions.EaseMobException;
@@ -49,6 +50,8 @@ public class PaopaoCustomerApplication extends Application {
         super.onCreate();
         instance = this;
         applicationContext = this.getApplicationContext();
+
+        ActiveAndroid.initialize(this);
 
         init_image_config();
 
@@ -245,6 +248,7 @@ public class PaopaoCustomerApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
+        ActiveAndroid.dispose();
     }
 
     public static Context get_context() {

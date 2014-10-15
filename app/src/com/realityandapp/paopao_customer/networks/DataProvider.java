@@ -1,6 +1,7 @@
 package com.realityandapp.paopao_customer.networks;
 
 
+import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.test.*;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 
@@ -64,13 +65,14 @@ public class DataProvider {
         // todo set default address
     }
 
-    public static List<IOrder> get_orders() {
-        List<IOrder> orders = new ArrayList<IOrder>();
-        for(int i=0; i< 20; i++) {
-            Order order = new Order();
-            orders.add(order);
-        }
-        return orders;
+    public static List<IOrder> get_orders() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_my_orders();
+//        List<IOrder> orders = new ArrayList<IOrder>();
+//        for(int i=0; i< 20; i++) {
+//            Order order = new Order();
+//            orders.add(order);
+//        }
+//        return orders;
     }
 
     public static void sign_out() {

@@ -10,7 +10,7 @@ import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
-import com.realityandapp.paopao_customer.models.test.Order;
+import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.views.OrderActivity;
 import com.realityandapp.paopao_customer.views.PayActivity;
 

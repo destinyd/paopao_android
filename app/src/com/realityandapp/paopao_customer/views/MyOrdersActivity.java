@@ -10,6 +10,7 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
 import com.realityandapp.paopao_customer.views.adapter.OrdersAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
@@ -46,7 +47,7 @@ public class MyOrdersActivity extends PaopaoBaseActivity implements View.OnClick
     }
 
     private void get_datas() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -63,7 +64,6 @@ public class MyOrdersActivity extends PaopaoBaseActivity implements View.OnClick
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
                 loading_view.hide();
-//                set_cart_count(99);
             }
         }.execute();
     }
