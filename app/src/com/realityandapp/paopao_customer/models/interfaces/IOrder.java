@@ -1,7 +1,5 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
-import com.realityandapp.paopao_customer.models.test.Deliveryman;
-
 import java.util.List;
 
 /**

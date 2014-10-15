@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
@@ -19,6 +21,8 @@ import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
+
+import java.beans.Visibility;
 
 /**
  * Created by dd on 14-9-18.
@@ -61,6 +65,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
+        System.out.println("order id:" + order.get_id());
         setTitle("订单详情");
         init();
     }
@@ -80,7 +85,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
             @Override
             public Void call() throws Exception {
-                order = DataProvider.get_order(order.get_id());
+                order = DataProvider.my_order(order.get_id());
                 return null;
             }
 
@@ -117,11 +122,21 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         fatv_edit.setOnClickListener(this);
         fabtn_destroy.setOnClickListener(this);
         fabtn_back.setOnClickListener(this);
+        boolean show = order.get_status() == Order.OrderStatus.pending;
+        fatv_edit.setVisibility(show ? View.VISIBLE : View.GONE);
+        fabtn_destroy.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
     private void build_deliveryman() {
         rl_deliveryman.setOnClickListener(this);
-        tv_deliveryman.setText(order.get_deliveryman().get_realname());
+        System.out.println("order.get_deliveryman():" + order.get_deliveryman());
+        if(order.get_deliveryman() == null) {
+            ((View) tv_deliveryman.getParent()).setVisibility(View.GONE);
+        }
+        else{
+            tv_deliveryman.setText(order.get_deliveryman().get_realname());
+            ((View) tv_deliveryman.getParent()).setVisibility(View.VISIBLE);
+        }
     }
 
     private void build_status() {
@@ -144,8 +159,10 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(Constants.Format.CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
-        tv_address.setText(order.get_address().get_address());
+        if(order.get_address() != null) {
+            tv_contact.setText(String.format(Constants.Format.CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
+            tv_address.setText(order.get_address().get_address());
+        }
     }
 
     @Override
@@ -239,7 +256,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
                     get_data();
                 }
 
-            break;
+                break;
         }
     }
 }

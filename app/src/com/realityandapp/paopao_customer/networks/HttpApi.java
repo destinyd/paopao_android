@@ -26,12 +26,13 @@ public class HttpApi {
     public static final String TRADER_SITE = PaopaoCustomerApplication.get_context().getResources().getString(R.string.trader_http_site);
 
     public static final String USER_ORDERS = USER_SITE + "/orders.json";
+    public static final String FORMAT_USER_ORDER = USER_SITE + "/orders/%s.json";
     /**
      * http api url end
      */
 
 
-    public static List<IOrder> get_my_orders() throws AuthErrorException, RequestDataErrorException, NetworkErrorException {
+    public static List<IOrder> user_orders() throws AuthErrorException, RequestDataErrorException, NetworkErrorException {
         return new RequestProcess<List<IOrder>>(){
 
             @Override
@@ -45,6 +46,24 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(USER_ORDERS, "GET");
+            }
+        }.request();
+    }
+
+    public static IOrder my_order(final String id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        System.out.println("order id:" + id);
+        return new RequestProcess<IOrder>(){
+
+            @Override
+            public IOrder call(RequestResult rr) {
+                System.out.println("body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Order.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(String.format(FORMAT_USER_ORDER, id), "GET");
             }
         }.request();
     }

@@ -1,4 +1,4 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
 import com.realityandapp.paopao_customer.models.interfaces.IDeliveryman;
 

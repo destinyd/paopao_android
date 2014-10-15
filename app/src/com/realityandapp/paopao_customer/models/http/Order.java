@@ -3,7 +3,6 @@ package com.realityandapp.paopao_customer.models.http;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.models.test.CartGoodsData;
-import com.realityandapp.paopao_customer.models.test.Deliveryman;
 import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 
@@ -19,8 +18,8 @@ public class Order implements IOrder {
     public String _id;
     public OrderStatus status;
     public IShop shop;
-    public IAddress address;
-    public IDeliveryman deliveryman;
+    public Address address;
+    public Deliveryman deliveryman;
     public int shop_discount;
     public float shop_delivery_price;
     public float human_total = 0f;
@@ -37,10 +36,10 @@ public class Order implements IOrder {
             human_total += good.get_price() * good.get_amount();
         }
         human_total += shop_delivery_price;
-        address = new Address();
+//        address = new Address();
 //        status = OrderStatus.pending;
-        status = OrderStatus.values()[new Random().nextInt(9)];
-        deliveryman = new Deliveryman();
+//        status = OrderStatus.values()[new Random().nextInt(9)];
+//        deliveryman = new Deliveryman();
     }
 
     public Order(IShopCart shop_cart) {
@@ -49,9 +48,9 @@ public class Order implements IOrder {
         shop_delivery_price = shop_cart.get_shop_delivery_price();
         goods = shop_cart.get_cart_goods();
         human_total = shop_cart.get_total();
-        address = shop_cart.get_shop().get_address();
-        status = OrderStatus.pending;
-        deliveryman = new Deliveryman();
+//        address = shop_cart.get_shop().get_address();
+//        status = OrderStatus.pending;
+//        deliveryman = new Deliveryman();
     }
 
     @Override
@@ -106,7 +105,7 @@ public class Order implements IOrder {
 
     @Override
     public void set_address(IAddress address) {
-        this.address = address;
+        this.address = (Address) address;
     }
 
     @Override

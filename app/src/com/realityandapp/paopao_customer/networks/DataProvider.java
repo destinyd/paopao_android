@@ -36,8 +36,8 @@ public class DataProvider {
         return new Address();
     }
 
-    public static IOrder get_order(String s) {
-        return new Order();
+    public static IOrder my_order(String s) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.my_order(s);
     }
 
     public static List<IAddress> get_addresses() {
@@ -66,7 +66,7 @@ public class DataProvider {
     }
 
     public static List<IOrder> get_orders() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
-        return HttpApi.get_my_orders();
+        return HttpApi.user_orders();
 //        List<IOrder> orders = new ArrayList<IOrder>();
 //        for(int i=0; i< 20; i++) {
 //            Order order = new Order();
