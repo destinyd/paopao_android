@@ -125,7 +125,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_status() {
-        tv_order_status.setText(order.get_status());
+        tv_order_status.setText(order.get_str_status());
     }
 
     private void build_delivery() {

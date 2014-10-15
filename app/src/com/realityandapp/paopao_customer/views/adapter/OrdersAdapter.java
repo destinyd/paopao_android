@@ -10,6 +10,7 @@ import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
+import com.realityandapp.paopao_customer.models.test.Order;
 import com.realityandapp.paopao_customer.views.OrderActivity;
 import com.realityandapp.paopao_customer.views.PayActivity;
 
@@ -41,14 +42,17 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
     @Override
     protected void update(int position, IOrder item) {
         setText(0, item.get_shop_name());
-        setText(1, item.get_status());
+        setText(1, item.get_str_status());
         setText(2, String.format(Constants.Format.ORDER_DESC, item.get_total()));
         update_btn_action(item);
     }
 
     private void update_btn_action(IOrder item) {
-        if("等待支付".equals( item.get_status())){
+        if(Order.OrderStatus.pending == item.get_status()){
             setText(3, "支付");
+            getView(3, Button.class).setVisibility(View.VISIBLE);
+        } else if(Order.OrderStatus.took_away == item.get_status()){
+            setText(3, "收货");
             getView(3, Button.class).setVisibility(View.VISIBLE);
         }
         else{

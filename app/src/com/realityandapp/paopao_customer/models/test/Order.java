@@ -13,7 +13,7 @@ import java.util.Random;
 public class Order implements IOrder {
     public static int i = 0;
     public String _id;
-    public String status;
+    public OrderStatus status;
     public IShop shop;
     public IAddress address;
     public IDeliveryman deliveryman;
@@ -34,7 +34,8 @@ public class Order implements IOrder {
         }
         total += shop_delivery_price;
         address = new Address();
-        status = "等待支付";
+//        status = OrderStatus.pending;
+        status = OrderStatus.values()[new Random().nextInt(9)];
         deliveryman = new Deliveryman();
     }
 
@@ -45,7 +46,7 @@ public class Order implements IOrder {
         goods = shop_cart.get_cart_goods();
         total = shop_cart.get_total();
         address = shop_cart.get_shop().get_address();
-        status = "等待支付";
+        status = OrderStatus.pending;
         deliveryman = new Deliveryman();
     }
 
@@ -85,7 +86,7 @@ public class Order implements IOrder {
     }
 
     @Override
-    public String get_status() {
+    public OrderStatus get_status() {
         return status;
     }
 
@@ -110,6 +111,30 @@ public class Order implements IOrder {
     }
 
     @Override
+    public String get_str_status() {
+        if(status == OrderStatus.pending){
+            return "等待支付";
+        } else if(status == OrderStatus.paid){
+            return "已支付"; //其实会直接跳过
+        } else if(status == OrderStatus.system_accepted){
+            return "等待取货";
+        } else if(status == OrderStatus.took_away){
+            return "配送中";
+        } else if(status == OrderStatus.deliveried){
+            return "已交货"; //跳过?
+        } else if(status == OrderStatus.finished){
+            return "配送成功";
+        } else if(status == OrderStatus.accepted){
+            return "已接受";
+        } else if(status == OrderStatus.cancel){
+            return "已取消";
+        } else if(status == OrderStatus.expired){
+            return "已过期";
+        }
+        return null;
+    }
+
+    @Override
     public String get_id() {
         return _id;
     }
@@ -119,5 +144,15 @@ public class Order implements IOrder {
         return goods;
     }
 
-
+    public enum OrderStatus implements IOrderStatus{
+        pending,
+        paid,
+        finished,
+        cancel,
+        accepted,
+        system_accepted,
+        took_away,
+        deliveried,
+        expired
+    }
 }
