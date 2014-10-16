@@ -7,10 +7,12 @@ import com.mindpin.android.authenticator.RequestResult;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
+import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.http.Shop;
+import com.realityandapp.paopao_customer.models.http.Good;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -30,6 +32,7 @@ public class HttpApi {
     public static final String USER_ORDERS = USER_SITE + "/orders.json";
     public static final String FORMAT_USER_ORDER = USER_SITE + "/orders/%s.json";
     public static final String SHOPS = SITE + "/shops.json";
+    public static final String FORMAT_SHOP_GOODS = SITE + "/shops/%s/goods.json";
 
     /**
      * http api url end
@@ -86,6 +89,24 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(SHOPS, "GET");
+            }
+        }.request();
+    }
+
+    public static List<IGood> shop_goods(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<IGood>>(){
+
+            @Override
+            public List<IGood> call(RequestResult rr) {
+                System.out.println("body:" + rr.body);
+                Type collectionType = new TypeToken<List<Good>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(String.format(FORMAT_SHOP_GOODS, shop_id), "GET");
             }
         }.request();
     }

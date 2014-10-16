@@ -30,7 +30,7 @@ public class Shop implements IShop {
 
     @Override
     public String get_id() {
-        return String.valueOf(i);
+        return _id;
     }
 
     @Override

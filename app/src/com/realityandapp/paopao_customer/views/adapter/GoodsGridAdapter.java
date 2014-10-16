@@ -37,7 +37,7 @@ public class GoodsGridAdapter extends SingleTypeAdapter<IGood> {
 
     @Override
     protected void update(int position, IGood item) {
-        ImageLoader.getInstance().displayImage(item.get_image(), imageView(0));
+        ImageLoader.getInstance().displayImage(item.get_image().toString(), imageView(0));
         setText(1, item.get_name());
         setText(2, String.format(str_format_desc, item.get_price(), item.get_unit()));
 //        setText(0, joke.getName());

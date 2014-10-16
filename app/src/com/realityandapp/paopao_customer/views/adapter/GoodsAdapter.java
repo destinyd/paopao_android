@@ -48,7 +48,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
 
     @Override
     protected void update(int position, IGood item) {
-        ImageLoader.getInstance().displayImage(item.get_image(), imageView(0));
+        ImageLoader.getInstance().displayImage(item.get_image().toString(), imageView(0));
         setText(1, item.get_name());
         setText(2, String.format(Constants.Format.PRICE_WITH_UNIT, item.get_price(), item.get_unit()));
         setText(3, item.get_description());

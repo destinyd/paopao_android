@@ -26,8 +26,10 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class ShopGoodsActivity extends PaopaoBaseActivity {
-    @InjectExtra(Constants.Extra.SHOP)
-    private Shop shop;
+    @InjectExtra(Constants.Extra.SHOP_ID)
+    private String shop_id;
+    @InjectExtra(Constants.Extra.SHOP_NAME)
+    private String shop_name;
     //    @InjectView(R.id.fabtn_back)
 //    FontAwesomeButton fabtn_back;
 //    @InjectView(R.id.fabtn_cart)
@@ -49,7 +51,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
         setContentView(R.layout.goods);
 
 
-        setTitle(shop.get_name() + " 的商品");
+        setTitle(shop_name + " 的商品");
         init_views();
         get_data();
     }
@@ -68,7 +70,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
             @Override
             public Void call() throws Exception {
-                goods = DataProvider.get_goods(shop.get_id());
+                goods = DataProvider.get_goods(shop_id);
                 shop_cart = new ShopCart();
                 return null;
             }

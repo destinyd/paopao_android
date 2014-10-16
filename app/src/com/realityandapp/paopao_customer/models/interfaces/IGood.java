@@ -10,5 +10,5 @@ public interface IGood extends IBase {
     public String get_description();
     public float get_price();
     public String get_unit();
-    public String get_image();
+    public Object get_image();
 }

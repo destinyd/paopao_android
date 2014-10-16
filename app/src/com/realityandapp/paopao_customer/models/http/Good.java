@@ -1,7 +1,6 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
-import com.realityandapp.paopao_customer.models.interfaces.IShop;
 
 /**
  * Created by dd on 14-9-18.
@@ -9,18 +8,20 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 public class Good implements IGood {
     private static int i = 0;
     private String unit;
-    private float price;
+//    private float price;
+    private float human_price;
     private String _id;
     private String name;
     private String description;
-    private String image;
+    // todo to image class
+    private Object image;
 
     public Good() {
         i++;
         _id = String.valueOf(i);
         name = "good" + _id;
         description = "good description" + _id;
-        price = i;
+//        price = i;
         unit = "份";
         image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
@@ -30,7 +31,7 @@ public class Good implements IGood {
         _id = id;
         name = "good" + _id;
         description = "good description" + _id;
-        price = i;
+//        price = i;
         unit = "份";
         image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
@@ -47,7 +48,7 @@ public class Good implements IGood {
 
     @Override
     public float get_price() {
-        return price;
+        return human_price;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class Good implements IGood {
     }
 
     @Override
-    public String get_image() {
+    public Object get_image() {
         return image;
     }
 

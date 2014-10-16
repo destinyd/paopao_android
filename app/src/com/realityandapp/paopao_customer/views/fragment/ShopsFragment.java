@@ -76,7 +76,8 @@ public class ShopsFragment extends PaopaoBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getActivity(), ShopGoodsActivity.class);
-                intent.putExtra(Constants.Extra.SHOP, shops.get(i));
+                intent.putExtra(Constants.Extra.SHOP_ID, shops.get(i).get_id());
+                intent.putExtra(Constants.Extra.SHOP_NAME, shops.get(i).get_name());
                 startActivity(intent);
             }
         });

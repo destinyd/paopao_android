@@ -13,13 +13,14 @@ public class DataProvider {
         return HttpApi.shops();
     }
 
-    public static List<IGood> get_goods(String id) {
-        List<IGood> list = new ArrayList<IGood>();
-        for(int i=0; i< 10; i++) {
-            Good good = new Good();
-            list.add(good);
-        }
-        return list;
+    public static List<IGood> get_goods(String shop_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.shop_goods(shop_id);
+//        List<IGood> list = new ArrayList<IGood>();
+//        for(int i=0; i< 10; i++) {
+//            Good good = new Good();
+//            list.add(good);
+//        }
+//        return list;
     }
 
     public static ICart get_cart() {

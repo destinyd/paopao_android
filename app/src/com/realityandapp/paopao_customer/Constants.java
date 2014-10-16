@@ -13,6 +13,8 @@ public class Constants {
         public static final String CART = "cart";
         public static final String SHOP_CART = "shop_cart";
         public static final String ORDER_ID = "order_id";
+        public static final String SHOP_ID = "shop_id";
+        public static final String SHOP_NAME = "shop_name";
     }
 
     public static class Request {
