@@ -1,7 +1,8 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
-import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
+
+import java.util.List;
 
 /**
  * Created by dd on 14-9-18.
@@ -10,12 +11,13 @@ public class Shop implements IShop {
     public static int i = 0;
     public String _id;
     public String name;
-    public IAddress address;
+    public String address;
     public String description;
     public String contact;
     public boolean is_shop_delivery;
-    public String coordinates;
-    public String avatar;
+    public List<Float> coordinates;
+    // todo to avatar class
+    public Object avatar;
 
     public Shop() {
         i++;
@@ -23,7 +25,7 @@ public class Shop implements IShop {
         description = "shop description" + String.valueOf(i);
         contact = "shop contact" + String.valueOf(i);
         avatar = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
-        address = new Address();
+//        address = new Address();
     }
 
     @Override
@@ -37,7 +39,7 @@ public class Shop implements IShop {
     }
 
     @Override
-    public IAddress get_address() {
+    public String get_address() {
         return address;
     }
 
@@ -62,7 +64,7 @@ public class Shop implements IShop {
     }
 
     @Override
-    public String get_coordinates() {
+    public List<Float> get_coordinates() {
         return coordinates;
     }
 }

@@ -1,5 +1,6 @@
 package com.realityandapp.paopao_customer.models.test;
 
+import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;

@@ -7,19 +7,19 @@
     <GridView
             android:id="@+id/gv_shops"
             android:numColumns="2"
-            android:gravity="center"
+            android:gravity="top"
             android:horizontalSpacing="5dp"
             android:verticalSpacing="5dp"
             android:stretchMode="columnWidth"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/actionbar"
+            android:layout_height="match_parent"
             >
     </GridView>
 
     <com.mindpin.android.loadingview.LoadingView
             android:id="@+id/loading_view"
-            style="@style/LoadingViewWithActionBar"/>
+            style="@style/LoadingViewWithActionBar"
+            android:layout_height="match_parent"
+            />
 
 </RelativeLayout>

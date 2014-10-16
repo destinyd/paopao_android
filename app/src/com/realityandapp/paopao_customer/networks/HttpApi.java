@@ -9,6 +9,8 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.http.Order;
+import com.realityandapp.paopao_customer.models.interfaces.IShop;
+import com.realityandapp.paopao_customer.models.http.Shop;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -27,6 +29,8 @@ public class HttpApi {
 
     public static final String USER_ORDERS = USER_SITE + "/orders.json";
     public static final String FORMAT_USER_ORDER = USER_SITE + "/orders/%s.json";
+    public static final String SHOPS = SITE + "/shops.json";
+
     /**
      * http api url end
      */
@@ -67,6 +71,24 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static List<IShop> shops() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<IShop>>(){
+
+            @Override
+            public List<IShop> call(RequestResult rr) {
+                System.out.println("body:" + rr.body);
+                Type collectionType = new TypeToken<List<Shop>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(SHOPS, "GET");
+            }
+        }.request();
+    }
     //////////////////
 
     /**
@@ -80,6 +102,7 @@ public class HttpApi {
             HttpRequest request = build_request(auth);
             RequestResult rr = auth.syn_request(request);
             if(rr == null) throw new NetworkErrorException();
+            System.out.println("rr.status :" + rr.status );
             if(rr.status == 200){
                 return call(rr);
             }else if(rr.status == 401){

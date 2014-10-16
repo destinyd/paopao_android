@@ -3,7 +3,6 @@ package com.realityandapp.paopao_customer.models.http;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.models.test.CartGoodsData;
-import com.realityandapp.paopao_customer.models.test.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;

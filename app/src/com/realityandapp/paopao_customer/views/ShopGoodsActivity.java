@@ -11,7 +11,7 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
-import com.realityandapp.paopao_customer.models.test.Shop;
+import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.test.ShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;

@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public interface IShop extends IBase {
     public String get_name();
-    public IAddress get_address();
+    public String get_address();
     public String get_description();
     public String get_contact();
-    public String get_coordinates();
+    public java.util.List<Float> get_coordinates();
     public boolean is_shop_delivery();
     public String get_avatar();
 }
