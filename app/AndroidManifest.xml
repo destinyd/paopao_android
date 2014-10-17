@@ -30,17 +30,16 @@
 		android:theme="@style/AppTheme" android:name=".PaopaoCustomerApplication">
 
 		<activity
-			android:name=".views.MainActivity"
-                >
-		</activity>
-        <activity android:name=".views.SignUpActivity"/>
-        <activity android:name=".views.SignInActivity"/>
-        <activity android:name=".views.RealMainActivity"
-                  android:label="@string/app_name">
+			android:name=".views.LauncherActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+		</activity>
+        <activity android:name=".views.SignUpActivity"/>
+        <activity android:name=".views.SignInActivity"/>
+        <activity android:name=".views.RealMainActivity">
         </activity>
         <activity android:name=".views.ShopGoodsGridActivity"/>
         <activity android:name=".views.CartActivity"/>

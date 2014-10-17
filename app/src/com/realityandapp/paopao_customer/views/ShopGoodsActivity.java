@@ -71,6 +71,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             @Override
             public Void call() throws Exception {
                 goods = DataProvider.get_goods(shop_id);
+                shop_cart = DataProvider.get_cart(shop_id);
                 shop_cart = new ShopCart();
                 return null;
             }

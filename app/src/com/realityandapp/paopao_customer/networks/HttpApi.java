@@ -13,6 +13,8 @@ import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.http.Good;
+import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
+import com.realityandapp.paopao_customer.models.test.ShopCart;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -33,6 +35,7 @@ public class HttpApi {
     public static final String FORMAT_USER_ORDER = USER_SITE + "/orders/%s.json";
     public static final String SHOPS = SITE + "/shops.json";
     public static final String FORMAT_SHOP_GOODS = SITE + "/shops/%s/goods.json";
+    private static final String FORMAT_SHOP_CART = SITE + "/shops/%s/cart.json";
 
     /**
      * http api url end
@@ -107,6 +110,24 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(String.format(FORMAT_SHOP_GOODS, shop_id), "GET");
+            }
+        }.request();
+    }
+
+    public static IShopCart get_cart(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        System.out.println("shop id:" + shop_id);
+        return new RequestProcess<IShopCart>(){
+
+            @Override
+            public IShopCart call(RequestResult rr) {
+                System.out.println("body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, ShopCart.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(String.format(FORMAT_SHOP_CART, shop_id), "GET");
             }
         }.request();
     }

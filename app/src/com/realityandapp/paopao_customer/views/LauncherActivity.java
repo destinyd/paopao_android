@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import com.easemob.chat.EMChat;
+import com.realityandapp.paopao_customer.models.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends ListActivity {
+public class LauncherActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,10 @@ public class MainActivity extends ListActivity {
         );
         getListView().setScrollbarFadingEnabled(false);
         EMChat.getInstance().setAppInited();
+        if(User.current() == null)
+        {
+            startActivity(new Intent(this, SignInActivity.class));
+        }
     }
 
     @SuppressWarnings("unchecked")

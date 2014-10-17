@@ -19,14 +19,14 @@ public class Shop implements IShop {
     // todo to avatar class
     public Object avatar;
 
-    public Shop() {
-        i++;
-        name = "shop" + String.valueOf(i);
-        description = "shop description" + String.valueOf(i);
-        contact = "shop contact" + String.valueOf(i);
-        avatar = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
-//        address = new Address();
-    }
+//    public Shop() {
+//        i++;
+//        name = "shop" + String.valueOf(i);
+//        description = "shop description" + String.valueOf(i);
+//        contact = "shop contact" + String.valueOf(i);
+//        avatar = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+////        address = new Address();
+//    }
 
     @Override
     public String get_id() {

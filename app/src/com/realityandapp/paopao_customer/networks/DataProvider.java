@@ -78,4 +78,8 @@ public class DataProvider {
         // todo submit cart and get order
         return new Order(shop_cart);
     }
+
+    public static IShopCart get_cart(String shop_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.get_cart(shop_id);
+    }
 }
