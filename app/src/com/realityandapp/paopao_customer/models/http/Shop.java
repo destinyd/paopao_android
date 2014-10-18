@@ -16,8 +16,7 @@ public class Shop implements IShop {
     public String contact;
     public boolean is_shop_delivery;
     public List<Float> coordinates;
-    // todo to avatar class
-    public Object avatar;
+    public Uploader avatar;
 
 //    public Shop() {
 //        i++;
@@ -60,7 +59,8 @@ public class Shop implements IShop {
 
     @Override
     public String get_avatar() {
-        return "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+//        return "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+        return avatar.get_default();
     }
 
     @Override

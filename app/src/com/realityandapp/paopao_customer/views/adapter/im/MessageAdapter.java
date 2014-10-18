@@ -766,7 +766,6 @@ public class MessageAdapter extends BaseAdapter {
 						EMChatManager.getInstance().ackMessageRead(message.getFrom(), message.getMsgId());
 						message.isAcked = true;
 					} catch (EaseMobException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

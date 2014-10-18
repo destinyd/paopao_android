@@ -7,6 +7,7 @@ import com.activeandroid.query.Select;
 import com.google.gson.annotations.SerializedName;
 import com.mindpin.android.authenticator.IUser;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.http.Uploader;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.io.Serializable;
@@ -32,9 +33,8 @@ public class User extends IUser implements Serializable {
     public String login;
     @Column(name = "Phone")
     public String phone;
-    // todo to avatar class
 //    @Column(name = "Avatar")
-    private Object avatar;
+    private Uploader avatar;
 
     @Column(name = "signed_in_at", index = true)
     public long signed_in_at;
@@ -79,10 +79,7 @@ public class User extends IUser implements Serializable {
     }
 
     public String get_avatar_url(){
-        if(this.avatar == null || "".equals(this.avatar)){
-            return "drawable://" + R.drawable.avatar_default;
-        }
-        return HttpApi.SITE + this.avatar;
+        return HttpApi.SITE + avatar.get_default();
     }
 
 }

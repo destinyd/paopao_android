@@ -113,7 +113,6 @@ public class VoicePlayClickListener implements View.OnClickListener {
 
 				@Override
 				public void onCompletion(MediaPlayer mp) {
-					// TODO Auto-generated method stub
 					mediaPlayer.release();
 					mediaPlayer = null;
 					stopPlayVoice(); // stop animation

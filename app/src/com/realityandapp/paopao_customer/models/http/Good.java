@@ -13,8 +13,7 @@ public class Good implements IGood {
     private String _id;
     private String name;
     private String description;
-    // todo to image class
-    private Object image;
+    private Uploader image;
 
     public Good() {
         i++;
@@ -23,7 +22,7 @@ public class Good implements IGood {
         description = "good description" + _id;
 //        price = i;
         unit = "份";
-        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+//        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
 
     public Good(String id) {
@@ -33,7 +32,7 @@ public class Good implements IGood {
         description = "good description" + _id;
 //        price = i;
         unit = "份";
-        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
+//        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
     }
 
     @Override
@@ -58,7 +57,7 @@ public class Good implements IGood {
 
     @Override
     public Object get_image() {
-        return image;
+        return image.get_default();
     }
 
     @Override

@@ -40,7 +40,6 @@ public class PasteEditText extends EditText {
     public PasteEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        // TODO Auto-generated constructor stub
     }
 
     public PasteEditText(Context context, AttributeSet attrs, int defStyle) {
