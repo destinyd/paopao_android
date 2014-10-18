@@ -4,6 +4,7 @@ import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.util.ArrayList;
 import java.util.List;

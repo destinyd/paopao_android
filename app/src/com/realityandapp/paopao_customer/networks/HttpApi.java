@@ -35,7 +35,8 @@ public class HttpApi {
     public static final String FORMAT_USER_ORDER = USER_SITE + "/orders/%s.json";
     public static final String SHOPS = SITE + "/shops.json";
     public static final String FORMAT_SHOP_GOODS = SITE + "/shops/%s/goods.json";
-    private static final String FORMAT_SHOP_CART = SITE + "/shops/%s/cart.json";
+    public static final String FORMAT_SHOP_CART = SITE + "/shops/%s/cart.json";
+    public static final String FORMAT_GOOD = SITE + "/goods/%s.json";
 
     /**
      * http api url end
@@ -128,6 +129,24 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(String.format(FORMAT_SHOP_CART, shop_id), "GET");
+            }
+        }.request();
+    }
+
+    public static IGood good(final String good_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        System.out.println("good id:" + good_id);
+        return new RequestProcess<IGood>(){
+
+            @Override
+            public IGood call(RequestResult rr) {
+                System.out.println("good body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Good.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(String.format(FORMAT_GOOD, good_id), "GET");
             }
         }.request();
     }

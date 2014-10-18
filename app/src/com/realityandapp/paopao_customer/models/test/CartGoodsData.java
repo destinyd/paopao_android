@@ -3,6 +3,8 @@ package com.realityandapp.paopao_customer.models.test;
 import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
+import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.util.Random;
 
@@ -11,6 +13,7 @@ import java.util.Random;
  */
 public class CartGoodsData implements ICartGoodsData {
     private static int i = 0;
+    private String good_id;
     private IGood good;
     private int amount;
     private String _id;
@@ -25,27 +28,25 @@ public class CartGoodsData implements ICartGoodsData {
     }
 
     public CartGoodsData(String good_id) {
-        i++;
         plus = "";
-        _id = String.valueOf(i);
-        this.good = new Good(good_id);
+        this.good_id = good_id;
         amount = 0;
     }
 
 
     @Override
     public String get_name() {
-        return good.get_name();
+        return get_good().get_name();
     }
 
     @Override
     public String get_description() {
-        return good.get_description();
+        return get_good().get_description();
     }
 
     @Override
     public float get_price() {
-        return good.get_price();
+        return get_good().get_price();
     }
 
     @Override
@@ -65,7 +66,7 @@ public class CartGoodsData implements ICartGoodsData {
 
     @Override
     public String get_unit() {
-        return good.get_unit();
+        return get_good().get_unit();
     }
 
     @Override
@@ -80,7 +81,23 @@ public class CartGoodsData implements ICartGoodsData {
 
     @Override
     public String get_good_id() {
-        return good.get_id();
+        return good_id;
+    }
+
+    @Override
+    public IGood get_good() {
+        if(good == null){
+            try {
+                good = DataProvider.get_good(good_id);
+            } catch (HttpApi.RequestDataErrorException e) {
+                e.printStackTrace();
+            } catch (HttpApi.AuthErrorException e) {
+                e.printStackTrace();
+            } catch (HttpApi.NetworkErrorException e) {
+                e.printStackTrace();
+            }
+        }
+        return good;
     }
 
 }

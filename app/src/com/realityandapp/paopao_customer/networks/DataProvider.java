@@ -82,4 +82,8 @@ public class DataProvider {
     public static IShopCart get_cart(String shop_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.get_cart(shop_id);
     }
+
+    public static IGood get_good(String good_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.good(good_id);
+    }
 }

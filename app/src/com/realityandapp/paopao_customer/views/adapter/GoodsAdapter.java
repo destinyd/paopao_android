@@ -1,6 +1,5 @@
 package com.realityandapp.paopao_customer.views.adapter;
 
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -10,13 +9,11 @@ import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.interfaces.ICart;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.views.ShopGoodsActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,13 +25,13 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
 
     private final List<IGood> goods;
     private final ShopGoodsActivity activity;
-    private final IShopCart cart;
+    private final IShopCart shop_cart;
 
     public GoodsAdapter(ShopGoodsActivity activity,
-                        final List<IGood> items, IShopCart cart) {
+                        final List<IGood> items, IShopCart shop_cart) {
         super(activity, R.layout.goods_list_item);
         this.activity = activity;
-        this.cart = cart;
+        this.shop_cart = shop_cart;
         goods = items;
         setItems(goods);
     }
@@ -52,7 +49,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
         setText(1, item.get_name());
         setText(2, String.format(Constants.Format.PRICE_WITH_UNIT, item.get_price(), item.get_unit()));
         setText(3, item.get_description());
-        int good_amount = cart.get_good_amount(item.get_id());
+        int good_amount = shop_cart.get_good_amount(item.get_id());
         show_amount(good_amount);
     }
 
@@ -99,7 +96,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
 
     private void show_amount_from_view(View v) {
         String id = (String) v.getTag();
-        boolean is_show = cart.get_good_amount(id) > 0;
+        boolean is_show = shop_cart.get_good_amount(id) > 0;
         RelativeLayout relativeLayout = (RelativeLayout) v.getParent().getParent();
         relativeLayout.findViewById(R.id.ll_amount).setVisibility(is_show ? View.VISIBLE : View.INVISIBLE);
         relativeLayout.findViewById(R.id.ll_amount_none).setVisibility(is_show ? View.INVISIBLE : View.VISIBLE);
@@ -108,7 +105,7 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     private void update_amount_from_view(View v) {
         String id = (String) v.getTag();
         ((TextView) ((RelativeLayout) v.getParent().getParent()).findViewById(R.id.tv_amount))
-                .setText(String.valueOf(cart.get_good_amount(id)));
+                .setText(String.valueOf(shop_cart.get_good_amount(id)));
     }
 
     @Override
@@ -129,6 +126,6 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     }
 
     private void add_to_cart(String good_id, int amount){
-        cart.add_good(good_id, amount);
+        shop_cart.add_good(good_id, amount);
     }
 }

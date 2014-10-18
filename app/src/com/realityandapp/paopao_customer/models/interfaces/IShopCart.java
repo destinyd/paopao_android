@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
+import com.realityandapp.paopao_customer.networks.HttpApi;
+
 import java.util.List;
 
 /**
