@@ -9,6 +9,7 @@ import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.http.ShopCart;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
@@ -28,7 +29,7 @@ import java.util.List;
  */
 public class ShopCartActivity extends PaopaoBaseActivity {
     @InjectExtra(Constants.Extra.SHOP_CART)
-    IShopCart shop_cart;
+    ShopCart shop_cart;
 
     @InjectView(R.id.loading_view)
     LoadingView loading_view;

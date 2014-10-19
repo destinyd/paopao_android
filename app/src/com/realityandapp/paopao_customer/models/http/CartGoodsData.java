@@ -1,5 +1,6 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
+import com.google.gson.*;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.realityandapp.paopao_customer.models.http.Good;
@@ -8,40 +9,29 @@ import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Created by dd on 14-9-18.
  */
 public class CartGoodsData implements ICartGoodsData {
-    private static int i = 0;
-    @Expose
     private String good_id;
-    @Expose(serialize=false)
     private IGood good;
 
-    @Expose
-    private int amount;
+    private int amount = 0;
 
     private float human_price = -1f;
 
-    @Expose
     private String _id;
-    @Expose
     private String plus = "";
 
     public CartGoodsData() {
-//        i++;
-//        _id = String.valueOf(i);
-//        good = new Good();
-//        amount = 1 + new Random().nextInt(5);
-//        plus = "good plus" + _id;
     }
 
     public CartGoodsData(String good_id) {
-        plus = "";
         this.good_id = good_id;
-        amount = 0;
     }
 
 
@@ -112,5 +102,4 @@ public class CartGoodsData implements ICartGoodsData {
         }
         return good;
     }
-
 }

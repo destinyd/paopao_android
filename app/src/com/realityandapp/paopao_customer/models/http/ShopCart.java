@@ -1,5 +1,6 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
+import com.google.gson.*;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
@@ -8,6 +9,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,30 +18,26 @@ import java.util.Random;
  * Created by dd on 14-9-18.
  */
 public class ShopCart implements IShopCart {
-    public static int i = 0;
-    @Expose
+//    @Expose
     public String _id;
-    @Expose
+//    @Expose
     public String shop_id;
     public IShop shop = null;
     public int shop_discount;
     public float shop_delivery_price;
-    @Expose
-    @SerializedName("cart_items_attributes")
-    public List<ICartGoodsData> cart_items = new ArrayList<ICartGoodsData>();
+//    @Expose
+//    @SerializedName("cart_items_attributes")
+    public List<CartGoodsData> cart_items = new ArrayList<CartGoodsData>();
 
     public ShopCart() {
-        i++;
-        shop_discount = 1 + new Random().nextInt(5000);
-//        for(int i=0; i < 1 + new Random().nextInt(5); i++){
-//            cart_items.add(new CartGoodsData());
-//        }
-        shop_delivery_price = 5f;
+        //todo server
+//        shop_discount = 1 + new Random().nextInt(5000);
+//        shop_delivery_price = 5f;
     }
 
     @Override
     public String get_id() {
-        return String.valueOf(i);
+        return _id;
     }
 
     @Override
@@ -57,8 +55,8 @@ public class ShopCart implements IShopCart {
         return shop_discount;
     }
 
-    @Override
-    public List<ICartGoodsData> get_cart_items() {
+//    @Override
+    public List<CartGoodsData> get_cart_items() {
         return cart_items;
     }
 
@@ -84,7 +82,7 @@ public class ShopCart implements IShopCart {
 
     @Override
     public void add_good(String good_id, int amount) {
-        ICartGoodsData temp = null;
+        CartGoodsData temp = null;
         temp = get_good_data_by_id(good_id);
         if(temp == null){
             temp = new CartGoodsData(good_id);
@@ -127,12 +125,32 @@ public class ShopCart implements IShopCart {
         return get_goods_total() + get_shop_delivery_price();
     }
 
-    public ICartGoodsData get_good_data_by_id(String good_id){
-        for(ICartGoodsData good : cart_items){
+    public CartGoodsData get_good_data_by_id(String good_id){
+        for(CartGoodsData good : cart_items){
             if(good.get_good_id().equals(good_id)){
                 return good;
             }
         }
         return null;
+    }
+
+    public static class ShopCartSerializer implements JsonSerializer<ShopCart> {
+        public JsonElement serialize(final ShopCart shop_cart, final Type type, final JsonSerializationContext context) {
+            JsonObject result = new JsonObject();
+            result.add("_id", new JsonPrimitive(shop_cart.get_id()));
+            result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
+            final JsonArray cart_goods_data = new JsonArray();
+            for(final ICartGoodsData data : shop_cart.get_cart_items()){
+                JsonObject obj_cart_goods_data = new JsonObject();
+                obj_cart_goods_data.add("_id", new JsonPrimitive(data.get_id()));
+                obj_cart_goods_data.add("amount", new JsonPrimitive(data.get_amount()));
+                obj_cart_goods_data.add("good_id", new JsonPrimitive(data.get_good_id()));
+                obj_cart_goods_data.add("plus", new JsonPrimitive(data.get_plus()));
+                cart_goods_data.add(obj_cart_goods_data);
+            }
+            
+            result.add("cart_items_attributes", cart_goods_data);// shop_cart.get_cart_items())
+            return result;
+        }
     }
 }

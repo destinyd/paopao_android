@@ -15,7 +15,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
-import com.realityandapp.paopao_customer.models.test.ShopCart;
+import com.realityandapp.paopao_customer.models.http.ShopCart;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -190,8 +190,14 @@ public class HttpApi {
                 HttpRequest request =
                         auth.get_http_request(String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()), "POST");
                 request.accept("application/json");
-                Gson gson_without = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-                String json = gson_without.toJson(shop_cart, ShopCart.class);
+                // todo for not with expose
+                Gson gson =
+                        new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
+                        .create();
+                String json = gson.toJson(shop_cart);
+
+//                Gson gson_without = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+//                String json = gson_without.toJson(shop_cart, ShopCart.class);
 //                String json = new Gson().toJson(shop_cart, ShopCart.class);
                 System.out.println("json:\r\n" + json);
                 request.send(json);

@@ -11,8 +11,6 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
-import com.realityandapp.paopao_customer.models.http.Shop;
-import com.realityandapp.paopao_customer.models.test.ShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
@@ -125,6 +123,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void submit() {
+        //todo need to create for cart items
         Intent intent = new Intent(this, ShopCartActivity.class);
         intent.putExtra(Constants.Extra.SHOP_CART, shop_cart);
         startActivityForResult(intent, Constants.Request.SHOP_CART);

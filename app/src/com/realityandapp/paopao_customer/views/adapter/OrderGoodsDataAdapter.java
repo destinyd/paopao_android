@@ -3,7 +3,7 @@ package com.realityandapp.paopao_customer.views.adapter;
 import android.view.LayoutInflater;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.CartGoodsData;
+import com.realityandapp.paopao_customer.models.http.CartGoodsData;
 
 import java.util.List;
 

@@ -3,7 +3,6 @@ package com.realityandapp.paopao_customer.views.adapter;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.CartGoodsData;
+import com.realityandapp.paopao_customer.models.http.CartGoodsData;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.List;

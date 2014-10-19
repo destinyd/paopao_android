@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
+import com.realityandapp.paopao_customer.models.http.CartGoodsData;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ public interface IOrder extends IBase {
     public String get_shop_id();
     public String get_shop_name();
     public int get_shop_discount();
-    public List<com.realityandapp.paopao_customer.models.test.CartGoodsData> get_order_items();
+    public List<CartGoodsData> get_order_items();
     public float get_delivery_price();
     public int get_delivery_type();
     public IAddress get_address();

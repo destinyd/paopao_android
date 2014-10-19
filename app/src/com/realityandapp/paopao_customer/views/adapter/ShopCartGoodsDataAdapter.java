@@ -10,6 +10,7 @@ import android.widget.EditText;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.http.CartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener {
-    private final List<ICartGoodsData> cart_data;
+    private final List<CartGoodsData> cart_data;
     private final LayoutInflater inflater;
     private String[] list_plus_tags;
     private ArrayAdapter<String> addressesAdapter;
@@ -27,7 +28,7 @@ public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> 
     private AlertDialog addressesDialog;
 
     public ShopCartGoodsDataAdapter(LayoutInflater inflater,
-                                    final List<ICartGoodsData> items) {
+                                    final List<CartGoodsData> items) {
         super(inflater, R.layout.cart_to_order_goods_data_list_item);
         this.inflater = inflater;
         cart_data = items;
