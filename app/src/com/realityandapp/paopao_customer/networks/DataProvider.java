@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.networks;
 
 
 import com.realityandapp.paopao_customer.models.http.Order;
+import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.test.*;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 
@@ -74,9 +75,9 @@ public class DataProvider {
         // todo sign out
     }
 
-    public static IOrder shop_cart_to_order(IShopCart shop_cart) {
-        // todo submit cart and get order
-        return new Order(shop_cart);
+    public static IOrder shop_cart_to_order(IShopCart shop_cart) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.shop_cart_to_order(shop_cart);
+//        return new Order(shop_cart);
     }
 
     public static IShopCart get_cart(String shop_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
@@ -85,5 +86,9 @@ public class DataProvider {
 
     public static IGood get_good(String good_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.good(good_id);
+    }
+
+    public static IShop get_shop(String shop_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.shop(shop_id);
     }
 }

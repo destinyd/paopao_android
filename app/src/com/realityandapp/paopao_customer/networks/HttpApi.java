@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.networks;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.mindpin.android.authenticator.RequestResult;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
@@ -37,6 +38,8 @@ public class HttpApi {
     public static final String FORMAT_SHOP_GOODS = SITE + "/shops/%s/goods.json";
     public static final String FORMAT_SHOP_CART = SITE + "/shops/%s/cart.json";
     public static final String FORMAT_GOOD = SITE + "/goods/%s.json";
+    public static final String FORMAT_SHOP = SITE + "/shops/%s.json";
+    public static final String FORMAT_SUBMIT_CART = SITE + "/shops/%s/submit_cart.json";
 
     /**
      * http api url end
@@ -92,6 +95,7 @@ public class HttpApi {
 
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
+                System.out.println(SHOPS);
                 return auth.get_http_request(SHOPS, "GET");
             }
         }.request();
@@ -147,6 +151,51 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(String.format(FORMAT_GOOD, good_id), "GET");
+            }
+        }.request();
+    }
+
+    public static IShop shop(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        System.out.println("shop id:" + shop_id);
+        return new RequestProcess<IShop>(){
+
+            @Override
+            public IShop call(RequestResult rr) {
+                System.out.println("good body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Shop.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                return auth.get_http_request(String.format(FORMAT_SHOP, shop_id), "GET");
+            }
+        }.request();
+    }
+
+    public static IOrder shop_cart_to_order(final IShopCart shop_cart) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IOrder>(){
+
+            @Override
+            public IOrder call(RequestResult rr) {
+                System.out.println("order body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Order.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                System.out.println("String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()):"
+                    + String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()));
+                HttpRequest request =
+                        auth.get_http_request(String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()), "POST");
+                request.accept("application/json");
+                Gson gson_without = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+                String json = gson_without.toJson(shop_cart, ShopCart.class);
+//                String json = new Gson().toJson(shop_cart, ShopCart.class);
+                System.out.println("json:\r\n" + json);
+                request.send(json);
+                return request;
             }
         }.request();
     }

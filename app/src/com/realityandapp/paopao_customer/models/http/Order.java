@@ -45,7 +45,7 @@ public class Order implements IOrder {
         shop = shop_cart.get_shop();
         shop_discount = shop_cart.get_shop_discount();
         shop_delivery_price = shop_cart.get_shop_delivery_price();
-        goods = shop_cart.get_cart_goods();
+        goods = shop_cart.get_cart_items();
         human_total = shop_cart.get_total();
 //        address = shop_cart.get_shop().get_address();
 //        status = OrderStatus.pending;

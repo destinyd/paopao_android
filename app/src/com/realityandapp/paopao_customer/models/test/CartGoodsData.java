@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.test;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
@@ -13,10 +15,17 @@ import java.util.Random;
  */
 public class CartGoodsData implements ICartGoodsData {
     private static int i = 0;
+    @Expose
     private String good_id;
+    @Expose(serialize=false)
     private IGood good;
+
+    @Expose
     private int amount;
+
+    @Expose
     private String _id;
+    @Expose
     private String plus;
 
     public CartGoodsData() {

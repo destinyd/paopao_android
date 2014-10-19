@@ -12,7 +12,6 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
-import com.realityandapp.paopao_customer.models.test.ShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.ShopCartGoodsDataAdapter;
@@ -113,7 +112,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
     private void build_cart_to_order() {
         ShopCartGoodsDataAdapter adapter =
-                new ShopCartGoodsDataAdapter(getLayoutInflater(), shop_cart.get_cart_goods());
+                new ShopCartGoodsDataAdapter(getLayoutInflater(), shop_cart.get_cart_items());
         lv_cart_goods.setAdapter(adapter);
         ListViewUtils.setListViewHeightBasedOnChildren(lv_cart_goods);
     }
@@ -232,7 +231,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             @Override
             protected void onSuccess(IOrder order) throws Exception {
                 if(order != null){
-                    go_to_order(order);
+                    return_order_id(order);
                 }
                 else{
                     Toast.makeText(getContext(), "提交失败", Toast.LENGTH_LONG).show();
@@ -247,10 +246,14 @@ public class ShopCartActivity extends PaopaoBaseActivity {
         }.execute();
     }
 
-    private void go_to_order(IOrder order) {
-        Intent intent = new Intent(this, OrderActivity.class);
-        intent.putExtra(Constants.Extra.ORDER, order);
-        startActivity(intent);
+    private void return_order_id(IOrder order) {
+        Intent intent = new Intent();
+        intent.putExtra(Constants.Extra.ORDER_ID, order.get_id());
+        setResult(RESULT_OK, intent);
+//
+//        Intent intent = new Intent(this, OrderActivity.class);
+//        intent.putExtra(Constants.Extra.ORDER_ID, order.get_id());
+//        startActivity(intent);
         finish();
     }
 

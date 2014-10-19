@@ -72,7 +72,6 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
             public Void call() throws Exception {
                 goods = DataProvider.get_goods(shop_id);
                 shop_cart = DataProvider.get_cart(shop_id);
-                shop_cart = new ShopCart();
                 return null;
             }
 
@@ -129,5 +128,21 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
         Intent intent = new Intent(this, ShopCartActivity.class);
         intent.putExtra(Constants.Extra.SHOP_CART, shop_cart);
         startActivityForResult(intent, Constants.Request.SHOP_CART);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Constants.Request.SHOP_CART && resultCode  == RESULT_OK && null != data){
+            String order_id = data.getStringExtra(Constants.Extra.ORDER_ID);
+            go_to_order(order_id);
+        }
+    }
+
+    private void go_to_order(String order_id) {
+        Intent intent = new Intent(this, OrderActivity.class);
+        intent.putExtra(Constants.Extra.ORDER_ID, order_id);
+        startActivity(intent);
+        finish();
     }
 }
