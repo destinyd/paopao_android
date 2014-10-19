@@ -24,9 +24,9 @@ public class CartData implements ICartData {
         i++;
         shop = new Shop();
         shop_discount = 1 + new Random().nextInt(5000);
-        for(int i=0; i < 1 + new Random().nextInt(5); i++){
-            goods.add(new CartGoodsData());
-        }
+//        for(int i=0; i < 1 + new Random().nextInt(5); i++){
+//            goods.add(new CartGoodsData());
+//        }
         shop_delivery_price = 5f;
     }
 

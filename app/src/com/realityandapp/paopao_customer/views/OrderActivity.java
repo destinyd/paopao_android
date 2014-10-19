@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
@@ -21,8 +20,6 @@ import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
-
-import java.beans.Visibility;
 
 /**
  * Created by dd on 14-9-18.
@@ -145,7 +142,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void build_cart_to_order() {
         OrderGoodsDataAdapter adapter =
-                new OrderGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
+                new OrderGoodsDataAdapter(getLayoutInflater(), order.get_order_items());
         lv_order_goods_data.setAdapter(adapter);
         ListViewUtils.setListViewHeightBasedOnChildren(lv_order_goods_data);
     }

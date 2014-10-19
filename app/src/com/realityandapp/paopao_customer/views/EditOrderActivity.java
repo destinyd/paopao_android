@@ -170,7 +170,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
 
     private void build_order() {
         EditOrderGoodsDataAdapter adapter =
-                new EditOrderGoodsDataAdapter(getLayoutInflater(), order.get_goods_data());
+                new EditOrderGoodsDataAdapter(getLayoutInflater(), order.get_order_items());
         lv_order_data.setAdapter(adapter);
         ListViewUtils.setListViewHeightBasedOnChildren(lv_order_data);
     }

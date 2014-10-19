@@ -3,20 +3,20 @@ package com.realityandapp.paopao_customer.views.adapter;
 import android.view.LayoutInflater;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
+import com.realityandapp.paopao_customer.models.test.CartGoodsData;
 
 import java.util.List;
 
 /**
  * Created by dd on 14-9-18.
  */
-public class OrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> {
+public class OrderGoodsDataAdapter extends SingleTypeAdapter<CartGoodsData> {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_TOTAL_CALCULATE = "￥%.2f X %d %s";
-    private final List<ICartGoodsData> cart_data;
+    private final List<CartGoodsData> cart_data;
 
     public OrderGoodsDataAdapter(LayoutInflater inflater,
-                                 final List<ICartGoodsData> items) {
+                                 final List<CartGoodsData> items) {
         super(inflater, R.layout.order_goods_data_list_item);
         cart_data = items;
         setItems(cart_data);
@@ -28,7 +28,7 @@ public class OrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> {
     }
 
     @Override
-    protected void update(int position, ICartGoodsData item) {
+    protected void update(int position, CartGoodsData item) {
         setText(0, item.get_name());
         setText(1, String.format(FORMAT_TOTAL_CALCULATE, item.get_price(), item.get_amount(), item.get_unit()));
         setText(2, String.format(FORMAT_PRICE, item.get_amount() * item.get_price()));

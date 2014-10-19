@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
+import com.realityandapp.paopao_customer.models.test.CartGoodsData;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class EditOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener {
+public class EditOrderGoodsDataAdapter extends SingleTypeAdapter<CartGoodsData> implements View.OnClickListener {
     private static final String FORMAT_PRICE = "￥%.2f";
     private static final String FORMAT_TOTAL_CALCULATE = "￥%.2f X %d %s";
-    private final List<ICartGoodsData> cart_data;
+    private final List<CartGoodsData> cart_data;
     private final LayoutInflater inflater;
     private String[] list_plus_tags;
     private ArrayAdapter<String> plus_tags_adapter;
@@ -31,7 +31,7 @@ public class EditOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData>
     private AlertDialog plus_tags_dialog;
 
     public EditOrderGoodsDataAdapter(LayoutInflater inflater,
-                                     final List<ICartGoodsData> items) {
+                                     final List<CartGoodsData> items) {
         super(inflater, R.layout.edit_order_goods_data_list_item);
         this.inflater = inflater;
         cart_data = items;
@@ -54,7 +54,7 @@ public class EditOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData>
     }
 
     @Override
-    protected void update(int position, ICartGoodsData item) {
+    protected void update(int position, CartGoodsData item) {
         setText(0, item.get_name());
         setText(1, String.format(FORMAT_TOTAL_CALCULATE, item.get_price(), item.get_amount(), item.get_unit()));
         setText(2, String.format(FORMAT_PRICE, item.get_amount() * item.get_price()));

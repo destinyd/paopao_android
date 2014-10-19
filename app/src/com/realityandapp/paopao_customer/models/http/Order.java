@@ -7,7 +7,6 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by dd on 14-9-23.
@@ -16,50 +15,39 @@ public class Order implements IOrder {
     public static int i = 0;
     public String _id;
     public OrderStatus status;
-    public IShop shop;
+    public Shop shop;
     public Address address;
     public Deliveryman deliveryman;
     public int shop_discount;
     public float shop_delivery_price;
     public float human_total = 0f;
-    public List<ICartGoodsData> goods = new ArrayList<ICartGoodsData>();
+    public List<CartGoodsData> order_items = new ArrayList<CartGoodsData>();
 
-    public Order() {
-        i++;
-        shop = new Shop();
-        shop_discount = 1 + new Random().nextInt(5000);
-        shop_delivery_price = 5f;
-        for(int i=0; i < 1 + new Random().nextInt(5); i++){
-            CartGoodsData good = new CartGoodsData();
-            goods.add(good);
-            human_total += good.get_price() * good.get_amount();
-        }
-        human_total += shop_delivery_price;
-//        address = new Address();
-//        status = OrderStatus.pending;
-//        status = OrderStatus.values()[new Random().nextInt(9)];
-//        deliveryman = new Deliveryman();
-    }
-
-    public Order(IShopCart shop_cart) {
-        shop = shop_cart.get_shop();
-        shop_discount = shop_cart.get_shop_discount();
-        shop_delivery_price = shop_cart.get_shop_delivery_price();
-        goods = shop_cart.get_cart_items();
-        human_total = shop_cart.get_total();
-//        address = shop_cart.get_shop().get_address();
-//        status = OrderStatus.pending;
-//        deliveryman = new Deliveryman();
-    }
+//    public Order() {
+//        i++;
+//        shop = new Shop();
+//        shop_discount = 1 + new Random().nextInt(5000);
+//        shop_delivery_price = 5f;
+////        for(int i=0; i < 1 + new Random().nextInt(5); i++){
+////            CartGoodsData good = new CartGoodsData();
+////            goods.add(good);
+////            human_total += good.get_price() * good.get_amount();
+////        }
+////        human_total += shop_delivery_price;
+////        address = new Address();
+////        status = OrderStatus.pending;
+////        status = OrderStatus.values()[new Random().nextInt(9)];
+////        deliveryman = new Deliveryman();
+//    }
 
     @Override
     public String get_shop_id() {
-        return shop.get_id();
+        return shop == null ? "" : shop.get_id();
     }
 
     @Override
     public String get_shop_name() {
-        return shop.get_name();
+        return shop == null ? "" : shop.get_name();
     }
 
     @Override
@@ -142,8 +130,8 @@ public class Order implements IOrder {
     }
 
     @Override
-    public List<ICartGoodsData> get_goods_data() {
-        return goods;
+    public List<CartGoodsData> get_order_items() {
+        return order_items;
     }
 
     public enum OrderStatus implements IOrderStatus{

@@ -23,17 +23,19 @@ public class CartGoodsData implements ICartGoodsData {
     @Expose
     private int amount;
 
+    private float human_price = -1f;
+
     @Expose
     private String _id;
     @Expose
-    private String plus;
+    private String plus = "";
 
     public CartGoodsData() {
-        i++;
-        _id = String.valueOf(i);
-        good = new Good();
-        amount = 1 + new Random().nextInt(5);
-        plus = "good plus" + _id;
+//        i++;
+//        _id = String.valueOf(i);
+//        good = new Good();
+//        amount = 1 + new Random().nextInt(5);
+//        plus = "good plus" + _id;
     }
 
     public CartGoodsData(String good_id) {
@@ -55,7 +57,9 @@ public class CartGoodsData implements ICartGoodsData {
 
     @Override
     public float get_price() {
-        return get_good().get_price();
+        if(human_price == -1f)
+            return get_good().get_price();
+        return human_price;
     }
 
     @Override
