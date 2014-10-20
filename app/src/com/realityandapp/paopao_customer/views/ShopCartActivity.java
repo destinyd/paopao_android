@@ -12,7 +12,6 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.http.ShopCart;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
-import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
 import com.realityandapp.paopao_customer.views.adapter.ShopCartGoodsDataAdapter;
@@ -80,6 +79,9 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             @Override
             public Void call() throws Exception {
                 address = DataProvider.get_default_address();
+                System.out.println("address:" + address);
+                if (address != null)
+                    shop_cart.calculate_distance_and_pricing(shop_cart.get_shop_id(), address.get_id());
                 return null;
             }
 
@@ -100,8 +102,13 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     }
 
     private void build_delivery() {
-        tv_delivery_price.setText(String.format(Constants.Format.PRICE, shop_cart.get_shop_delivery_price()));
-        tv_distance.setText(String.format(Constants.Format.DISTANCT, shop_cart.get_shop_discount()));
+        tv_delivery_price.setText(String.format(Constants.Format.PRICE, shop_cart.get_delivery_price()));
+        if (shop_cart.get_distance() != null) {
+            tv_distance.setText(String.format(Constants.Format.DISTANCT, shop_cart.get_distance()));
+        } else {
+            tv_distance.setText("请先选择地址");
+        }
+
         tv_shop_name.setText(shop_cart.get_shop_name());
     }
 
@@ -123,14 +130,13 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     }
 
     private void build_address() {
-        if(address == null){
+        if (address == null) {
             tv_address.setVisibility(View.GONE);
             tv_contact.setText("暂无地址信息");
             tv_edit_address.setVisibility(View.GONE);
             tv_add_address.setVisibility(View.VISIBLE);
             btn_submit.setEnabled(false);
-        }
-        else {
+        } else {
             tv_contact.setText(String.format(Constants.Format.CONTACT, address.get_realname(), address.get_phone()));
             tv_address.setVisibility(View.VISIBLE);
             tv_address.setText(address.get_address());
@@ -213,7 +219,26 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
     private void refresh_for_change_address_to(IAddress iAddress) {
         address = iAddress;
-        build_address();
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                shop_cart.calculate_distance_and_pricing(shop_cart.get_shop_id(), address.get_id());
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                build_address();
+                build_delivery();
+                loading_view.hide();
+            }
+        }.execute();
     }
 
     private void submit_cart() {
@@ -226,15 +251,14 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
             @Override
             public IOrder call() throws Exception {
-               return DataProvider.shop_cart_to_order(shop_cart);
+                return DataProvider.shop_cart_to_order(shop_cart);
             }
 
             @Override
             protected void onSuccess(IOrder order) throws Exception {
-                if(order != null){
+                if (order != null) {
                     return_order_id(order);
-                }
-                else{
+                } else {
                     Toast.makeText(getContext(), "提交失败", Toast.LENGTH_LONG).show();
                 }
             }

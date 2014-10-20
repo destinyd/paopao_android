@@ -1,8 +1,6 @@
 package com.realityandapp.paopao_customer.models.http;
 
 import com.google.gson.*;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
@@ -12,28 +10,21 @@ import com.realityandapp.paopao_customer.networks.HttpApi;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by dd on 14-9-18.
  */
 public class ShopCart implements IShopCart {
-//    @Expose
+    //    @Expose
     public String _id;
-//    @Expose
+    //    @Expose
     public String shop_id;
     public IShop shop = null;
-    public int shop_discount;
-    public float shop_delivery_price;
-//    @Expose
+    public Integer distance = null;
+    public Float delivery_price = null;
+    //    @Expose
 //    @SerializedName("cart_items_attributes")
     public List<CartGoodsData> cart_items = new ArrayList<CartGoodsData>();
-
-    public ShopCart() {
-        //todo server
-//        shop_discount = 1 + new Random().nextInt(5000);
-//        shop_delivery_price = 5f;
-    }
 
     @Override
     public String get_id() {
@@ -51,23 +42,23 @@ public class ShopCart implements IShopCart {
     }
 
     @Override
-    public int get_shop_discount() {
-        return shop_discount;
+    public Integer get_distance() {
+        return distance;
     }
 
-//    @Override
+    //    @Override
     public List<CartGoodsData> get_cart_items() {
         return cart_items;
     }
 
     @Override
-    public float get_shop_delivery_price() {
-        return shop_delivery_price;
+    public Float get_delivery_price() {
+        return delivery_price;
     }
 
     @Override
     public IShop get_shop() {
-        if(shop != null)
+        if (shop != null)
             try {
                 shop = DataProvider.get_shop(shop_id);
             } catch (HttpApi.RequestDataErrorException e) {
@@ -84,14 +75,13 @@ public class ShopCart implements IShopCart {
     public void add_good(String good_id, int amount) {
         CartGoodsData temp = null;
         temp = get_good_data_by_id(good_id);
-        if(temp == null){
+        if (temp == null) {
             temp = new CartGoodsData(good_id);
         }
         temp.set_amount(temp.get_amount() + amount);
-        if(temp.get_amount() < 1){
+        if (temp.get_amount() < 1) {
             cart_items.remove(temp);
-        }
-        else if(!cart_items.contains(temp)){
+        } else if (!cart_items.contains(temp)) {
             cart_items.add(temp);
         }
     }
@@ -105,7 +95,7 @@ public class ShopCart implements IShopCart {
     @Override
     public float get_goods_total() {
         float f = 0f;
-        for(ICartGoodsData good : cart_items){
+        for (ICartGoodsData good : cart_items) {
             f += good.get_amount() * good.get_price();
         }
         return f;
@@ -114,7 +104,7 @@ public class ShopCart implements IShopCart {
     @Override
     public int get_goods_amount() {
         int f = 0;
-        for(ICartGoodsData good : cart_items){
+        for (ICartGoodsData good : cart_items) {
             f += good.get_amount();
         }
         return f;
@@ -122,12 +112,32 @@ public class ShopCart implements IShopCart {
 
     @Override
     public float get_total() {
-        return get_goods_total() + get_shop_delivery_price();
+        if (get_delivery_price() != null)
+            return get_goods_total() + get_delivery_price();
+        else
+            return get_goods_total();
+
     }
 
-    public CartGoodsData get_good_data_by_id(String good_id){
-        for(CartGoodsData good : cart_items){
-            if(good.get_good_id().equals(good_id)){
+    @Override
+    public Integer calculate_distance_and_pricing(String shop_id, String address_id) {
+        try {
+            JsonObject jsonObject = DataProvider.calculate_distance_and_pricing(shop_id, address_id);
+            distance = Integer.valueOf(jsonObject.get("distance").toString());
+            delivery_price = Float.valueOf(jsonObject.get("delivery_price").toString());
+        } catch (HttpApi.RequestDataErrorException e) {
+            e.printStackTrace();
+        } catch (HttpApi.AuthErrorException e) {
+            e.printStackTrace();
+        } catch (HttpApi.NetworkErrorException e) {
+            e.printStackTrace();
+        }
+        return distance;
+    }
+
+    public CartGoodsData get_good_data_by_id(String good_id) {
+        for (CartGoodsData good : cart_items) {
+            if (good.get_good_id().equals(good_id)) {
                 return good;
             }
         }
@@ -140,16 +150,16 @@ public class ShopCart implements IShopCart {
             result.add("_id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
             final JsonArray cart_goods_data = new JsonArray();
-            for(final ICartGoodsData data : shop_cart.get_cart_items()){
+            for (final ICartGoodsData data : shop_cart.get_cart_items()) {
                 JsonObject obj_cart_goods_data = new JsonObject();
-                if(data.get_id() != null)
+                if (data.get_id() != null)
                     obj_cart_goods_data.add("_id", new JsonPrimitive(data.get_id()));
                 obj_cart_goods_data.add("amount", new JsonPrimitive(data.get_amount()));
                 obj_cart_goods_data.add("good_id", new JsonPrimitive(data.get_good_id()));
                 obj_cart_goods_data.add("plus", new JsonPrimitive(data.get_plus()));
                 cart_goods_data.add(obj_cart_goods_data);
             }
-            
+
             result.add("cart_items_attributes", cart_goods_data);// shop_cart.get_cart_items())
             return result;
         }

@@ -3,6 +3,8 @@ package com.realityandapp.paopao_customer.networks;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.mindpin.android.authenticator.RequestResult;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
@@ -41,6 +43,7 @@ public class HttpApi {
     public static final String USER_ADDRESSES = USER_SITE + "/addresses.json";
     public static final String DEFAULT_ADDRESS = USER_SITE + "/addresses/default.json";
     public static final String FORMAT_SET_DEFAULT_ADDRESS = USER_SITE + "/addresses/%s/set_default.json";
+    public static final String FORMAT_CALCULATE_DISTANCE = USER_SITE + "/addresses/%s/calculate_distance.json";
 
     /**
      * http api url end
@@ -259,6 +262,27 @@ public class HttpApi {
                 HttpRequest request = auth.get_http_request(String.format(FORMAT_SET_DEFAULT_ADDRESS, address_id), "POST");
                 request.accept("application/json");
                 request.send("");
+                return request;
+            }
+        }.request();
+    }
+
+    public static JsonObject calculate_distance_and_pricing(final String shop_id, final String address_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<JsonObject>(){
+
+            @Override
+            public JsonObject call(RequestResult rr) {
+                System.out.println("calculate_distance_and_pricing body:" + rr.body);
+                Gson gson = new Gson();
+                JsonObject jsonObject = gson.fromJson(rr.body, JsonObject.class);
+                return jsonObject;
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(String.format(FORMAT_CALCULATE_DISTANCE, address_id), "POST");
+                request.accept("application/json");
+                request.part("shop_id", shop_id);
                 return request;
             }
         }.request();

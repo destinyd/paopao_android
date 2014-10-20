@@ -17,8 +17,8 @@ public class Order implements IOrder {
     public Shop shop;
     public Address address;
     public Deliveryman deliveryman;
-    public int shop_discount;
-    public float shop_delivery_price;
+    public int distance;
+    public float delivery_price;
     public float human_total = 0f;
     public List<CartGoodsData> order_items = new ArrayList<CartGoodsData>();
 
@@ -33,13 +33,13 @@ public class Order implements IOrder {
     }
 
     @Override
-    public int get_shop_discount() {
-        return shop_discount;
+    public int get_distance() {
+        return distance;
     }
 
     @Override
     public float get_delivery_price() {
-        return shop_delivery_price;
+        return delivery_price;
     }
 
     @Override
