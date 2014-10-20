@@ -29,8 +29,8 @@ public class DataProvider {
         return new Cart();
     }
 
-    public static IAddress get_default_address() {
-        return new Address();
+    public static IAddress get_default_address() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.default_address();
     }
 
     public static IOrder my_order(String s) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
