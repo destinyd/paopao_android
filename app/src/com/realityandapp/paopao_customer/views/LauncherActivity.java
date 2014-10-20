@@ -28,10 +28,6 @@ public class LauncherActivity extends ListActivity {
         );
         getListView().setScrollbarFadingEnabled(false);
         EMChat.getInstance().setAppInited();
-        if(User.current() == null)
-        {
-            startActivity(new Intent(this, SignInActivity.class));
-        }
     }
 
     @SuppressWarnings("unchecked")

@@ -1,6 +1,7 @@
 package com.realityandapp.paopao_customer.networks;
 
 
+import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.test.*;
@@ -72,7 +73,7 @@ public class DataProvider {
     }
 
     public static void sign_out() {
-        // todo sign out
+        User.current().delete();
     }
 
     public static IOrder shop_cart_to_order(IShopCart shop_cart) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {

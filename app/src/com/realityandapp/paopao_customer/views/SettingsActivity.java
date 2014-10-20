@@ -30,7 +30,7 @@ public class SettingsActivity extends PaopaoBaseActivity {
             public void onClick(View v) {
                 System.out.println("sign out");
                 DataProvider.sign_out();
-                // todo refresh for not login
+                finish();
             }
         });
     }

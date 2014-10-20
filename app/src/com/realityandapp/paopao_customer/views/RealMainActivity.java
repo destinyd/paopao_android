@@ -18,6 +18,7 @@ import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.IMConstant;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.models.test.im.IMUser;
 import com.realityandapp.paopao_customer.models.test.im.IMUserDao;
 import com.realityandapp.paopao_customer.models.test.im.InviteMessage;
@@ -659,6 +660,11 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(User.current() == null)
+        {
+            startActivity(new Intent(this, SignInActivity.class));
+            return;
+        }
         if (!isConflict) {
 //			updateUnreadLabel();
 //			updateUnreadAddressLable();
