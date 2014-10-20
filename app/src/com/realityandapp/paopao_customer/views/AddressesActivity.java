@@ -11,6 +11,7 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.AddressesAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -86,16 +87,23 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void set_default_address(final IAddress address) {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Boolean>(this) {
 
             @Override
-            public Void call() throws Exception {
-                DataProvider.set_default_address(address);
-                return null;
+            protected void onPreExecute() throws Exception {
+                super.onPreExecute();
+                loading_view.show();
+            }
+
+            @Override
+            public Boolean call() throws Exception {
+                IAddress iaddress = DataProvider.set_default_address(address.get_id());
+                return iaddress != null;
             }
 
             @Override
             protected void onException(Exception e) throws RuntimeException {
+                super.onException(e);
                 Toast.makeText(AddressesActivity.this
                         ,"设置默认地址出错,请检查网络是否畅通。"
                         , Toast.LENGTH_LONG
@@ -103,12 +111,24 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
             }
 
             @Override
-            protected void onSuccess(Void aVoid) throws Exception {
-                Toast.makeText(AddressesActivity.this
-                        ,"默认地址修改为：\n" + String.format(Constants.Format.FULL_CONTACT_TOAST
-                                , address.get_address(), address.get_realname(), address.get_phone())
-                        , Toast.LENGTH_LONG
-                ).show();
+            protected void onSuccess(Boolean b) throws Exception {
+                if(b)
+                    Toast.makeText(AddressesActivity.this
+                            ,"默认地址修改为：\n" + String.format(Constants.Format.FULL_CONTACT_TOAST
+                                    , address.get_address(), address.get_realname(), address.get_phone())
+                            , Toast.LENGTH_LONG
+                    ).show();
+                else
+                    Toast.makeText(AddressesActivity.this
+                            ,"设置默认地址失败"
+                            , Toast.LENGTH_LONG
+                    ).show();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
+                loading_view.hide();
             }
         }.execute();
     }

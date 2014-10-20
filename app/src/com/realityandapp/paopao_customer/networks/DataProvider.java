@@ -53,8 +53,8 @@ public class DataProvider {
         // todo save order
     }
 
-    public static void set_default_address(IAddress address) {
-        // todo set default address
+    public static IAddress set_default_address(String address_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.set_default_address(address_id);
     }
 
     public static List<IOrder> get_orders() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {

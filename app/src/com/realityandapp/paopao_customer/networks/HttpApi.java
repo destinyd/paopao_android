@@ -40,6 +40,7 @@ public class HttpApi {
     public static final String FORMAT_SUBMIT_CART = SITE + "/shops/%s/submit_cart.json";
     public static final String USER_ADDRESSES = USER_SITE + "/addresses.json";
     public static final String DEFAULT_ADDRESS = USER_SITE + "/addresses/default.json";
+    public static final String FORMAT_SET_DEFAULT_ADDRESS = USER_SITE + "/addresses/%s/set_default.json";
 
     /**
      * http api url end
@@ -239,6 +240,26 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 return auth.get_http_request(DEFAULT_ADDRESS, "GET");
+            }
+        }.request();
+    }
+
+    public static IAddress set_default_address(final String address_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IAddress>(){
+
+            @Override
+            public IAddress call(RequestResult rr) {
+                System.out.println("address_id body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Address.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(String.format(FORMAT_SET_DEFAULT_ADDRESS, address_id), "POST");
+                request.accept("application/json");
+                request.send("");
+                return request;
             }
         }.request();
     }
