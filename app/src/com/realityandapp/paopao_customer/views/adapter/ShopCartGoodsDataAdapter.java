@@ -2,9 +2,13 @@ package com.realityandapp.paopao_customer.views.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
@@ -19,13 +23,14 @@ import java.util.List;
 /**
  * Created by dd on 14-9-18.
  */
-public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener {
+public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> implements View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
     private final List<CartGoodsData> cart_data;
     private final LayoutInflater inflater;
     private String[] list_plus_tags;
     private ArrayAdapter<String> addressesAdapter;
     Integer selection = -1;
     private AlertDialog addressesDialog;
+    private Integer select_position;
 
     public ShopCartGoodsDataAdapter(LayoutInflater inflater,
                                     final List<CartGoodsData> items) {
@@ -43,7 +48,7 @@ public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> 
 
     @Override
     protected int[] getChildViewIds() {
-        return new int[] { R.id.tv_good_name, R.id.tv_unit_price, R.id.tv_good_total, R.id.fabtn_add_plus_tag };
+        return new int[] { R.id.tv_good_name, R.id.tv_unit_price, R.id.tv_good_total, R.id.fabtn_add_plus_tag, R.id.et_plus };
     }
 
     @Override
@@ -56,17 +61,31 @@ public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = super.getView(position, convertView, parent);
+        bind_fa_btn(position);
+        bind_edit_text(position);
+        return view;
+    }
+
+    private void bind_edit_text(int position) {
+
         FontAwesomeButton fa_btn = getView(3, FontAwesomeButton.class);
         fa_btn.setTag(position);
         fa_btn.setOnClickListener(this);
-        return view;
+    }
+
+    private void bind_fa_btn(int position) {
+        EditText et_plus = getView(4, EditText.class);
+        et_plus.setTag(position);
+        et_plus.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        et_plus.addTextChangedListener(this);
+        et_plus.setOnFocusChangeListener(this);
     }
 
     @Override
     public void onClick(final View v) {
         switch (v.getId()){
             case R.id.fabtn_add_plus_tag:
-
+                select_position = (Integer)v.getTag();
                 AlertDialog.Builder dialog_builder = new AlertDialog.Builder(inflater.getContext())
                         .setTitle("请选择您所在地址")
                         .setAdapter(addressesAdapter, new DialogInterface.OnClickListener() {
@@ -90,6 +109,30 @@ public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> 
                 addressesDialog.show();
                 addressesDialog.getListView().setSelection(0);
                 break;
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        ICartGoodsData item = getItem(select_position);
+        item.set_plus(s.toString());
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if(hasFocus)
+        {
+            select_position = (Integer)v.getTag();
         }
     }
 }
