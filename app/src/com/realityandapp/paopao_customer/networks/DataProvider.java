@@ -37,13 +37,8 @@ public class DataProvider {
         return HttpApi.my_order(s);
     }
 
-    public static List<IAddress> get_addresses() {
-        List<IAddress> addresses = new ArrayList<IAddress>();
-        for(int i=0; i< 10; i++) {
-            Address good = new Address();
-            addresses.add(good);
-        }
-        return addresses;
+    public static List<IAddress> get_addresses()  throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.my_addresses();
     }
 
     public static void destroy_order(String id) {

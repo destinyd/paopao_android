@@ -8,14 +8,12 @@ import com.mindpin.android.authenticator.RequestResult;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
-import com.realityandapp.paopao_customer.models.interfaces.IGood;
-import com.realityandapp.paopao_customer.models.interfaces.IOrder;
+import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.http.Order;
-import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.http.Good;
-import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.models.http.ShopCart;
+import com.realityandapp.paopao_customer.models.test.Address;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -40,6 +38,7 @@ public class HttpApi {
     public static final String FORMAT_GOOD = SITE + "/goods/%s.json";
     public static final String FORMAT_SHOP = SITE + "/shops/%s.json";
     public static final String FORMAT_SUBMIT_CART = SITE + "/shops/%s/submit_cart.json";
+    public static final String USER_ADDRESSES = USER_SITE + "/addresses.json";
 
     /**
      * http api url end
@@ -201,6 +200,26 @@ public class HttpApi {
 //                String json = new Gson().toJson(shop_cart, ShopCart.class);
                 System.out.println("json:\r\n" + json);
                 request.send(json);
+                return request;
+            }
+        }.request();
+    }
+
+    public static List<IAddress> my_addresses() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<List<IAddress>>(){
+
+            @Override
+            public List<IAddress> call(RequestResult rr) {
+                System.out.println("addresses body:" + rr.body);
+                Type collectionType = new TypeToken<List<Address>>(){}.getType();
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, collectionType);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(USER_ADDRESSES, "GET");
+                request.accept("application/json");
                 return request;
             }
         }.request();
