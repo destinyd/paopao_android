@@ -123,10 +123,9 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     private void build_deliveryman() {
         rl_deliveryman.setOnClickListener(this);
         System.out.println("order.get_deliveryman():" + order.get_deliveryman());
-        if(order.get_deliveryman() == null) {
+        if (order.get_deliveryman() == null) {
             ((View) tv_deliveryman.getParent()).setVisibility(View.GONE);
-        }
-        else{
+        } else {
             tv_deliveryman.setText(order.get_deliveryman().get_realname());
             ((View) tv_deliveryman.getParent()).setVisibility(View.VISIBLE);
         }
@@ -152,9 +151,12 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void build_address() {
-        if(order.get_address() != null) {
+        if (order.get_address() == null) {
+            ((View)tv_address.getParent()).setVisibility(View.GONE);
+        } else {
             tv_contact.setText(String.format(Constants.Format.CONTACT, order.get_address().get_realname(), order.get_address().get_phone()));
             tv_address.setText(order.get_address().get_address());
+            ((View)tv_address.getParent()).setVisibility(View.VISIBLE);
         }
     }
 
