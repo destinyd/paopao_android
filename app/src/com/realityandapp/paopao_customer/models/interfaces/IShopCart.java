@@ -20,4 +20,6 @@ public interface IShopCart extends IBase {
     public int get_goods_amount();
     public float get_total();
     public Integer calculate_distance_and_pricing(String shop_id, String address_id);
+    public void set_to_id(String address_id);
+    public String get_to_id();
 }

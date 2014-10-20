@@ -22,6 +22,7 @@ public class ShopCart implements IShopCart {
     public IShop shop = null;
     public Integer distance = null;
     public Float delivery_price = null;
+    public String to_id;
     //    @Expose
 //    @SerializedName("cart_items_attributes")
     public List<CartGoodsData> cart_items = new ArrayList<CartGoodsData>();
@@ -135,6 +136,16 @@ public class ShopCart implements IShopCart {
         return distance;
     }
 
+    @Override
+    public void set_to_id(String address_id) {
+        to_id = address_id;
+    }
+
+    @Override
+    public String get_to_id() {
+        return to_id;
+    }
+
     public CartGoodsData get_good_data_by_id(String good_id) {
         for (CartGoodsData good : cart_items) {
             if (good.get_good_id().equals(good_id)) {
@@ -149,6 +160,7 @@ public class ShopCart implements IShopCart {
             JsonObject result = new JsonObject();
             result.add("_id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
+            result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));
             final JsonArray cart_goods_data = new JsonArray();
             for (final ICartGoodsData data : shop_cart.get_cart_items()) {
                 JsonObject obj_cart_goods_data = new JsonObject();

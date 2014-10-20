@@ -80,8 +80,10 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             public Void call() throws Exception {
                 address = DataProvider.get_default_address();
                 System.out.println("address:" + address);
-                if (address != null)
+                if (address != null) {
+                    shop_cart.set_to_id(address.get_id());
                     shop_cart.calculate_distance_and_pricing(shop_cart.get_shop_id(), address.get_id());
+                }
                 return null;
             }
 
@@ -219,6 +221,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
     private void refresh_for_change_address_to(IAddress iAddress) {
         address = iAddress;
+        shop_cart.set_to_id(address.get_id());
         new RoboAsyncTask<Void>(this) {
 
             @Override
