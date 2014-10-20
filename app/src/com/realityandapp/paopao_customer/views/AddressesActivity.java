@@ -68,20 +68,21 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void build_view() {
-        final AddressesAdapter adapter =
-                new AddressesAdapter(getLayoutInflater(), addresses, addresses.get(0));
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                IAddress address = adapter.getItem(i);
-                adapter.set_address_default(address);
-                adapter.notifyDataSetChanged();
-                System.out.println("default address:" + adapter.get_address_default().get_address());
-                set_default_address(address);
-            }
-        });
-
+        if(addresses.size() > 0) {
+            final AddressesAdapter adapter =
+                    new AddressesAdapter(getLayoutInflater(), addresses, addresses.get(0));
+            list.setAdapter(adapter);
+            list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    IAddress address = adapter.getItem(i);
+                    adapter.set_address_default(address);
+                    adapter.notifyDataSetChanged();
+                    System.out.println("default address:" + adapter.get_address_default().get_address());
+                    set_default_address(address);
+                }
+            });
+        }
     }
 
     private void set_default_address(final IAddress address) {

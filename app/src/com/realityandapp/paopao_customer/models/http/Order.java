@@ -22,23 +22,6 @@ public class Order implements IOrder {
     public float human_total = 0f;
     public List<CartGoodsData> order_items = new ArrayList<CartGoodsData>();
 
-//    public Order() {
-//        i++;
-//        shop = new Shop();
-//        shop_discount = 1 + new Random().nextInt(5000);
-//        shop_delivery_price = 5f;
-////        for(int i=0; i < 1 + new Random().nextInt(5); i++){
-////            CartGoodsData good = new CartGoodsData();
-////            goods.add(good);
-////            human_total += good.get_price() * good.get_amount();
-////        }
-////        human_total += shop_delivery_price;
-////        address = new Address();
-////        status = OrderStatus.pending;
-////        status = OrderStatus.values()[new Random().nextInt(9)];
-////        deliveryman = new Deliveryman();
-//    }
-
     @Override
     public String get_shop_id() {
         return shop == null ? "" : shop.get_id();
