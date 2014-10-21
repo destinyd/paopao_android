@@ -59,12 +59,14 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     private AlertDialog dialog_confirm;
 
     private IOrder order;
+    private boolean need_show_qrcode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order);
 
+        need_show_qrcode = getIntent().getBooleanExtra(Constants.Extra.SHOW_QRCORD, false);
         setTitle("订单详情");
         get_data();
     }
@@ -86,6 +88,8 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_views();
+                if(need_show_qrcode)
+                    show_qrcode();
                 loading_view.hide();
             }
         }.execute();
@@ -104,8 +108,11 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void build_submit() {
         btn_submit.setOnClickListener(this);
-        if ("等待支付".equals(order.get_status())) {
+        if (order.get_status() == Order.OrderStatus.pending) {
             btn_submit.setText("支付");
+            btn_submit.setVisibility(View.VISIBLE);
+        } else if (order.get_status() == Order.OrderStatus.took_away) {
+            btn_submit.setText("收货");
             btn_submit.setVisibility(View.VISIBLE);
         } else {
             btn_submit.setVisibility(View.INVISIBLE);
@@ -204,14 +211,21 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void submit() {
         System.out.println("submit");
-        if ("等待支付".equals(order.get_status())) {
+        if (order.get_status() == Order.OrderStatus.pending) {
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra(Constants.Extra.ORDER, order);
             startActivity(intent);
+        } else if (Order.OrderStatus.took_away == order.get_status()) {
+            show_qrcode();
         } else {
 //            todo for other status
             btn_submit.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void show_qrcode() {
+        // todo show qr code for finish
+        System.out.println("show_qrcode");
     }
 
     private void go_to_edit_order() {

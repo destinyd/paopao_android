@@ -48,21 +48,20 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
     }
 
     private void update_btn_action(IOrder item) {
-        if(Order.OrderStatus.pending == item.get_status()){
+        if (Order.OrderStatus.pending == item.get_status()) {
             setText(3, "支付");
             getView(3, Button.class).setVisibility(View.VISIBLE);
-        } else if(Order.OrderStatus.took_away == item.get_status()){
+        } else if (Order.OrderStatus.took_away == item.get_status()) {
             setText(3, "收货");
             getView(3, Button.class).setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             getView(3, Button.class).setVisibility(View.INVISIBLE);
         }
     }
 
     @Override
     public void onClick(View v) {
-        Integer position = (Integer)v.getTag();
+        Integer position = (Integer) v.getTag();
         IOrder order = getItem(position);
         switch (v.getId()) {
             case R.id.btn_action:
@@ -81,12 +80,20 @@ public class OrdersAdapter extends SingleTypeAdapter<IOrder> implements View.OnC
     }
 
     private void action_for_order_status(IOrder order) {
-        if("等待支付".equals( order.get_status())){
+        if (order.get_status() == Order.OrderStatus.pending) {
             go_to_pay(order);
-        }
-        else{
+        } else if (order.get_status() == Order.OrderStatus.took_away) {
+            go_to_order_and_show_qrcode(order);
+        } else {
             // todo for other status
         }
+    }
+
+    private void go_to_order_and_show_qrcode(IOrder order) {
+        Intent intent = new Intent(activity, OrderActivity.class);
+        intent.putExtra(Constants.Extra.ORDER_ID, order.get_id());
+        intent.putExtra(Constants.Extra.SHOW_QRCORD, true);
+        activity.startActivityForResult(intent, Constants.Request.ORDER);
     }
 
     private void go_to_pay(IOrder order) {
