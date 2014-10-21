@@ -190,15 +190,22 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void confirm_destroy() {
+        fabtn_destroy.setEnabled(false);
         AlertDialog.Builder dialog_builder = new AlertDialog.Builder(this)
                 .setTitle("确定删除吗？")
-                .setNeutralButton("取消", null)
-                .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        fabtn_destroy.setEnabled(true);
+                    }
+                })
+                .setNeutralButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         destroy_order();
                     }
-                });
+                })
+                ;
         dialog_confirm = dialog_builder.create();
         dialog_confirm.show();
     }
@@ -250,10 +257,20 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
+                finish_with_ok();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
-                finish();
             }
         }.execute();
+    }
+
+    private void finish_with_ok() {
+        set_result_ok();
+        finish();
     }
 
     @Override
@@ -261,12 +278,16 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         switch (requestCode) {
             case Constants.Request.ORDER:
                 if (resultCode == RESULT_OK) {
-                    Intent intent = new Intent();
-                    setResult(RESULT_OK, intent);
+                    set_result_ok();
                     get_data();
                 }
 
                 break;
         }
+    }
+
+    private void set_result_ok() {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
     }
 }

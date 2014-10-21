@@ -41,8 +41,8 @@ public class DataProvider {
         return HttpApi.my_addresses();
     }
 
-    public static void destroy_order(String id) {
-        //todo destroy order
+    public static void destroy_order(String order_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        HttpApi.destroy_order(order_id);
     }
 
     public static void create_address(IAddress address) {

@@ -1,6 +1,7 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
 import com.realityandapp.paopao_customer.models.http.CartGoodsData;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface IOrder extends IBase {
     public float get_total();
     public IOrderStatus get_status();
     public IDeliveryman get_deliveryman();
-    public void destroy();
+    public void destroy() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
     public void set_address(IAddress address);
     public void save();
     public String get_str_status();

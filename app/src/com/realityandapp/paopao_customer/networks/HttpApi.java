@@ -313,6 +313,24 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static Boolean destroy_order(final String order_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                System.out.println("destroy_order body:" + rr.body);
+                return rr.is_ok();
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(String.format(FORMAT_USER_ORDER, order_id), "DELETE");
+                request.accept("application/json");
+                return request;
+            }
+        }.request();
+    }
     //////////////////
 
     /**
@@ -327,7 +345,7 @@ public class HttpApi {
             RequestResult rr = auth.syn_request(request);
             if(rr == null) throw new NetworkErrorException();
             System.out.println("rr.status :" + rr.status );
-            if(rr.status == 200){
+            if(rr.status >= 200 && rr.status < 300){
                 return call(rr);
             }else if(rr.status == 401){
                 throw new AuthErrorException();

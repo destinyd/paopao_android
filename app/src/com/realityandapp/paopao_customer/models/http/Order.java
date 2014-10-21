@@ -3,6 +3,7 @@ package com.realityandapp.paopao_customer.models.http;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class Order implements IOrder {
     }
 
     @Override
-    public void destroy() {
+    public void destroy() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         DataProvider.destroy_order(get_id());
     }
 
