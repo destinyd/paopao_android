@@ -47,7 +47,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     }
 
     private void get_datas() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

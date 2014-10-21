@@ -4,15 +4,12 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.*;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
 import com.easemob.EMCallBack;
 import com.easemob.chat.*;
-import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.EMLog;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,7 +19,6 @@ import com.realityandapp.paopao_customer.models.test.im.IMUser;
 import com.realityandapp.paopao_customer.models.test.im.IMUserDao;
 import com.realityandapp.paopao_customer.utils.im.PreferenceUtils;
 import com.realityandapp.paopao_customer.views.im.ChatActivity;
-import com.realityandapp.paopao_customer.views.im.MainActivity;
 
 import java.util.*;
 

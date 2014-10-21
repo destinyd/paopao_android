@@ -14,6 +14,7 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.ShopGoodsActivity;
 import com.realityandapp.paopao_customer.views.adapter.ShopsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseFragment;
@@ -47,7 +48,7 @@ public class ShopsFragment extends PaopaoBaseFragment {
     }
 
     private void get_datas() {
-        new RoboAsyncTask<Void>(getActivity()){
+        new PaopaoAsyncTask<Void>(getActivity()){
 
             @Override
             protected void onPreExecute() throws Exception {

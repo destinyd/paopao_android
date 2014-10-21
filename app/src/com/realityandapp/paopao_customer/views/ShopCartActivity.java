@@ -14,6 +14,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.ShopCartGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
@@ -69,7 +70,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -168,7 +169,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     }
 
     private void get_addresses() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -222,7 +223,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     private void refresh_for_change_address_to(IAddress iAddress) {
         address = iAddress;
         shop_cart.set_to_id(address.get_id());
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -245,7 +246,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
     }
 
     private void submit_cart() {
-        new RoboAsyncTask<IOrder>(this) {
+        new PaopaoAsyncTask<IOrder>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

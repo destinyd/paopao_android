@@ -15,6 +15,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.EditOrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
@@ -75,7 +76,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -100,7 +101,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
 
 
     private void get_addresses() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -225,7 +226,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
     }
 
     private void submit() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

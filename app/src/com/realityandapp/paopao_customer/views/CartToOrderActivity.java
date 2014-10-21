@@ -16,6 +16,7 @@ import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.interfaces.ICart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.CartToOrderAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -68,7 +69,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -155,7 +156,7 @@ public class CartToOrderActivity extends PaopaoBaseActivity implements View.OnCl
 
 
     private void get_addresses() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

@@ -12,6 +12,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.GoodsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
@@ -59,7 +60,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -123,8 +124,7 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
     }
 
     private void submit() {
-        //todo need to create for cart items
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

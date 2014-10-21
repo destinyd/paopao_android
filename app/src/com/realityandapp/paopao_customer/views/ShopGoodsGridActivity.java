@@ -10,6 +10,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.GoodsGridAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
@@ -41,7 +42,7 @@ public class ShopGoodsGridActivity extends PaopaoBaseActivity {
     }
 
     private void get_datas() {
-        new RoboAsyncTask<Void>(this){
+        new PaopaoAsyncTask<Void>(this){
 
             @Override
             protected void onPreExecute() throws Exception {

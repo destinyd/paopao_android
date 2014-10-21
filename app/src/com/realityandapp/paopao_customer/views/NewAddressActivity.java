@@ -10,6 +10,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
@@ -57,7 +58,7 @@ public class NewAddressActivity extends PaopaoBaseActivity {
     }
 
     private void create_address() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {

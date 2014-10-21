@@ -13,6 +13,7 @@ import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.interfaces.IOrder;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.utils.ListViewUtils;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.views.adapter.OrderGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.views.im.ChatActivity;
@@ -69,7 +70,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void get_data() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
@@ -220,7 +221,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void destroy_order() {
-        new RoboAsyncTask<Void>(this) {
+        new PaopaoAsyncTask<Void>(this) {
 
             @Override
             protected void onPreExecute() throws Exception {
