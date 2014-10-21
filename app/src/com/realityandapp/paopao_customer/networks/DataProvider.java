@@ -49,8 +49,8 @@ public class DataProvider {
         // todo create address
     }
 
-    public static void save_order(IOrder order) {
-        // todo save order
+    public static Boolean save_order(IOrder order) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.save_order(order);
     }
 
     public static IAddress set_default_address(String address_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {

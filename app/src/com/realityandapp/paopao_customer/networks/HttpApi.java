@@ -307,7 +307,7 @@ public class HttpApi {
                         new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
                                 .create();
                 String json = gson.toJson(shop_cart);
-                System.out.println("json:\r\n" + json);
+                System.out.println("shop cart json:\r\n" + json);
                 request.send(json);
                 return request;
             }
@@ -327,6 +327,31 @@ public class HttpApi {
             public HttpRequest build_request(AuthenticatorsController auth) {
                 HttpRequest request = auth.get_http_request(String.format(FORMAT_USER_ORDER, order_id), "DELETE");
                 request.accept("application/json");
+                return request;
+            }
+        }.request();
+    }
+
+    public static Boolean save_order(final IOrder order) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<Boolean>(){
+
+            @Override
+            public Boolean call(RequestResult rr) {
+                System.out.println("destroy_order body:" + rr.body);
+                return rr.is_ok();
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(String.format(FORMAT_USER_ORDER, order.get_id()), "PUT");
+                request.accept("application/json");
+
+                Gson gson =
+                        new GsonBuilder().registerTypeAdapter(Order.class, new Order.OrderSerializer())
+                                .create();
+                String json = gson.toJson(order);
+                System.out.println("order json:\r\n" + json);
+                request.send(json);
                 return request;
             }
         }.request();
@@ -352,14 +377,14 @@ public class HttpApi {
             }else{
                 throw new RequestDataErrorException();
             }
-        };
+        }
 
         public abstract T call(RequestResult rr);
 
         public abstract HttpRequest build_request(AuthenticatorsController auth);
     }
 
-    public static class AuthErrorException extends Exception{};
-    public static class RequestDataErrorException extends Exception{};
-    public static class NetworkErrorException extends Exception{};
+    public static class AuthErrorException extends Exception{}
+    public static class RequestDataErrorException extends Exception{}
+    public static class NetworkErrorException extends Exception{}
 }

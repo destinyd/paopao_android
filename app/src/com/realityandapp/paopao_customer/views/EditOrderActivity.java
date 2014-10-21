@@ -29,7 +29,8 @@ import java.util.List;
  * Created by dd on 14-9-18.
  */
 public class EditOrderActivity extends PaopaoBaseActivity {
-    @InjectExtra(Constants.Extra.ORDER)
+    @InjectExtra(Constants.Extra.ORDER_ID)
+    String order_id;
     IOrder order;
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
@@ -85,9 +86,8 @@ public class EditOrderActivity extends PaopaoBaseActivity {
 
             @Override
             public Void call() throws Exception {
-//                order = DataProvider.get_order("1");
+                order = DataProvider.my_order(order_id);
                 selected_address = order.get_address();
-                addresses = DataProvider.get_addresses();
                 return null;
             }
 
@@ -181,9 +181,11 @@ public class EditOrderActivity extends PaopaoBaseActivity {
     }
 
     private void build_address() {
-        tv_contact.setText(String.format(Constants.Format.CONTACT, selected_address.get_realname(), selected_address.get_phone()));
+        if(selected_address != null) {
+            tv_contact.setText(String.format(Constants.Format.CONTACT, selected_address.get_realname(), selected_address.get_phone()));
+            tv_address.setText(selected_address.get_address());
+        }
         tv_address.setVisibility(View.VISIBLE);
-        tv_address.setText(selected_address.get_address());
         tv_edit_address.setVisibility(View.VISIBLE);
         build_delivery_price();
     }
@@ -236,6 +238,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
             @Override
             public Void call() throws Exception {
                 order.set_address(selected_address);
+                order.set_to_id(selected_address.get_id());
                 order.save();
                 return null;
             }
@@ -245,6 +248,11 @@ public class EditOrderActivity extends PaopaoBaseActivity {
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();

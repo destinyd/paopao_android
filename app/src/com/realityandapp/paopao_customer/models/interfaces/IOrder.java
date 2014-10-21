@@ -21,8 +21,10 @@ public interface IOrder extends IBase {
     public IDeliveryman get_deliveryman();
     public void destroy() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
     public void set_address(IAddress address);
-    public void save();
+    public void save() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
     public String get_str_status();
+    public void set_to_id(String to_id);
+    public String get_to_id();
 
     public interface IOrderStatus {
     }

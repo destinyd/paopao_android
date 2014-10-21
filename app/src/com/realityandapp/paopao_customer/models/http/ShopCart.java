@@ -121,18 +121,10 @@ public class ShopCart implements IShopCart {
     }
 
     @Override
-    public Integer calculate_distance_and_pricing(String shop_id, String address_id) {
-        try {
-            JsonObject jsonObject = DataProvider.calculate_distance_and_pricing(shop_id, address_id);
-            distance = Integer.valueOf(jsonObject.get("distance").toString());
-            delivery_price = Float.valueOf(jsonObject.get("delivery_price").toString());
-        } catch (HttpApi.RequestDataErrorException e) {
-            e.printStackTrace();
-        } catch (HttpApi.AuthErrorException e) {
-            e.printStackTrace();
-        } catch (HttpApi.NetworkErrorException e) {
-            e.printStackTrace();
-        }
+    public Integer calculate_distance_and_pricing(String shop_id, String address_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        JsonObject jsonObject = DataProvider.calculate_distance_and_pricing(shop_id, address_id);
+        distance = Integer.valueOf(jsonObject.get("distance").toString());
+        delivery_price = Float.valueOf(jsonObject.get("delivery_price").toString());
         return distance;
     }
 
@@ -160,7 +152,7 @@ public class ShopCart implements IShopCart {
             JsonObject result = new JsonObject();
             result.add("_id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
-            if(shop_cart.get_to_id() != null)
+            if (shop_cart.get_to_id() != null)
                 result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));
             final JsonArray cart_goods_data = new JsonArray();
             for (final ICartGoodsData data : shop_cart.get_cart_items()) {
