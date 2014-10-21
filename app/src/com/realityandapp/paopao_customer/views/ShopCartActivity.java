@@ -106,6 +106,7 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
     private void build_delivery() {
         tv_delivery_price.setText(String.format(Constants.Format.PRICE, shop_cart.get_delivery_price()));
+        tv_shop_name.setText(shop_cart.get_shop_name());
         if (shop_cart.get_distance() != null) {
             tv_distance.setText(String.format(Constants.Format.DISTANCT, shop_cart.get_distance()));
         } else {
