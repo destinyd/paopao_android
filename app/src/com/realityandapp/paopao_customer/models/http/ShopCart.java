@@ -160,7 +160,8 @@ public class ShopCart implements IShopCart {
             JsonObject result = new JsonObject();
             result.add("_id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
-            result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));
+            if(shop_cart.get_to_id() != null)
+                result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));
             final JsonArray cart_goods_data = new JsonArray();
             for (final ICartGoodsData data : shop_cart.get_cart_items()) {
                 JsonObject obj_cart_goods_data = new JsonObject();

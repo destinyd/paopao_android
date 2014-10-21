@@ -287,6 +287,32 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static IShopCart save_shop_cart(final IShopCart shop_cart) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IShopCart>(){
+
+            @Override
+            public IShopCart call(RequestResult rr) {
+                System.out.println("order body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, ShopCart.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request =
+                        auth.get_http_request(String.format(FORMAT_SHOP_CART, shop_cart.get_shop_id()), "POST");
+                request.accept("application/json");
+                Gson gson =
+                        new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
+                                .create();
+                String json = gson.toJson(shop_cart);
+                System.out.println("json:\r\n" + json);
+                request.send(json);
+                return request;
+            }
+        }.request();
+    }
     //////////////////
 
     /**

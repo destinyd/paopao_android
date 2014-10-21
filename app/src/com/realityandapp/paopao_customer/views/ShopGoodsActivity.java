@@ -124,6 +124,33 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
     private void submit() {
         //todo need to create for cart items
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            protected void onPreExecute() throws Exception {
+                loading_view.show();
+            }
+
+            @Override
+            public Void call() throws Exception {
+                shop_cart = DataProvider.save_shop_cart(shop_cart);
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void order) throws Exception {
+                go_to_shop_cart();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
+                loading_view.hide();
+            }
+        }.execute();
+    }
+
+    private void go_to_shop_cart() {
         Intent intent = new Intent(this, ShopCartActivity.class);
         intent.putExtra(Constants.Extra.SHOP_CART, shop_cart);
         startActivityForResult(intent, Constants.Request.SHOP_CART);

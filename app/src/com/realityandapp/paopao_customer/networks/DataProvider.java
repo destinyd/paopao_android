@@ -3,6 +3,7 @@ package com.realityandapp.paopao_customer.networks;
 
 import com.google.gson.JsonObject;
 import com.realityandapp.paopao_customer.models.User;
+import com.realityandapp.paopao_customer.models.http.ShopCart;
 import com.realityandapp.paopao_customer.models.test.*;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 
@@ -89,5 +90,9 @@ public class DataProvider {
 
     public static JsonObject calculate_distance_and_pricing(String shop_id, String address_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.calculate_distance_and_pricing(shop_id, address_id);
+    }
+
+    public static IShopCart save_shop_cart(IShopCart shop_cart) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.save_shop_cart(shop_cart);
     }
 }
