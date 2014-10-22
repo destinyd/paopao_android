@@ -74,6 +74,11 @@ public class NewAddressActivity extends PaopaoBaseActivity {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 return_address();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();

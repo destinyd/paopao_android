@@ -91,6 +91,11 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_views();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();
@@ -185,6 +190,11 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 show_and_select_address();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();
@@ -240,6 +250,11 @@ public class ShopCartActivity extends PaopaoBaseActivity {
             protected void onSuccess(Void aVoid) throws Exception {
                 build_address();
                 build_delivery();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();

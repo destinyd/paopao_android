@@ -69,6 +69,11 @@ public class CartActivity extends PaopaoBaseActivity implements View.OnClickList
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();

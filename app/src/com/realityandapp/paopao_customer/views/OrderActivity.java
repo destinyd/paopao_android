@@ -90,6 +90,11 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
                 build_views();
                 if(need_show_qrcode)
                     show_qrcode();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();

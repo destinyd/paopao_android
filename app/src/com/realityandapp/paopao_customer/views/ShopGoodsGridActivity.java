@@ -58,8 +58,13 @@ public class ShopGoodsGridActivity extends PaopaoBaseActivity {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
-                loading_view.hide();
 //                set_cart_count(99);
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
+                loading_view.hide();
             }
         }.execute();
     }

@@ -64,6 +64,11 @@ public class ShopsFragment extends PaopaoBaseFragment {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
+            }
+
+            @Override
+            protected void onFinally() throws RuntimeException {
+                super.onFinally();
                 loading_view.hide();
             }
         }.execute();
