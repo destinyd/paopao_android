@@ -46,9 +46,9 @@ public class CartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> impl
 
     @Override
     protected void update(int position, ICartGoodsData item) {
-        setText(0, item.get_name());
+        setText(0, item.get_good_name());
 //        setText(1, String.valueOf(item.get_amount()));
-        setText(2, String.format(FORMAT_UNIT_PRICE, item.get_price(), item.get_unit()));
+        setText(2, String.format(FORMAT_UNIT_PRICE, item.get_price(), item.get_good_unit()));
         show_amount(amounts.get(position) > 0);
         setNumber(1, amounts.get(position));
     }

@@ -14,7 +14,7 @@ public interface IShopCart extends IBase {
 //    public List<ICartGoodsData> get_cart_items();
     public Float get_delivery_price();
     public IShop get_shop();
-    public void add_good(String good_id, int amount);
+    public void add_good(IGood good, int amount);
     public int get_good_amount(String id);
     public float get_goods_total();
     public int get_goods_amount();

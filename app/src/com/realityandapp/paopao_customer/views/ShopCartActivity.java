@@ -106,14 +106,13 @@ public class ShopCartActivity extends PaopaoBaseActivity {
 
     private void build_delivery() {
         tv_delivery_price.setText(String.format(Constants.Format.PRICE, shop_cart.get_delivery_price()));
-        tv_shop_name.setText(shop_cart.get_shop_name());
+        if(shop_cart.get_shop_name() != null)
+            tv_shop_name.setText("距离" + shop_cart.get_shop_name());
         if (shop_cart.get_distance() != null) {
             tv_distance.setText(String.format(Constants.Format.DISTANCT, shop_cart.get_distance()));
         } else {
             tv_distance.setText("请先选择地址");
         }
-
-        tv_shop_name.setText(shop_cart.get_shop_name());
     }
 
     private void build_once() {

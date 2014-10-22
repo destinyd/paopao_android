@@ -1,28 +1,20 @@
 package com.realityandapp.paopao_customer.models.http;
 
-import com.google.gson.*;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
-import com.realityandapp.paopao_customer.networks.DataProvider;
-import com.realityandapp.paopao_customer.networks.HttpApi;
-
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by dd on 14-9-18.
  */
 public class CartGoodsData implements ICartGoodsData {
     private String good_id;
-    private IGood good;
+//    private Good good;
 
     private int amount = 0;
 
-    private float human_price = -1f;
+    private Float human_price;
+    private String good_name = "";
+    private String good_unit = "";
 
     private String _id;
     private String plus = "";
@@ -30,25 +22,26 @@ public class CartGoodsData implements ICartGoodsData {
     public CartGoodsData() {
     }
 
-    public CartGoodsData(String good_id) {
-        this.good_id = good_id;
+    public CartGoodsData(IGood good) {
+        good_id = good.get_id();
+        good_name = good.get_name();
+        good_unit = good.get_unit();
+        human_price = good.get_price();
     }
 
 
     @Override
-    public String get_name() {
-        return get_good().get_name();
+    public String get_good_name() {
+        return good_name;
     }
 
     @Override
-    public String get_description() {
-        return get_good().get_description();
+    public String get_good_unit() {
+        return good_unit;
     }
 
     @Override
-    public float get_price() {
-        if(human_price == -1f)
-            return get_good().get_price();
+    public Float get_price() {
         return human_price;
     }
 
@@ -68,11 +61,6 @@ public class CartGoodsData implements ICartGoodsData {
     }
 
     @Override
-    public String get_unit() {
-        return get_good().get_unit();
-    }
-
-    @Override
     public int get_amount() {
         return amount;
     }
@@ -87,19 +75,19 @@ public class CartGoodsData implements ICartGoodsData {
         return good_id;
     }
 
-    @Override
-    public IGood get_good() {
-        if(good == null){
-            try {
-                good = DataProvider.get_good(good_id);
-            } catch (HttpApi.RequestDataErrorException e) {
-                e.printStackTrace();
-            } catch (HttpApi.AuthErrorException e) {
-                e.printStackTrace();
-            } catch (HttpApi.NetworkErrorException e) {
-                e.printStackTrace();
-            }
-        }
-        return good;
-    }
+//    @Override
+//    public IGood get_good() {
+//        if(good == null){
+//            try {
+//                good = (Good) DataProvider.get_good(good_id);
+//            } catch (HttpApi.RequestDataErrorException e) {
+//                e.printStackTrace();
+//            } catch (HttpApi.AuthErrorException e) {
+//                e.printStackTrace();
+//            } catch (HttpApi.NetworkErrorException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return good;
+//    }
 }

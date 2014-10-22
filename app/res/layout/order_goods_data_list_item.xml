@@ -19,8 +19,9 @@
                       android:id="@+id/tv_good_name"
                       android:gravity="center_vertical|left"
                       android:singleLine="true"
+                      android:ellipsize="end"
                     />
-            <TextView android:layout_width="100dp" android:layout_height="match_parent"
+            <TextView android:layout_width="80dp" android:layout_height="match_parent"
                       android:layout_alignParentRight="true"
                       android:id="@+id/tv_good_total"
                       android:gravity="center_vertical|right"
@@ -28,9 +29,8 @@
                       android:textColor="@color/tv_highlight"
                     />
             <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
-                      android:layout_alignParentRight="true"
                       android:id="@+id/tv_unit_price"
-                      android:gravity="center"
+                      android:gravity="right|center_vertical"
                       android:singleLine="true"
                       android:layout_toLeftOf="@id/tv_good_total"
                       android:layout_toRightOf="@id/tv_good_name"

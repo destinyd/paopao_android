@@ -52,6 +52,11 @@ public class ShopGoodsActivity extends PaopaoBaseActivity {
 
         setTitle(shop_name + " 的商品");
         init_views();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         get_data();
     }
 

@@ -9,6 +9,7 @@ import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.views.ShopGoodsActivity;
@@ -60,9 +61,9 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
         setNumber(4, good_amount);
     }
 
-    private void init_font_awesome_button(int id, String good_id) {
+    private void init_font_awesome_button(int id, IGood good) {
         FontAwesomeButton fabtn = getView(id, FontAwesomeButton.class);
-        fabtn.setTag(good_id);
+        fabtn.setTag(good);
         fabtn.setOnClickListener(this);
     }
 
@@ -86,26 +87,26 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
     }
 
     private void update_amount(View v, Integer plus) {
-        String id;
-        id = (String) v.getTag();
-        add_to_cart(id, plus);
+        IGood good;
+        good = (IGood) v.getTag();
+        add_to_cart(good, plus);
         update_amount_from_view(v);
         show_amount_from_view(v);
         activity.build_total();
     }
 
     private void show_amount_from_view(View v) {
-        String id = (String) v.getTag();
-        boolean is_show = shop_cart.get_good_amount(id) > 0;
+        IGood good = (IGood) v.getTag();
+        boolean is_show = shop_cart.get_good_amount(good.get_id()) > 0;
         RelativeLayout relativeLayout = (RelativeLayout) v.getParent().getParent();
         relativeLayout.findViewById(R.id.ll_amount).setVisibility(is_show ? View.VISIBLE : View.INVISIBLE);
         relativeLayout.findViewById(R.id.ll_amount_none).setVisibility(is_show ? View.INVISIBLE : View.VISIBLE);
     }
 
     private void update_amount_from_view(View v) {
-        String id = (String) v.getTag();
+        IGood good = (IGood) v.getTag();
         ((TextView) ((RelativeLayout) v.getParent().getParent()).findViewById(R.id.tv_amount))
-                .setText(String.valueOf(shop_cart.get_good_amount(id)));
+                .setText(String.valueOf(shop_cart.get_good_amount(good.get_id())));
     }
 
     @Override
@@ -113,19 +114,19 @@ public class GoodsAdapter extends //MultiTypeAdapter implements View.OnClickList
         View view = super.getView(position, convertView, parent);
         IGood iGood = getItem(position);
         String good_id = iGood.get_id();
-        init_font_awesome_button(5, good_id);
-        init_font_awesome_button(6, good_id);
-        bind_tv_dian(good_id);
+        init_font_awesome_button(5, iGood);
+        init_font_awesome_button(6, iGood);
+        bind_tv_dian(iGood);
         return view;
     }
 
-    private void bind_tv_dian(String good_id) {
+    private void bind_tv_dian(IGood good) {
         TextView textView = getView(7, TextView.class);
-        textView.setTag(good_id);
+        textView.setTag(good);
         textView.setOnClickListener(this);
     }
 
-    private void add_to_cart(String good_id, int amount){
-        shop_cart.add_good(good_id, amount);
+    private void add_to_cart(IGood good, int amount){
+        shop_cart.add_good(good, amount);
     }
 }

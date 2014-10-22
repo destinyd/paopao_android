@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +52,8 @@ public class ShopCartGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsData> 
 
     @Override
     protected void update(int position, ICartGoodsData item) {
-        setText(0, item.get_name());
-        setText(1, String.format(Constants.Format.TOTAL_CALCULATE, item.get_price(), item.get_amount(), item.get_unit()));
+        setText(0, item.get_good_name());
+        setText(1, String.format(Constants.Format.TOTAL_CALCULATE, item.get_price(), item.get_amount(), item.get_good_unit()));
         setText(2, String.format(Constants.Format.PRICE, item.get_amount() * item.get_price()));
     }
 

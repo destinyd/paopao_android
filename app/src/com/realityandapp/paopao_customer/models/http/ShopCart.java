@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.models.http;
 
 import com.google.gson.*;
 import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
+import com.realityandapp.paopao_customer.models.interfaces.IGood;
 import com.realityandapp.paopao_customer.models.interfaces.IShop;
 import com.realityandapp.paopao_customer.models.interfaces.IShopCart;
 import com.realityandapp.paopao_customer.networks.DataProvider;
@@ -19,7 +20,7 @@ public class ShopCart implements IShopCart {
     public String _id;
     //    @Expose
     public String shop_id;
-    public IShop shop = null;
+    public Shop shop = null;
     public Integer distance = null;
     public Float delivery_price = null;
     public String to_id;
@@ -61,7 +62,7 @@ public class ShopCart implements IShopCart {
     public IShop get_shop() {
         if (shop != null)
             try {
-                shop = DataProvider.get_shop(shop_id);
+                shop = (Shop) DataProvider.get_shop(shop_id);
             } catch (HttpApi.RequestDataErrorException e) {
                 e.printStackTrace();
             } catch (HttpApi.AuthErrorException e) {
@@ -73,11 +74,11 @@ public class ShopCart implements IShopCart {
     }
 
     @Override
-    public void add_good(String good_id, int amount) {
+    public void add_good(IGood good, int amount) {
         CartGoodsData temp = null;
-        temp = get_good_data_by_id(good_id);
+        temp = get_good_data_by_id(good.get_id());
         if (temp == null) {
-            temp = new CartGoodsData(good_id);
+            temp = new CartGoodsData(good);
         }
         temp.set_amount(temp.get_amount() + amount);
         if (temp.get_amount() < 1) {

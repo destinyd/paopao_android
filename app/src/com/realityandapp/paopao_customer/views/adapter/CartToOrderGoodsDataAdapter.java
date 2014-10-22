@@ -48,8 +48,8 @@ public class CartToOrderGoodsDataAdapter extends SingleTypeAdapter<ICartGoodsDat
 
     @Override
     protected void update(int position, ICartGoodsData item) {
-        setText(0, item.get_name());
-        setText(1, String.format(FORMAT_TOTAL_CALCULATE, item.get_price(), item.get_unit()));
+        setText(0, item.get_good_name());
+        setText(1, String.format(FORMAT_TOTAL_CALCULATE, item.get_price(), item.get_good_unit()));
         setText(2, String.format(FORMAT_PRICE, item.get_amount() * item.get_price()));
     }
 
