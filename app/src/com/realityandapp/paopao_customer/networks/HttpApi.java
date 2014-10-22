@@ -194,15 +194,10 @@ public class HttpApi {
                 HttpRequest request =
                         auth.get_http_request(String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()), "POST");
                 request.accept("application/json");
-                // todo for not with expose
                 Gson gson =
                         new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
                         .create();
                 String json = gson.toJson(shop_cart);
-
-//                Gson gson_without = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-//                String json = gson_without.toJson(shop_cart, ShopCart.class);
-//                String json = new Gson().toJson(shop_cart, ShopCart.class);
                 System.out.println("json:\r\n" + json);
                 request.send(json);
                 return request;

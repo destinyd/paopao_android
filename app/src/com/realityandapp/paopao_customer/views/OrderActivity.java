@@ -225,8 +225,6 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         } else if (Order.OrderStatus.took_away == order.get_status()) {
             show_qrcode();
         } else {
-//            todo for other status
-            btn_submit.setVisibility(View.INVISIBLE);
         }
     }
 
