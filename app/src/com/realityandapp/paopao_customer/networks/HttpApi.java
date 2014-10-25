@@ -351,6 +351,33 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static IAddress save_address(final IAddress address) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<IAddress>(){
+
+            @Override
+            public IAddress call(RequestResult rr) {
+                System.out.println("save_address body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, Address.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(USER_ADDRESSES, "POST");
+                request.accept("application/json");
+
+//                Gson gson =
+//                        new GsonBuilder().registerTypeAdapter(Address.class, new Address.AddressSerializer())
+//                                .create();
+//                String json = gson.toJson(order);
+                String json = new Gson().toJson(address, Address.class);
+                System.out.println("order json:\r\n" + json);
+                request.part("address", json);
+                return request;
+            }
+        }.request();
+    }
     //////////////////
 
     /**

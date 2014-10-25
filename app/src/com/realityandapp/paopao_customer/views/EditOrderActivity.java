@@ -277,7 +277,7 @@ public class EditOrderActivity extends PaopaoBaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case Constants.Request.ADDRESS:
-                if (resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK && null != data) {
                     IAddress address = (IAddress) data.getSerializableExtra(Constants.Extra.ADDRESS);
                     refresh_for_change_address_to(address);
                 }

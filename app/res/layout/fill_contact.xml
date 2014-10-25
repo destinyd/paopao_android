@@ -1,0 +1,96 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <include layout="@layout/actionbar_new" android:id="@+id/actionbar"/>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/actionbar"
+            >
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:paddingLeft="15dp"
+                      android:paddingRight="15dp"
+                >
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_address"
+                    android:text="@string/label_address"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_address"
+                    android:textColor="@color/tv_highlight"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_plus"
+                    android:id="@+id/label_plus"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:id="@+id/et_plus"
+                    android:hint="@string/hint_address_plus"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    android:focusableInTouchMode="true"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_realname"
+                    android:id="@+id/label_realname"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="@string/hint_address_realname"
+                    android:id="@+id/et_realname"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_phone"
+                    android:id="@+id/label_phone"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:hint="@string/hint_address_phone"
+                    android:id="@+id/et_phone"
+                    android:inputType="phone"
+                    android:imeOptions="actionDone"/>
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/label_verify_code"-->
+            <!--android:id="@+id/label_phone_verify"/>-->
+            <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:singleLine="true"-->
+            <!--android:id="@+id/et_verify_code"/>-->
+
+            <!--<Button android:layout_width="match_parent" android:layout_height="wrap_content"-->
+            <!--android:text="@string/get_verify_code"-->
+            <!--android:id="@+id/btn_get_verify_code"-->
+            <!--/>-->
+        </LinearLayout>
+    </ScrollView>
+
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            style="@style/LoadingViewWithActionBar"
+            android:visibility="gone"
+            />
+</RelativeLayout>

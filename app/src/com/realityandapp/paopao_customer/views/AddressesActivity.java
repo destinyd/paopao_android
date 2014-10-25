@@ -150,4 +150,11 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
                 super.onClick(view);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == Constants.Request.ADDRESS){
+            get_datas();
+        }
+    }
 }

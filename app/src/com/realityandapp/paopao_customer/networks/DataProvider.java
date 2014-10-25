@@ -45,8 +45,8 @@ public class DataProvider {
         HttpApi.destroy_order(order_id);
     }
 
-    public static void create_address(IAddress address) {
-        // todo create address
+    public static IAddress save_address(IAddress address) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.save_address(address);
     }
 
     public static Boolean save_order(IOrder order) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {

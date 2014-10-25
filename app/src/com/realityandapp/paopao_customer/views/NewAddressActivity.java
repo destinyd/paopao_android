@@ -37,8 +37,8 @@ import roboguice.inject.InjectView;
  * Created by dd on 14-9-24.
  */
 public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSearchResultListener, OnGetSuggestionResultListener, AdapterView.OnItemClickListener, TextWatcher {
-    @InjectView(R.id.fatv_save)
-    FontAwesomeButton fatv_save;
+    @InjectView(R.id.fa_btn_ok)
+    FontAwesomeButton fa_btn_ok;
     @InjectView(R.id.actv_address)
     AutoCompleteTextView actv_address;
     @InjectView(R.id.bmapView)
@@ -70,6 +70,7 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
     }
 
     private void init() {
+        setTitle("新建地址-第一步");
         init_view();
         bind_views();
     }
@@ -153,13 +154,13 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
     }
 
     private void bind_views() {
-        fatv_save.setOnClickListener(this);
+        fa_btn_ok.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fatv_save:
+            case R.id.fa_btn_ok:
                 create_address_and_go_to_fill_contact();
                 break;
             default:
@@ -174,19 +175,17 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
 
     private void create_address() {
         address = new Address();
-        System.out.println("actv_address.getText().toString()" + actv_address.getText().toString());
         address.set_address(actv_address.getText().toString());
         address.set_coordinates(latitude, longitude);
-        System.out.println("address.get_coordinates():" + address.get_coordinates());
     }
 
     private void go_to_fill_contact() {
-        // todo go to fill contact Activity for result
-//        Intent intent = new Intent(this,);
-//        intent.putExtra(Constants.Extra.ADDRESS, address);
+        Intent intent = new Intent(this, FillContactActivity.class);
+        intent.putExtra(Constants.Extra.ADDRESS, address);
+        startActivityForResult(intent, Constants.Request.ADDRESS);
     }
 
-    private void return_address() {
+    private void return_address(Address address) {
         Intent intent = new Intent();
         intent.putExtra(Constants.Extra.ADDRESS, address);
         setResult(RESULT_OK, intent);
@@ -231,9 +230,7 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
         // key wrong? or something others
         for (SuggestionResult.SuggestionInfo info : res.getAllSuggestions()) {
             // 有district 也就是分区的可能是车站环线
-            System.out.println("info.city" + info.city);
             if (city.equals(info.city) && !TextUtils.isEmpty(info.district)) {
-                // todo something wrong here
                 sugAdapter.add(info);
             }
         }
@@ -241,13 +238,11 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
     }
 
     public void onGetPoiResult(PoiResult result) {
-        System.out.println("onGetPoiResult:" + result);
         if (result == null
                 || result.error == SearchResult.ERRORNO.RESULT_NOT_FOUND) {
             return;
         }
         if (result.error == SearchResult.ERRORNO.NO_ERROR) {
-            System.out.println("onGetPoiResult count:" + result.getAllPoi().size());
             to(result);
             return;
         }
@@ -270,6 +265,7 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
             System.out.println("result.getAllPoi().isEmpty()");
             return;
         }
+        // todo 选择更加合适的项？
         LatLng location = result.getAllPoi().get(0).location;
         latitude = location.latitude;
         longitude = location.longitude;
@@ -282,7 +278,7 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
         OverlayOptions option = new MarkerOptions()
                 .position(location)
                 .icon(mCurrentMarker);
-//在地图上添加Marker，并显示
+        //在地图上添加Marker，并显示
         mBaiduMap.addOverlay(option);
     }
 
@@ -323,7 +319,6 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
         /**
          * 使用建议搜索服务获取建议列表，结果在onSuggestionResult()中更新
          */
-        System.out.println("afterTextChanged cs:" + cs.toString());
         if (cs.length() <= 0) {
             return;
         }
@@ -336,7 +331,6 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            System.out.println("location.getLocType():" + location.getLocType());
             switch (location.getLocType()) {
                 case 61: // GPS定位结果
                     map_center_to(location);
@@ -362,5 +356,14 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
         longitude = location.getLongitude();
         System.out.println("addr:" + location.getAddrStr());
         map_center_to(new LatLng(latitude, longitude));
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == Constants.Request.ADDRESS && null != data){
+            address = (Address) data.getSerializableExtra(Constants.Extra.ADDRESS);
+            return_address(address);
+        }
     }
 }

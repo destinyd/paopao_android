@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.interfaces;
 
+import com.realityandapp.paopao_customer.networks.HttpApi;
+
 import java.util.List;
 
 /**
@@ -13,5 +15,13 @@ public interface IAddress extends IBase {
     public List<Double> get_coordinates();
     public Double get_latitude();
     public Double get_longitude();
-    public void save();
+    public IAddress save() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
+
+    void set_address(String address);
+
+    void set_realname(String realname);
+
+    void set_phone(String phone);
+
+    void set_plus(String plus);
 }

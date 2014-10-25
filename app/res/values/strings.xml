@@ -35,5 +35,11 @@
     <string name="setting">设置</string>
     <string name="la_carte">点餐</string>
     <string name="goods_total_label">总计:</string>
+    <string name="label_realname">真实姓名</string>
+    <string name="label_plus">地址信息备注</string>
+    <string name="label_address">地址</string>
+    <string name="hint_address_plus">如:5楼301室</string>
+    <string name="hint_address_realname">如:张三</string>
+    <string name="hint_address_phone">如:13333333333</string>
 
 </resources>

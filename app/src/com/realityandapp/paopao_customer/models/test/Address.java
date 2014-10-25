@@ -2,6 +2,7 @@ package com.realityandapp.paopao_customer.models.test;
 
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +64,8 @@ public class Address implements IAddress {
     }
 
     @Override
-    public void save() {
-        DataProvider.create_address(this);
+    public IAddress save() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return DataProvider.save_address(this);
     }
 
     @Override
@@ -81,18 +82,22 @@ public class Address implements IAddress {
         this.coordinates = tmp;
     }
 
+    @Override
     public void set_address(String address) {
         this.address = address;
     }
 
+    @Override
     public void set_realname(String realname) {
         this.realname = realname;
     }
 
+    @Override
     public void set_phone(String phone) {
         this.phone = phone;
     }
 
+    @Override
     public void set_plus(String plus) {
         this.plus = plus;
     }
