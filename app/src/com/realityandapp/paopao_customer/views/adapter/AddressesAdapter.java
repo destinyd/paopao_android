@@ -38,7 +38,7 @@ public class AddressesAdapter extends SingleTypeAdapter<IAddress> {
 
     @Override
     protected void update(int position, IAddress item) {
-        setChecked(0, address_default == item);
+        setChecked(0, address_default.equals(item));
         setText(1, String.format(Constants.Format.CONTACT, item.get_realname(), item.get_phone()));
         setText(2, item.get_address());
     }

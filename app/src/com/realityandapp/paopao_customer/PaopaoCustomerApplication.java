@@ -8,6 +8,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 import com.activeandroid.ActiveAndroid;
+import com.baidu.location.GeofenceClient;
+import com.baidu.location.LocationClient;
 import com.easemob.EMCallBack;
 import com.easemob.chat.*;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
@@ -40,6 +42,8 @@ public class PaopaoCustomerApplication extends Application {
      * 当前用户nickname,为了苹果推送不是userid而是昵称
      */
     public static String currentUserNick = "";
+    private LocationClient mLocationClient;
+    private GeofenceClient mGeofenceClient;
 
     @Override
     public void onCreate() {
@@ -52,8 +56,23 @@ public class PaopaoCustomerApplication extends Application {
         init_image_config();
 
         init_im();
+
+        init_map_location();
 //        register_receive();
 //        login();
+    }
+
+    private void init_map_location() {
+        mLocationClient = new LocationClient(this.getApplicationContext());
+        mGeofenceClient = new GeofenceClient(getApplicationContext());
+    }
+
+    public LocationClient getLocationClient() {
+        return mLocationClient;
+    }
+
+    public GeofenceClient getGeofenceClient() {
+        return mGeofenceClient;
     }
 
     private void register_receive() {

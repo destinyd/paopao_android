@@ -5,19 +5,29 @@
                 android:layout_height="match_parent">
     <include layout="@layout/actionbar_new" android:id="@+id/actionbar"/>
 
-    <EditText android:layout_width="match_parent" android:layout_height="40dp"
-              android:singleLine="true"
-              android:hint="@string/new_address_hint"
-              android:layout_below="@id/actionbar"
-              android:id="@+id/et_address"
-            />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="40dp"
+                  android:id="@+id/ll_actv"
+                  android:orientation="vertical"
+                  android:layout_below="@id/actionbar"
+            ></LinearLayout>
+
     <!--todo map-->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:layout_below="@id/et_address"
-              android:layout_alignParentBottom="true"
-              android:background="#f00"
-            >
-    </LinearLayout>
+    <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/ll_actv"
+            android:clickable="true"
+            />
+
+    <AutoCompleteTextView
+            android:layout_width="match_parent" android:layout_height="40dp"
+            android:singleLine="true"
+            android:hint="@string/new_address_hint"
+            android:layout_below="@id/actionbar"
+            android:id="@+id/actv_address"
+            />
 
     <com.mindpin.android.loadingview.LoadingView
             android:id="@+id/loading_view"

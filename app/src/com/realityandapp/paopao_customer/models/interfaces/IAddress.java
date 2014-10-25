@@ -10,8 +10,8 @@ public interface IAddress extends IBase {
     public String get_realname();
     public String get_phone();
     public String get_plus();
-    public List<Float> get_coordinates();
-    public Float get_lat();
-    public Float get_lng();
+    public List<Double> get_coordinates();
+    public Double get_latitude();
+    public Double get_longitude();
     public void save();
 }

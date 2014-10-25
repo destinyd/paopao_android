@@ -31,6 +31,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     @InjectView(R.id.loading_view)
     LoadingView loading_view;
     private List<IAddress> addresses;
+    private IAddress default_address;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
             @Override
             public Void call() throws Exception {
                 addresses = DataProvider.get_addresses();
+                default_address = DataProvider.get_default_address();
                 return null;
             }
 
@@ -76,7 +78,7 @@ public class AddressesActivity extends PaopaoBaseActivity implements View.OnClic
     private void build_view() {
         if(addresses.size() > 0) {
             final AddressesAdapter adapter =
-                    new AddressesAdapter(getLayoutInflater(), addresses, addresses.get(0));
+                    new AddressesAdapter(getLayoutInflater(), addresses, default_address);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

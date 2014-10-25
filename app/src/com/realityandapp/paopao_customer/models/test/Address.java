@@ -5,28 +5,26 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by dd on 14-9-21.
  */
 public class Address implements IAddress {
-    private static int i = 0;
     private String _id;
-    private List<Float> coordinates = new ArrayList<Float>();
+    private List<Double> coordinates = new ArrayList<Double>();
     private String address;
     private String realname;
     private String phone;
     private String plus;
 
     public Address() {
-        i++;
-        _id = String.valueOf(i);
-        address = "地址" + _id;
-        realname = "姓名" + _id;
-        phone = String.format("133%08d", new Random().nextInt(100000000));
-        coordinates.add((new Random().nextFloat() - 0.5f) * 360 ); //lng
-        coordinates.add((new Random().nextFloat() - 0.5f) * 180); //lat
+//        i++;
+//        _id = String.valueOf(i);
+//        address = "地址" + _id;
+//        realname = "姓名" + _id;
+//        phone = String.format("133%08d", new Random().nextInt(100000000));
+//        coordinates.add((new Random().nextDouble() - 0.5f) * 360 ); //lng
+//        coordinates.add((new Random().nextDouble() - 0.5f) * 180); //lat
     }
 
     @Override
@@ -50,18 +48,18 @@ public class Address implements IAddress {
     }
 
     @Override
-    public List<Float> get_coordinates() {
+    public List<Double> get_coordinates() {
         return coordinates;
     }
 
     @Override
-    public Float get_lat() {
-        return coordinates == null ? null : coordinates.get(1);
+    public Double get_latitude() {
+        return coordinates == null ? null : coordinates.get(2);
     }
 
     @Override
-    public Float get_lng() {
-        return coordinates == null ? null : coordinates.get(2);
+    public Double get_longitude() {
+        return coordinates == null ? null : coordinates.get(1);
     }
 
     @Override
@@ -72,5 +70,40 @@ public class Address implements IAddress {
     @Override
     public String get_id() {
         return _id;
+    }
+
+    public void set_coordinates(Double latitude, Double longitude) {
+        System.out.println("latitude:" + latitude);
+        System.out.println("longitude:" + longitude);
+        List<Double> tmp = new ArrayList<Double>();
+        tmp.add(longitude);
+        tmp.add(latitude);
+        this.coordinates = tmp;
+    }
+
+    public void set_address(String address) {
+        this.address = address;
+    }
+
+    public void set_realname(String realname) {
+        this.realname = realname;
+    }
+
+    public void set_phone(String phone) {
+        this.phone = phone;
+    }
+
+    public void set_plus(String plus) {
+        this.plus = plus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        try{
+            return ((IAddress) o).get_id().equals(get_id());
+        }
+        catch (Exception ex){
+            return false;
+        }
     }
 }
