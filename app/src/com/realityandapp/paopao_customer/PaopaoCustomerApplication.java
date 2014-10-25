@@ -52,14 +52,12 @@ public class PaopaoCustomerApplication extends Application {
         applicationContext = this.getApplicationContext();
 
         ActiveAndroid.initialize(this);
-
-        init_image_config();
-
+        // move to launcher
+//        init_image_config();
         init_im();
 
         init_map_location();
 //        register_receive();
-//        login();
     }
 
     private void init_map_location() {
@@ -75,13 +73,12 @@ public class PaopaoCustomerApplication extends Application {
         return mGeofenceClient;
     }
 
-    private void register_receive() {
-        NewMessageBroadcastReceiver msgReceiver = new NewMessageBroadcastReceiver();
-        IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
-        intentFilter.setPriority(3);
-        registerReceiver(msgReceiver, intentFilter);
-
-    }
+//    private void register_receive() {
+//        NewMessageBroadcastReceiver msgReceiver = new NewMessageBroadcastReceiver();
+//        IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
+//        intentFilter.setPriority(3);
+//        registerReceiver(msgReceiver, intentFilter);
+//    }
 
     // 消息提示需要自己写 因为需要在非Chat界面也有提示
     private class NewMessageBroadcastReceiver extends BroadcastReceiver {
@@ -108,7 +105,6 @@ public class PaopaoCustomerApplication extends Application {
 
         int pid = android.os.Process.myPid();
         String processAppName = getAppName(pid);
-        System.out.println("processAppName:" + processAppName);
         // 如果使用到百度地图或者类似启动remote service的第三方库，这个if判断不能少
         if (processAppName == null || processAppName.equals("")) {
             // workaround for baidu location sdk
@@ -225,7 +221,7 @@ public class PaopaoCustomerApplication extends Application {
 
     }
 
-    private void init_image_config() {
+    public void init_image_config() {
         DisplayImageOptions options;
         ImageLoaderConfiguration config;
 

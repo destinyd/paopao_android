@@ -7,55 +7,48 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import com.easemob.chat.EMChat;
-import com.realityandapp.paopao_customer.models.User;
+import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
+import com.realityandapp.paopao_customer.R;
+import roboguice.activity.RoboActivity;
+import roboguice.util.RoboAsyncTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LauncherActivity extends ListActivity {
+public class LauncherActivity extends RoboActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setListAdapter(
-                new SimpleAdapter(
-                        this, getData(), android.R.layout.simple_list_item_1, new String[]{"title"},
-                        new int[]{android.R.id.text1}
-                )
-        );
-        getListView().setScrollbarFadingEnabled(false);
-        EMChat.getInstance().setAppInited();
+        setContentView(R.layout.launcher);
+        new RoboAsyncTask<Void>(this) {
+
+            @Override
+            public Void call() throws Exception {
+                // todo init here
+                EMChat.getInstance().setAppInited();
+                PaopaoCustomerApplication application = (PaopaoCustomerApplication) getApplication();
+                application.init_image_config();
+
+                // todo get user info to login im
+                // application.login();
+                Thread.sleep(1000);//
+
+                return null;
+            }
+
+            @Override
+            protected void onSuccess(Void aVoid) throws Exception {
+                go_to_main();
+            }
+        }.execute();
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Map<String, Object> map = (Map<String, Object>) l.getItemAtPosition(position);
-        Intent intent = new Intent(this, (Class<? extends Activity>) map.get("activity"));
-        startActivity(intent);
-    }
-
-    private List<? extends Map<String, ?>> getData() {
-        List<Map<String, Object>> data = new ArrayList<Map<String, Object>>();
-        addItem(data, "main", RealMainActivity.class);
-        addItem(data, "my orders", MyOrdersActivity.class);
-        addItem(data, "addresses", AddressesActivity.class);
-        addItem(data, "sign in", SignInActivity.class);
-        addItem(data, "sign up", SignUpActivity.class);
-        addItem(data, "pay", PayActivity.class);
-        addItem(data, "new address", NewAddressActivity.class);
-
-        return data;
-    }
-
-    private void addItem(List<Map<String, Object>> data, String title,
-                         Class<? extends Activity> activityClass) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("title", data.size() + ". " + title);
-        map.put("activity", activityClass);
-        data.add(map);
+    private void go_to_main() {
+        startActivity(new Intent(this, RealMainActivity.class));
     }
 }
