@@ -26,7 +26,6 @@
                     android:singleLine="true"
                     android:id="@+id/et_name"
                     android:hint="@string/hint_name"/>
-
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -39,6 +38,19 @@
                     android:inputType="textPassword"
                     android:hint="@string/hint_password"
                     android:id="@+id/et_password"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_sign_up_password_confirmation"
+                    android:id="@+id/label_password_confirmation"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:hint="@string/hint_password_confirmation"
+                    android:id="@+id/et_password_confirmation"/>
+
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,8 +79,8 @@
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:id="@+id/et_verify_code"
+                    android:hint="@string/hint_verify_code"
                     />
-
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

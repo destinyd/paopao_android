@@ -45,7 +45,10 @@
     <string name="hint_password">必须6位或6位以上</string>
     <string name="hint_phone">一部手机只能注册一个帐号</string>
     <string name="hint_name">2~10位中英文</string>
-    <string name="hint_email">填写邮箱可以更好的保证您的账户安全</string>
+    <string name="hint_email">填写邮箱能更好的保证您的账户安全,选填</string>
     <string name="sending">发送中</string>
+    <string name="label_sign_up_password_confirmation">* 密码验证</string>
+    <string name="hint_password_confirmation">请再输入一边密码</string>
+    <string name="hint_verify_code">请点击上方按钮获取</string>
 
 </resources>

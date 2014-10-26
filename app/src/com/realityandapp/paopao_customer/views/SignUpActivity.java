@@ -39,6 +39,8 @@ public class SignUpActivity extends PaopaoBaseActivity {
     EditText et_name;
     @InjectView(R.id.et_password)
     EditText et_password;
+    @InjectView(R.id.et_password_confirmation)
+    EditText et_password_confirmation;
     @InjectView(R.id.et_email)
     EditText et_email;
     @InjectView(R.id.btn_sign_up)
@@ -170,8 +172,8 @@ public class SignUpActivity extends PaopaoBaseActivity {
         final String password = et_password.getText().toString();
         final String verify_code = et_verify_code.getText().toString();
 
-        if (!valid_phone(phone) || !valid_name(name) || !valid_or_blank_email(email) ||
-                !valid_verify_code(verify_code))
+        if (!valid_name(name) || !valid_password() || !valid_phone(phone)
+                || !valid_verify_code(verify_code) || !valid_or_blank_email(email))
             return;
 
         new RoboAsyncTask<User>(this) {
@@ -211,14 +213,28 @@ public class SignUpActivity extends PaopaoBaseActivity {
         }.execute();
     }
 
+    private boolean valid_password() {
+        boolean b = et_password.getText().toString().equals(et_password_confirmation.getText().toString())
+                && et_password.getText().toString().length() >= 6;
+        if(!b)
+            Toast.makeText(this, "您两次输入的密码不一致", Toast.LENGTH_LONG).show();
+        return b;
+    }
+
     private boolean valid_verify_code(String verify_code) {
         Pattern pattern = Pattern.compile(VERIFY_CODE_PATTERN);
         Matcher matcher = pattern.matcher(verify_code);
-        return matcher.matches();
+        boolean b = matcher.matches();
+        if(!b)
+            Toast.makeText(this, "您的手机验证码填写不正确", Toast.LENGTH_LONG).show();
+        return b;
     }
 
     private boolean valid_or_blank_email(String email) {
-        return TextUtils.isEmpty(email) || valid_email(email);
+        boolean b = TextUtils.isEmpty(email) || !valid_email(email);
+        if(!b)
+            Toast.makeText(this, "您的邮箱填写不正确", Toast.LENGTH_LONG).show();
+        return b;
     }
 
     private boolean valid_email(String email) {
@@ -230,7 +246,10 @@ public class SignUpActivity extends PaopaoBaseActivity {
     private boolean valid_name(String name) {
         Pattern pattern = Pattern.compile(NAME_PATTERN);
         Matcher matcher = pattern.matcher(name);
-        return matcher.matches();
+        boolean b = matcher.matches();
+        if(!b)
+            Toast.makeText(this, "您的昵称填写不正确", Toast.LENGTH_LONG).show();
+        return b;
     }
 
     private void finish_with_ok() {
@@ -246,6 +265,9 @@ public class SignUpActivity extends PaopaoBaseActivity {
     private boolean valid_phone(String phone) {
         Pattern pattern = Pattern.compile(PHONE_PATTERN);
         Matcher matcher = pattern.matcher(phone);
-        return matcher.matches();
+        boolean b = matcher.matches();
+        if(!b)
+            Toast.makeText(this, "您的手机号码填写不正确", Toast.LENGTH_LONG).show();
+        return b;
     }
 }
