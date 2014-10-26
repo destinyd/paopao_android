@@ -7,10 +7,10 @@
     <string name="label_login">手机号/昵称/邮箱</string>
     <string name="label_password">密码</string>
     <string name="sign_in">登录</string>
-    <string name="label_phone">手机号码</string>
-    <string name="label_verify_code">手机验证码</string>
+    <string name="label_phone">* 手机号码</string>
+    <string name="label_verify_code">* 手机验证码</string>
     <string name="get_verify_code">获取短信验证码</string>
-    <string name="label_name">昵称</string>
+    <string name="label_name">* 昵称</string>
     <string name="label_email">Email</string>
     <string name="sign_up">注册</string>
     <string name="cart">购物车</string>
@@ -41,5 +41,11 @@
     <string name="hint_address_plus">如:5楼301室</string>
     <string name="hint_address_realname">如:张三</string>
     <string name="hint_address_phone">如:13333333333</string>
+    <string name="label_sign_up_password">* 密码</string>
+    <string name="hint_password">必须6位或6位以上</string>
+    <string name="hint_phone">一部手机只能注册一个帐号</string>
+    <string name="hint_name">2~10位中英文</string>
+    <string name="hint_email">填写邮箱可以更好的保证您的账户安全</string>
+    <string name="sending">发送中</string>
 
 </resources>

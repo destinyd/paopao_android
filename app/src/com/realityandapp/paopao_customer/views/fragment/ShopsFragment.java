@@ -35,6 +35,7 @@ public class ShopsFragment extends PaopaoBaseFragment {
     private List<IShop> shops;
     //    @InjectView(R.id.fabtn_cart)
 //    FontAwesomeButton fabtn_cart;
+    private boolean loaded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.shops, container, false);
@@ -47,7 +48,8 @@ public class ShopsFragment extends PaopaoBaseFragment {
         get_datas();
     }
 
-    private void get_datas() {
+    public  void get_datas() {
+        if(!loaded)
         new PaopaoAsyncTask<Void>(getActivity()){
 
             @Override
@@ -64,6 +66,7 @@ public class ShopsFragment extends PaopaoBaseFragment {
             @Override
             protected void onSuccess(Void aVoid) throws Exception {
                 build_view();
+                loaded = true;
             }
 
             @Override

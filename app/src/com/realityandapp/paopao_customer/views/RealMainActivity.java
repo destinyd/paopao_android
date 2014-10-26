@@ -660,10 +660,11 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(User.current() == null)
-        {
+        if (User.current() == null) {
             startActivity(new Intent(this, SignInActivity.class));
             return;
+        } else {
+            shopsFragment.get_datas();
         }
         if (!isConflict) {
 //			updateUnreadLabel();

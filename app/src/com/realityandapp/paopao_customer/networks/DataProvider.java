@@ -95,4 +95,12 @@ public class DataProvider {
     public static IShopCart save_shop_cart(IShopCart shop_cart) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.save_shop_cart(shop_cart);
     }
+
+    public static User sign_up(String phone, String verify_code, String password, String name, String email) {
+        return HttpApi.sign_up(phone, verify_code, password, name, email);
+    }
+
+    public static Integer get_verify_code(String phone) {
+        return HttpApi.get_verify_code(phone);
+    }
 }

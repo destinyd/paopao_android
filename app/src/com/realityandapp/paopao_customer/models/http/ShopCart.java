@@ -151,7 +151,8 @@ public class ShopCart implements IShopCart {
     public static class ShopCartSerializer implements JsonSerializer<ShopCart> {
         public JsonElement serialize(final ShopCart shop_cart, final Type type, final JsonSerializationContext context) {
             JsonObject result = new JsonObject();
-            result.add("_id", new JsonPrimitive(shop_cart.get_id()));
+            if (shop_cart.get_id() != null)
+                result.add("_id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
             if (shop_cart.get_to_id() != null)
                 result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));

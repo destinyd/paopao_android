@@ -50,5 +50,6 @@ public class LauncherActivity extends RoboActivity {
 
     private void go_to_main() {
         startActivity(new Intent(this, RealMainActivity.class));
+        finish();
     }
 }

@@ -10,6 +10,8 @@ import com.mindpin.android.authenticator.RequestResult;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
+import com.realityandapp.paopao_customer.models.User;
+import com.realityandapp.paopao_customer.models.UserReg;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.http.Shop;
@@ -44,6 +46,8 @@ public class HttpApi {
     public static final String DEFAULT_ADDRESS = USER_SITE + "/addresses/default.json";
     public static final String FORMAT_SET_DEFAULT_ADDRESS = USER_SITE + "/addresses/%s/set_default.json";
     public static final String FORMAT_CALCULATE_DISTANCE = USER_SITE + "/addresses/%s/calculate_distance.json";
+    public static final String USERS = SITE + "/users.json";
+    public static final String GET_VERIFY_CODE = SITE + "/users/get_reg_verify_code";
 
     /**
      * http api url end
@@ -51,12 +55,13 @@ public class HttpApi {
 
 
     public static List<IOrder> user_orders() throws AuthErrorException, RequestDataErrorException, NetworkErrorException {
-        return new RequestProcess<List<IOrder>>(){
+        return new RequestProcess<List<IOrder>>() {
 
             @Override
             public List<IOrder> call(RequestResult rr) {
                 System.out.println("orders body:" + rr.body);
-                Type collectionType = new TypeToken<List<Order>>(){}.getType();
+                Type collectionType = new TypeToken<List<Order>>() {
+                }.getType();
                 Gson gson = new Gson();
                 return gson.fromJson(rr.body, collectionType);
             }
@@ -70,7 +75,7 @@ public class HttpApi {
 
     public static IOrder my_order(final String id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
         System.out.println("order id:" + id);
-        return new RequestProcess<IOrder>(){
+        return new RequestProcess<IOrder>() {
 
             @Override
             public IOrder call(RequestResult rr) {
@@ -87,12 +92,13 @@ public class HttpApi {
     }
 
     public static List<IShop> shops() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<List<IShop>>(){
+        return new RequestProcess<List<IShop>>() {
 
             @Override
             public List<IShop> call(RequestResult rr) {
                 System.out.println("body:" + rr.body);
-                Type collectionType = new TypeToken<List<Shop>>(){}.getType();
+                Type collectionType = new TypeToken<List<Shop>>() {
+                }.getType();
                 Gson gson = new Gson();
                 return gson.fromJson(rr.body, collectionType);
             }
@@ -106,12 +112,13 @@ public class HttpApi {
     }
 
     public static List<IGood> shop_goods(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<List<IGood>>(){
+        return new RequestProcess<List<IGood>>() {
 
             @Override
             public List<IGood> call(RequestResult rr) {
                 System.out.println("body:" + rr.body);
-                Type collectionType = new TypeToken<List<Good>>(){}.getType();
+                Type collectionType = new TypeToken<List<Good>>() {
+                }.getType();
                 Gson gson = new Gson();
                 return gson.fromJson(rr.body, collectionType);
             }
@@ -125,7 +132,7 @@ public class HttpApi {
 
     public static IShopCart get_cart(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
         System.out.println("shop id:" + shop_id);
-        return new RequestProcess<IShopCart>(){
+        return new RequestProcess<IShopCart>() {
 
             @Override
             public IShopCart call(RequestResult rr) {
@@ -143,7 +150,7 @@ public class HttpApi {
 
     public static IGood good(final String good_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
         System.out.println("good id:" + good_id);
-        return new RequestProcess<IGood>(){
+        return new RequestProcess<IGood>() {
 
             @Override
             public IGood call(RequestResult rr) {
@@ -161,7 +168,7 @@ public class HttpApi {
 
     public static IShop shop(final String shop_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
         System.out.println("shop id:" + shop_id);
-        return new RequestProcess<IShop>(){
+        return new RequestProcess<IShop>() {
 
             @Override
             public IShop call(RequestResult rr) {
@@ -178,7 +185,7 @@ public class HttpApi {
     }
 
     public static IOrder shop_cart_to_order(final IShopCart shop_cart) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<IOrder>(){
+        return new RequestProcess<IOrder>() {
 
             @Override
             public IOrder call(RequestResult rr) {
@@ -190,13 +197,13 @@ public class HttpApi {
             @Override
             public HttpRequest build_request(AuthenticatorsController auth) {
                 System.out.println("String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()):"
-                    + String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()));
+                        + String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()));
                 HttpRequest request =
                         auth.get_http_request(String.format(FORMAT_SUBMIT_CART, shop_cart.get_shop_id()), "POST");
                 request.accept("application/json");
                 Gson gson =
                         new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
-                        .create();
+                                .create();
                 String json = gson.toJson(shop_cart);
                 System.out.println("json:\r\n" + json);
                 request.send(json);
@@ -206,12 +213,13 @@ public class HttpApi {
     }
 
     public static List<IAddress> my_addresses() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<List<IAddress>>(){
+        return new RequestProcess<List<IAddress>>() {
 
             @Override
             public List<IAddress> call(RequestResult rr) {
                 System.out.println("addresses body:" + rr.body);
-                Type collectionType = new TypeToken<List<Address>>(){}.getType();
+                Type collectionType = new TypeToken<List<Address>>() {
+                }.getType();
                 Gson gson = new Gson();
                 return gson.fromJson(rr.body, collectionType);
             }
@@ -226,7 +234,7 @@ public class HttpApi {
     }
 
     public static IAddress default_address() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<IAddress>(){
+        return new RequestProcess<IAddress>() {
 
             @Override
             public IAddress call(RequestResult rr) {
@@ -243,7 +251,7 @@ public class HttpApi {
     }
 
     public static IAddress set_default_address(final String address_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<IAddress>(){
+        return new RequestProcess<IAddress>() {
 
             @Override
             public IAddress call(RequestResult rr) {
@@ -263,7 +271,7 @@ public class HttpApi {
     }
 
     public static JsonObject calculate_distance_and_pricing(final String shop_id, final String address_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<JsonObject>(){
+        return new RequestProcess<JsonObject>() {
 
             @Override
             public JsonObject call(RequestResult rr) {
@@ -284,7 +292,7 @@ public class HttpApi {
     }
 
     public static IShopCart save_shop_cart(final IShopCart shop_cart) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<IShopCart>(){
+        return new RequestProcess<IShopCart>() {
 
             @Override
             public IShopCart call(RequestResult rr) {
@@ -310,7 +318,7 @@ public class HttpApi {
     }
 
     public static Boolean destroy_order(final String order_id) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<Boolean>(){
+        return new RequestProcess<Boolean>() {
 
             @Override
             public Boolean call(RequestResult rr) {
@@ -328,7 +336,7 @@ public class HttpApi {
     }
 
     public static Boolean save_order(final IOrder order) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<Boolean>(){
+        return new RequestProcess<Boolean>() {
 
             @Override
             public Boolean call(RequestResult rr) {
@@ -353,7 +361,7 @@ public class HttpApi {
     }
 
     public static IAddress save_address(final IAddress address) throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
-        return new RequestProcess<IAddress>(){
+        return new RequestProcess<IAddress>() {
 
             @Override
             public IAddress call(RequestResult rr) {
@@ -378,25 +386,67 @@ public class HttpApi {
             }
         }.request();
     }
+
+    public static User sign_up(
+            final String phone, final String verify_code, final String password,
+            final String name, final String email
+    ) {
+        HttpRequest request = HttpRequest.post(USERS);
+        request.accept("application/json");
+        request.part("user[phone]", phone);
+        request.part("user[verify_code]", verify_code);
+        request.part("user[password]", password);
+        request.part("user[name]", name);
+        request.part("user[email]", email);
+//        UserReg tmp = new UserReg(phone, verify_code, password, name, email);
+//        String json = new Gson().toJson(tmp, UserReg.class);
+//        System.out.println("sign up json:" + json);
+//        request.send(json);
+        String body = request.body();
+        int code = request.code();
+        System.out.println("sign up body:" + body);
+        System.out.println("sign up code:" + code);
+        if (code >= 200 && code < 300) {
+            Gson gson = new Gson();
+            return gson.fromJson(body, User.class);
+        } else {
+            return null;
+        }
+    }
+
+    public static Integer get_verify_code(String phone) {
+        HttpRequest request = HttpRequest.post(GET_VERIFY_CODE);
+        request.part("phone", phone);
+        String result = request.body();
+        System.out.println("get_verify_code body:" + result);
+        JsonObject jsonObject = new Gson().fromJson(result, JsonObject.class);
+        Integer time_left = -1;
+        try {
+            time_left = jsonObject.get("retry_time_left").getAsInt();
+        } catch (Exception ex) {
+        }
+        return time_left;
+    }
     //////////////////
 
     /**
      * http api method end
-     ***********************************************************************************/
+     * *********************************************************************************
+     */
 
 
-    public abstract static class RequestProcess<T>{
-        public T request() throws AuthErrorException, RequestDataErrorException, NetworkErrorException{
+    public abstract static class RequestProcess<T> {
+        public T request() throws AuthErrorException, RequestDataErrorException, NetworkErrorException {
             AuthenticatorsController auth = new AuthenticatorsController(PaopaoCustomerApplication.get_context());
             HttpRequest request = build_request(auth);
             RequestResult rr = auth.syn_request(request);
-            if(rr == null) throw new NetworkErrorException();
-            System.out.println("rr.status :" + rr.status );
-            if(rr.status >= 200 && rr.status < 300){
+            if (rr == null) throw new NetworkErrorException();
+            System.out.println("rr.status :" + rr.status);
+            if (rr.status >= 200 && rr.status < 300) {
                 return call(rr);
-            }else if(rr.status == 401){
+            } else if (rr.status == 401) {
                 throw new AuthErrorException();
-            }else{
+            } else {
                 throw new RequestDataErrorException();
             }
         }
@@ -406,7 +456,12 @@ public class HttpApi {
         public abstract HttpRequest build_request(AuthenticatorsController auth);
     }
 
-    public static class AuthErrorException extends Exception{}
-    public static class RequestDataErrorException extends Exception{}
-    public static class NetworkErrorException extends Exception{}
+    public static class AuthErrorException extends Exception {
+    }
+
+    public static class RequestDataErrorException extends Exception {
+    }
+
+    public static class NetworkErrorException extends Exception {
+    }
 }

@@ -4,13 +4,16 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 import com.mindpin.android.authenticator.IUser;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.http.Uploader;
+import com.realityandapp.paopao_customer.models.interfaces.ICartGoodsData;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.Calendar;
 
 /**
@@ -81,5 +84,4 @@ public class User extends IUser implements Serializable {
     public String get_avatar_url(){
         return HttpApi.SITE + avatar.get_default();
     }
-
 }

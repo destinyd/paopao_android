@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/ActionBar"
+        >
+    <Button android:layout_width="wrap_content" android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/sign_up"
+            android:id="@+id/btn_sign_up"
+            />
+    <TextView
+            style="@style/ActionBarTitle"
+            android:id="@+id/title"
+            android:layout_toLeftOf="@id/fa_btn_ok"
+            android:layout_marginLeft="10dp"
+            />
+</RelativeLayout>

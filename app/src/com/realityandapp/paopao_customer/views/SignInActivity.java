@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.mindpin.android.authenticator.AuthCallback;
 import com.mindpin.android.authenticator.IUser;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
 import com.realityandapp.paopao_customer.models.User;
@@ -21,30 +22,38 @@ import roboguice.inject.InjectView;
  */
 public class SignInActivity extends PaopaoBaseActivity {
     AuthenticatorsController myAuthenticator;
-    User current_user;
-
-    //    AuthenticatorsController myAuthenticator;
-//    User current_user;
     @InjectView(R.id.et_login)
     EditText et_login;
     @InjectView(R.id.et_password)
     EditText et_password;
     @InjectView(R.id.btn_signin)
     Button btn_signin;
+    @InjectView(R.id.btn_sign_up)
+    Button btn_sign_up;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.sign_in);
         setTitle("登录");
         myAuthenticator = new AuthenticatorsController(this);
-//        current_user = User.current();
-        btn_signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println(et_login.getText().toString());
-                System.out.println(et_password.getText().toString());
+        btn_signin.setOnClickListener(this);
+        btn_sign_up.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(User.current() != null) {
+            finish();
+            return;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_signin:
                 // 关闭软键盘
                 // 如果不关闭软键盘会触发下个页面的抽屉导航BUG，从而使页面显示不正常
                 // 先用关闭软键盘的方式避免触发抽屉导航BUG
@@ -54,7 +63,6 @@ public class SignInActivity extends PaopaoBaseActivity {
                 }
 
                 btn_signin.setEnabled(false);
-                System.out.println("get_sign_in_url():" + myAuthenticator.get_sign_in_url());
                 myAuthenticator.sign_in(
                         et_login.getText().toString(),
                         et_password.getText().toString(),
@@ -77,7 +85,27 @@ public class SignInActivity extends PaopaoBaseActivity {
                                 btn_signin.setEnabled(true);
                             }
                         });
-            }
-        });
+                break;
+            case R.id.btn_sign_up:
+                go_to_sign_up();
+                break;
+            default:
+                super.onClick(v);
+        }
+    }
+
+    private void go_to_sign_up() {
+        startActivityForResult(new Intent(this, SignUpActivity.class), Constants.Request.USER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case Constants.Request.USER:
+                if (resultCode == RESULT_OK) {
+                    finish();
+                }
+                break;
+        }
     }
 }

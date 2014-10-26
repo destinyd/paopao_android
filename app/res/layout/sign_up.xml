@@ -1,10 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
-    <include layout="@layout/actionbar" android:id="@+id/actionbar"/>
+    <include layout="@layout/actionbar_back" android:id="@+id/actionbar"/>
 
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_below="@id/actionbar"
+            >
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent"
                       android:orientation="vertical"
@@ -16,23 +18,39 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/label_name"
+                    android:id="@+id/label_name"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:id="@+id/et_name"
+                    android:hint="@string/hint_name"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_sign_up_password"
+                    android:id="@+id/label_password"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:hint="@string/hint_password"
+                    android:id="@+id/et_password"/>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/label_phone"
                     android:id="@+id/label_login"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:id="@+id/et_phone"/>
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_verify_code"
-                    android:id="@+id/label_phone_verify"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:id="@+id/et_verify_code"/>
+                    android:id="@+id/et_phone"
+                    android:hint="@string/hint_phone"
+                    />
 
             <Button android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:text="@string/get_verify_code"
@@ -42,25 +60,14 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_name"
-                    android:id="@+id/label_name"/>
+                    android:text="@string/label_verify_code"
+                    android:id="@+id/label_phone_verify"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:id="@+id/et_name"/>
-
-            <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/label_password"
-                    android:id="@+id/label_password"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:inputType="textPassword"
-                    android:id="@+id/et_password"/>
+                    android:id="@+id/et_verify_code"
+                    />
 
             <TextView
                     android:layout_width="match_parent"
@@ -71,13 +78,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:id="@+id/et_email"/>
-
+                    android:id="@+id/et_email"
+                    android:hint="@string/hint_email"
+                    />
             <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/sign_up"
-                    android:id="@+id/btn_signup"/>
+                    android:background="@drawable/background_cart_submit_button"
+                    android:id="@+id/btn_sign_up"
+                    android:minHeight="40dp"
+                    android:textColor="@android:color/white"/>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <com.mindpin.android.loadingview.LoadingView
+            android:id="@+id/loading_view"
+            style="@style/LoadingViewWithActionBar"
+            android:visibility="gone"
+            />
+</RelativeLayout>
