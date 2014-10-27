@@ -97,7 +97,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/sign_up"
-                    android:background="@drawable/background_cart_submit_button"
+                    android:background="@drawable/button"
                     android:id="@+id/btn_sign_up"
                     android:minHeight="40dp"
                     android:textColor="@android:color/white"/>

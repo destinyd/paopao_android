@@ -15,7 +15,9 @@
                 android:id="@+id/btn_action"
                 android:text="支付"
                 android:layout_centerVertical="true"
-                android:background="@drawable/background_cart_submit_button"
+                android:background="@drawable/button"
+                android:textColor="@android:color/white"
+                android:minHeight="40dp"
                 />
         <RelativeLayout
                 android:id="@+id/desc_section"
