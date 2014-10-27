@@ -8,6 +8,8 @@
             android:layout_alignParentRight="true"
             android:text="@string/sign_up"
             android:id="@+id/btn_sign_up"
+            android:background="@drawable/action_button"
+            android:textColor="@android:color/white"
             />
     <TextView
             style="@style/ActionBarTitle"
