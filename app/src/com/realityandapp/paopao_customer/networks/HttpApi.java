@@ -387,7 +387,7 @@ public class HttpApi {
         }.request();
     }
 
-    public static User sign_up(
+    public static String sign_up(
             final String phone, final String verify_code, final String password,
             final String name, final String email
     ) {
@@ -406,12 +406,13 @@ public class HttpApi {
         int code = request.code();
         System.out.println("sign up body:" + body);
         System.out.println("sign up code:" + code);
-        if (code >= 200 && code < 300) {
-            Gson gson = new Gson();
-            return gson.fromJson(body, User.class);
-        } else {
-            return null;
-        }
+        return body;
+//        if (code >= 200 && code < 300) {
+//            Gson gson = new Gson();
+//            return gson.fromJson(body, User.class);
+//        } else {
+//            return null;
+//        }
     }
 
     public static Integer get_verify_code(String phone) {

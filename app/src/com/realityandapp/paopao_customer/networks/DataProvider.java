@@ -96,7 +96,7 @@ public class DataProvider {
         return HttpApi.save_shop_cart(shop_cart);
     }
 
-    public static User sign_up(String phone, String verify_code, String password, String name, String email) {
+    public static String sign_up(String phone, String verify_code, String password, String name, String email) {
         return HttpApi.sign_up(phone, verify_code, password, name, email);
     }
 

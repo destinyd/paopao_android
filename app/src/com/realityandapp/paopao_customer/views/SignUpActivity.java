@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
@@ -18,6 +22,8 @@ import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -148,7 +154,7 @@ public class SignUpActivity extends PaopaoBaseActivity {
     private void btn_get_verify_code_delay(int i) {
         btn_get_verify_code.setEnabled(false);
         get_verify_code_resume_seconds = i;
-        new RoboAsyncTask<Void>(this){
+        new RoboAsyncTask<Void>(this) {
 
             @Override
             public Void call() throws Exception {
@@ -176,9 +182,9 @@ public class SignUpActivity extends PaopaoBaseActivity {
                 || !valid_verify_code(verify_code) || !valid_or_blank_email(email))
             return;
 
-        new RoboAsyncTask<User>(this) {
+        new RoboAsyncTask<String>(this) {
             @Override
-            public User call() throws Exception {
+            public String call() throws Exception {
                 return DataProvider.sign_up(phone, verify_code, password, name, email);
             }
 
@@ -189,14 +195,26 @@ public class SignUpActivity extends PaopaoBaseActivity {
             }
 
             @Override
-            protected void onSuccess(User user) throws Exception {
-                super.onSuccess(user);
-                if(user != null){
-                    user.save();
-                    finish_with_ok();
-                }else {
-                    alert_errors();
+            protected void onSuccess(String body) throws Exception {
+                super.onSuccess(body);
+                Gson gson = new Gson();
+                if (body != null) {
+                    try {
+                        JsonObject jo = gson.fromJson(body, JsonObject.class);
+                        JsonObject errors = jo.get("errors").getAsJsonObject();
+                        if (errors != null) {
+                            alert_errors(errors);
+                        } else {
+                            User user = gson.fromJson(body, User.class);
+                            user.save();
+                            finish_with_ok();
+                        }
+                        return;
+                    } catch (Exception ex) {
+                        System.out.println("onSuccess catch:" + ex.getMessage());
+                    }
                 }
+                alert_errors();
             }
 
             @Override
@@ -213,26 +231,51 @@ public class SignUpActivity extends PaopaoBaseActivity {
         }.execute();
     }
 
+    private void alert_errors(JsonObject errors) {
+        StringBuilder sb = new StringBuilder();
+        boolean is_first = true;
+        boolean is_key_error_first;
+        for (Map.Entry<String, JsonElement> error : errors.entrySet()) {
+            if (!is_first)
+                sb.append("\r\n");
+            System.out.println("error.getKey():" + error.getKey());
+            sb.append(getStringResourceByName("params_" + error.getKey()));
+            sb.append(":");
+            is_key_error_first = true;
+            Iterator<JsonElement> iterator = error.getValue().getAsJsonArray().iterator();
+            while (iterator.hasNext()) {
+                if (!is_key_error_first)
+                    sb.append(",");
+                sb.append(iterator.next().getAsString());
+                is_key_error_first = false;
+            }
+            is_first = false;
+        }
+        Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
+    }
+
     private boolean valid_password() {
-        boolean b = et_password.getText().toString().equals(et_password_confirmation.getText().toString())
-                && et_password.getText().toString().length() >= 6;
-        if(!b)
+        boolean b1 = et_password.getText().toString().equals(et_password_confirmation.getText().toString());
+        boolean b2 = et_password.getText().toString().length() >= 6;
+        if (!b2)
+            Toast.makeText(this, "您输入密码位数少于6位", Toast.LENGTH_LONG).show();
+        if (!b1)
             Toast.makeText(this, "您两次输入的密码不一致", Toast.LENGTH_LONG).show();
-        return b;
+        return b1 && b2;
     }
 
     private boolean valid_verify_code(String verify_code) {
         Pattern pattern = Pattern.compile(VERIFY_CODE_PATTERN);
         Matcher matcher = pattern.matcher(verify_code);
         boolean b = matcher.matches();
-        if(!b)
+        if (!b)
             Toast.makeText(this, "您的手机验证码填写不正确", Toast.LENGTH_LONG).show();
         return b;
     }
 
     private boolean valid_or_blank_email(String email) {
         boolean b = TextUtils.isEmpty(email) || !valid_email(email);
-        if(!b)
+        if (!b)
             Toast.makeText(this, "您的邮箱填写不正确", Toast.LENGTH_LONG).show();
         return b;
     }
@@ -247,7 +290,7 @@ public class SignUpActivity extends PaopaoBaseActivity {
         Pattern pattern = Pattern.compile(NAME_PATTERN);
         Matcher matcher = pattern.matcher(name);
         boolean b = matcher.matches();
-        if(!b)
+        if (!b)
             Toast.makeText(this, "您的昵称填写不正确", Toast.LENGTH_LONG).show();
         return b;
     }
@@ -266,8 +309,17 @@ public class SignUpActivity extends PaopaoBaseActivity {
         Pattern pattern = Pattern.compile(PHONE_PATTERN);
         Matcher matcher = pattern.matcher(phone);
         boolean b = matcher.matches();
-        if(!b)
+        if (!b)
             Toast.makeText(this, "您的手机号码填写不正确", Toast.LENGTH_LONG).show();
         return b;
+    }
+
+    private String getStringResourceByName(String aString) {
+        String packageName = getPackageName();
+        int resId = getResources().getIdentifier(aString, "string", packageName);
+        if (resId != 0)
+            return getString(resId);
+        else
+            return aString;
     }
 }

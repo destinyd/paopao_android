@@ -50,5 +50,11 @@
     <string name="label_sign_up_password_confirmation">* 密码验证</string>
     <string name="hint_password_confirmation">请再输入一边密码</string>
     <string name="hint_verify_code">请点击上方按钮获取</string>
+    <string name="params_name">昵称</string>
+    <string name="params_password">密码</string>
+    <string name="params_password_confirmation">密码验证</string>
+    <string name="params_verify_code">手机验证码</string>
+    <string name="params_email">Email</string>
+
 
 </resources>
