@@ -47,7 +47,8 @@ public class HttpApi {
     public static final String FORMAT_SET_DEFAULT_ADDRESS = USER_SITE + "/addresses/%s/set_default.json";
     public static final String FORMAT_CALCULATE_DISTANCE = USER_SITE + "/addresses/%s/calculate_distance.json";
     public static final String USERS = SITE + "/users.json";
-    public static final String GET_VERIFY_CODE = SITE + "/users/get_reg_verify_code";
+    public static final String GET_VERIFY_CODE = SITE + "/users/get_reg_verify_code.json";
+    public static final String USER_INFO = USER_SITE + "/userinfo.json";
 
     /**
      * http api url end
@@ -387,6 +388,25 @@ public class HttpApi {
         }.request();
     }
 
+    public static User user_info() throws RequestDataErrorException, AuthErrorException, NetworkErrorException {
+        return new RequestProcess<User>() {
+
+            @Override
+            public User call(RequestResult rr) {
+                System.out.println("save_address body:" + rr.body);
+                Gson gson = new Gson();
+                return gson.fromJson(rr.body, User.class);
+            }
+
+            @Override
+            public HttpRequest build_request(AuthenticatorsController auth) {
+                HttpRequest request = auth.get_http_request(USER_INFO, "GET");
+                request.accept("application/json");
+                return request;
+            }
+        }.request();
+    }
+
     public static String sign_up(
             final String phone, final String verify_code, final String password,
             final String name, final String email
@@ -428,6 +448,7 @@ public class HttpApi {
         }
         return time_left;
     }
+
     //////////////////
 
     /**

@@ -201,13 +201,15 @@ public class SignUpActivity extends PaopaoBaseActivity {
                 if (body != null) {
                     try {
                         JsonObject jo = gson.fromJson(body, JsonObject.class);
-                        JsonObject errors = jo.get("errors").getAsJsonObject();
-                        if (errors != null) {
-                            alert_errors(errors);
-                        } else {
+                        JsonObject errors = null;
+                        if(jo.get("errors") != null)
+                            errors = jo.get("errors").getAsJsonObject();
+                        if (errors == null) {
                             User user = gson.fromJson(body, User.class);
                             user.save();
                             finish_with_ok();
+                        } else {
+                            alert_errors(errors);
                         }
                         return;
                     } catch (Exception ex) {

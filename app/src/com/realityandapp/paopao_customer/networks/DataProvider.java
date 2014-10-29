@@ -103,4 +103,8 @@ public class DataProvider {
     public static Integer get_verify_code(String phone) {
         return HttpApi.get_verify_code(phone);
     }
+
+    public static User user_info() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.user_info();
+    }
 }

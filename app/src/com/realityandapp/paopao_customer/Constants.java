@@ -24,6 +24,7 @@ public class Constants {
         public static final int CART = 13;
         public static final int SHOP_CART = 14;
         public static final int USER = 1;
+        public static final int SETTING = 21;
     }
     
     public static class Format{

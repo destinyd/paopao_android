@@ -155,7 +155,6 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
 //	}
     @Override
     protected void onDestroy() {
-        System.out.println("on destroy");
         super.onDestroy();
         // 注销广播接收者
         try {
@@ -660,12 +659,12 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (User.current() == null) {
-            startActivity(new Intent(this, SignInActivity.class));
-            return;
-        } else {
+//        if (User.current() == null) {
+//            startActivity(new Intent(this, SignInActivity.class));
+//            return;
+//        } else {
             shopsFragment.get_datas();
-        }
+//        }
         if (!isConflict) {
 //			updateUnreadLabel();
 //			updateUnreadAddressLable();
@@ -675,17 +674,17 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
     }
 
     //    // 不给退出？
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            boolean b = moveTaskToBack(false);
-            System.out.println("b:" + b);
-//            finish();
-//            return true;
-//            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            boolean b = moveTaskToBack(false);
+//            System.out.println("b:" + b);
+////            finish();
+////            return true;
+////            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     private AlertDialog.Builder conflictBuilder;
     private boolean isConflictDialogShow;

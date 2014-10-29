@@ -49,6 +49,7 @@ public class ShopsFragment extends PaopaoBaseFragment {
     }
 
     public  void get_datas() {
+        System.out.println("loaded:" + loaded);
         if(!loaded)
         new PaopaoAsyncTask<Void>(getActivity()){
 

@@ -7,6 +7,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.*;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -75,7 +76,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
                 startActivity(new Intent(this, AddressesActivity.class));
                 break;
             case R.id.menu_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
+                startActivityForResult(new Intent(this, SettingsActivity.class), Constants.Request.SETTING);
                 break;
             case R.id.menu_exit:
                 alert_exit();
@@ -108,5 +109,15 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
                         finish();
                     }
                 }).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == Constants.Request.SETTING && resultCode == RESULT_OK){
+            // logout
+            finish();
+            System.exit(1);
+        }
     }
 }

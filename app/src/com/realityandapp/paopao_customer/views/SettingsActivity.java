@@ -1,10 +1,12 @@
 package com.realityandapp.paopao_customer.views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
@@ -30,6 +32,9 @@ public class SettingsActivity extends PaopaoBaseActivity {
             public void onClick(View v) {
                 System.out.println("sign out");
                 DataProvider.sign_out();
+                PaopaoCustomerApplication.getInstance().logout();
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

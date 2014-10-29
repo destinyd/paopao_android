@@ -16,9 +16,12 @@ import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGener
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.models.test.im.DbOpenHelper;
 import com.realityandapp.paopao_customer.models.test.im.IMUser;
 import com.realityandapp.paopao_customer.models.test.im.IMUserDao;
+import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.networks.HttpApi;
 import com.realityandapp.paopao_customer.utils.im.PreferenceUtils;
 import com.realityandapp.paopao_customer.views.im.ChatActivity;
 
@@ -73,6 +76,11 @@ public class PaopaoCustomerApplication extends Application {
         return mGeofenceClient;
     }
 
+    public void im_login() {
+        User user = User.current();
+        im_login(user.name, user.im_uuid);
+    }
+
 //    private void register_receive() {
 //        NewMessageBroadcastReceiver msgReceiver = new NewMessageBroadcastReceiver();
 //        IntentFilter intentFilter = new IntentFilter(EMChatManager.getInstance().getNewMessageBroadcastAction());
@@ -115,8 +123,6 @@ public class PaopaoCustomerApplication extends Application {
             // 则此application::onCreate 是被service 调用的，直接返回
             return;
         }
-        applicationContext = this;
-        instance = this;
         EMChat.getInstance().setDebugMode(true);
         // 初始化环信SDK,一定要先调用init()
         EMChat.getInstance().init(applicationContext);
@@ -189,9 +195,8 @@ public class PaopaoCustomerApplication extends Application {
         EMChatManager.getInstance().addConnectionListener(new MyConnectionListener());
     }
 
-    private void login() {
-        final String username = "test1";
-        final String password = "123456";
+    public void im_login(final String username, final String password) {
+        currentUserNick = username;
         // 调用sdk登陆方法登陆聊天服务器
         EMChatManager.getInstance().login(username, password, new EMCallBack() {
 
@@ -209,16 +214,10 @@ public class PaopaoCustomerApplication extends Application {
 
             @Override
             public void onError(int code, final String message) {
+                System.out.println("onError message:" + message);
                 Toast.makeText(getApplicationContext(), "登录失败: " + message, 0).show();
             }
         });
-//        try {
-//            EMContactManager.getInstance().addContact("test1", "add");
-//        } catch (EaseMobException e) {
-//            e.printStackTrace();
-//        }
-
-
     }
 
     public void init_image_config() {

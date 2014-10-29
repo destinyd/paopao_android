@@ -36,8 +36,10 @@ public class User extends IUser implements Serializable {
     public String login;
     @Column(name = "Phone")
     public String phone;
-//    @Column(name = "Avatar")
-    private Uploader avatar;
+    //    @Column(name = "Avatar")
+    public Uploader avatar;
+    @Column(name = "IM_UUID")
+    public String im_uuid;
 
     @Column(name = "signed_in_at", index = true)
     public long signed_in_at;
@@ -57,8 +59,8 @@ public class User extends IUser implements Serializable {
         Select select = new Select();
         if (select != null &&
                 select
-                .from(User.class)
-                .orderBy("signed_in_at DESC").count() > 0)
+                        .from(User.class)
+                        .orderBy("signed_in_at DESC").count() > 0)
             return new Select()
                     .from(User.class)
                     .orderBy("signed_in_at DESC")
@@ -77,11 +79,11 @@ public class User extends IUser implements Serializable {
         }
     }
 
-    public static void delete_all(){
+    public static void delete_all() {
         new Delete().from(User.class).execute();
     }
 
-    public String get_avatar_url(){
+    public String get_avatar_url() {
         return HttpApi.SITE + avatar.get_default();
     }
 }
