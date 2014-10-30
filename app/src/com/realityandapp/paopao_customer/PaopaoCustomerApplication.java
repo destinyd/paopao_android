@@ -24,7 +24,11 @@ import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 import com.realityandapp.paopao_customer.utils.im.PreferenceUtils;
 import com.realityandapp.paopao_customer.views.im.ChatActivity;
+import sun.security.provider.MD5;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -78,7 +82,12 @@ public class PaopaoCustomerApplication extends Application {
 
     public void im_login() {
         User user = User.current();
-        im_login(user.name, user.im_uuid);
+        String im_id = md5(user.name + user.phone);
+        String im_password = user.im_uuid;
+        System.out.println("im_id:" + im_id);
+        System.out.println("im_password:" + im_password);
+        currentUserNick = user.name;
+        im_login(im_id, im_password);
     }
 
 //    private void register_receive() {
@@ -196,7 +205,6 @@ public class PaopaoCustomerApplication extends Application {
     }
 
     public void im_login(final String username, final String password) {
-        currentUserNick = username;
         // 调用sdk登陆方法登陆聊天服务器
         EMChatManager.getInstance().login(username, password, new EMCallBack() {
 
@@ -215,7 +223,7 @@ public class PaopaoCustomerApplication extends Application {
             @Override
             public void onError(int code, final String message) {
                 System.out.println("onError message:" + message);
-                Toast.makeText(getApplicationContext(), "登录失败: " + message, 0).show();
+//                Toast.makeText(getApplicationContext(), "登录失败: " + message, 0).show();
             }
         });
     }
@@ -420,5 +428,39 @@ public class PaopaoCustomerApplication extends Application {
         @Override
         public void onConnected() {
         }
+    }
+
+    public static String md5(String string) {
+
+        byte[] hash;
+
+        try {
+
+            hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
+
+        } catch (NoSuchAlgorithmException e) {
+
+            throw new RuntimeException("Huh, MD5 should be supported?", e);
+
+        } catch (UnsupportedEncodingException e) {
+
+            throw new RuntimeException("Huh, UTF-8 should be supported?", e);
+
+        }
+
+
+
+        StringBuilder hex = new StringBuilder(hash.length * 2);
+
+        for (byte b : hash) {
+
+            if ((b & 0xFF) < 0x10) hex.append("0");
+
+            hex.append(Integer.toHexString(b & 0xFF));
+
+        }
+
+        return hex.toString();
+
     }
 }
