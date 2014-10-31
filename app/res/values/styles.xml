@@ -27,9 +27,9 @@
     </style>
 
     <style name="TopicDesc">
-        <item name="android:gravity">left|center</item>
+        <item name="android:gravity">left|top</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:layout_below">@+id/topic_title</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textColor">#dddddd</item>
@@ -114,7 +114,7 @@
         <item name="android:layout_height">40dp</item>
     </style>
     <style name="LoadingViewWithActionBar">
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">gone</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@android:color/white</item>

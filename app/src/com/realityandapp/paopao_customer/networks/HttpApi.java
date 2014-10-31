@@ -80,7 +80,7 @@ public class HttpApi {
 
             @Override
             public IOrder call(RequestResult rr) {
-                System.out.println("body:" + rr.body);
+                System.out.println("my order body:" + rr.body);
                 Gson gson = new Gson();
                 return gson.fromJson(rr.body, Order.class);
             }
@@ -97,7 +97,7 @@ public class HttpApi {
 
             @Override
             public List<IShop> call(RequestResult rr) {
-                System.out.println("body:" + rr.body);
+                System.out.println("shops body:" + rr.body);
                 Type collectionType = new TypeToken<List<Shop>>() {
                 }.getType();
                 Gson gson = new Gson();
