@@ -1,5 +1,6 @@
 package com.realityandapp.paopao_customer.models.http;
 
+import com.realityandapp.paopao_customer.models.interfaces.IUploader;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
 /**
@@ -22,16 +23,18 @@ public class Uploader implements IUploader {
 
     @Override
     public String get_thumb() {
-        return thumb == null ? "/assets/noface_thumb.png" : thumb.get_url();
+        return thumb != null && !"/noface_thumb.png".equals(thumb.get_url()) ? thumb.get_url() : "/assets/noface_thumb.png";
     }
 
     @Override
     public String get_android() {
-        return android == null ? "/assets/noface_android.png" : android.get_url();
+        System.out.println("android.get_url():" + android.get_url());
+        System.out.println("!\"/noface_android.png\".equals(android.get_url()" + !"noface_android.png".equals(android.get_url()));
+        return android != null && !"/noface_android.png".equals(android.get_url()) ? android.get_url() : "/assets/noface_android.png";
     }
 
     @Override
     public String get_show() {
-        return show == null ? "/assets/noface_show.png" : show.get_url();
+        return android != null && !"/noface_show.png".equals(show.get_url()) ? show.get_url() : "/assets/noface_show.png";
     }
 }

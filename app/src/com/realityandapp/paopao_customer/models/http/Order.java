@@ -2,7 +2,6 @@ package com.realityandapp.paopao_customer.models.http;
 
 import com.google.gson.*;
 import com.realityandapp.paopao_customer.models.interfaces.*;
-import com.realityandapp.paopao_customer.models.test.Address;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class Order implements IOrder {
     public static int i = 0;
-    public String _id;
+    public String id;
     public OrderStatus status;
     public Shop shop;
     public Address address;
@@ -122,7 +121,7 @@ public class Order implements IOrder {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
     @Override
@@ -145,16 +144,16 @@ public class Order implements IOrder {
     public static class OrderSerializer implements JsonSerializer<Order> {
         public JsonElement serialize(final Order order, final Type type, final JsonSerializationContext context) {
             JsonObject result = new JsonObject();
-            result.add("_id", new JsonPrimitive(order.get_id()));
+            result.add("id", new JsonPrimitive(order.get_id()));
             if(order.get_address() != null)
-                result.add("address_id", new JsonPrimitive(order.get_address().get_id()));
+                result.add("to_id", new JsonPrimitive(order.get_address().get_id()));
             if(order.get_to_id() != null)
                 result.add("to_id", new JsonPrimitive(order.get_to_id()));
             final JsonArray cart_goods_data = new JsonArray();
             for (final ICartGoodsData data : order.get_order_items()) {
                 JsonObject obj_cart_goods_data = new JsonObject();
                 if (data.get_id() != null)
-                    obj_cart_goods_data.add("_id", new JsonPrimitive(data.get_id()));
+                    obj_cart_goods_data.add("id", new JsonPrimitive(data.get_id()));
                 obj_cart_goods_data.add("plus", new JsonPrimitive(data.get_plus()));
                 cart_goods_data.add(obj_cart_goods_data);
             }

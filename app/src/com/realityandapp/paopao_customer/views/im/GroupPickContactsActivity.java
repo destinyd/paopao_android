@@ -29,7 +29,7 @@ import com.easemob.chat.EMGroupManager;
 import com.realityandapp.paopao_customer.IMConstant;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.im.IMUser;
+import com.realityandapp.paopao_customer.models.http.im.IMUser;
 import com.realityandapp.paopao_customer.views.adapter.im.ContactAdapter;
 import com.realityandapp.paopao_customer.widget.im.Sidebar;
 

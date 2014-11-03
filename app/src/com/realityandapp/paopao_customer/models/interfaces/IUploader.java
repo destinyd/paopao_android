@@ -1,4 +1,4 @@
-package com.realityandapp.paopao_customer.models.http;
+package com.realityandapp.paopao_customer.models.interfaces;
 
 /**
  * Created by DD on 14-10-17.

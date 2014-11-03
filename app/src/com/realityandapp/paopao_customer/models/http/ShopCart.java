@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ShopCart implements IShopCart {
     //    @Expose
-    public String _id;
+    public String id;
     //    @Expose
     public String shop_id;
     public Shop shop = null;
@@ -30,7 +30,7 @@ public class ShopCart implements IShopCart {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
     @Override
@@ -152,7 +152,7 @@ public class ShopCart implements IShopCart {
         public JsonElement serialize(final ShopCart shop_cart, final Type type, final JsonSerializationContext context) {
             JsonObject result = new JsonObject();
             if (shop_cart.get_id() != null)
-                result.add("_id", new JsonPrimitive(shop_cart.get_id()));
+                result.add("id", new JsonPrimitive(shop_cart.get_id()));
             result.add("shop_id", new JsonPrimitive(shop_cart.get_shop_id()));
             if (shop_cart.get_to_id() != null)
                 result.add("to_id", new JsonPrimitive(shop_cart.get_to_id()));
@@ -160,7 +160,7 @@ public class ShopCart implements IShopCart {
             for (final ICartGoodsData data : shop_cart.get_cart_items()) {
                 JsonObject obj_cart_goods_data = new JsonObject();
                 if (data.get_id() != null)
-                    obj_cart_goods_data.add("_id", new JsonPrimitive(data.get_id()));
+                    obj_cart_goods_data.add("id", new JsonPrimitive(data.get_id()));
                 obj_cart_goods_data.add("amount", new JsonPrimitive(data.get_amount()));
                 obj_cart_goods_data.add("good_id", new JsonPrimitive(data.get_good_id()));
                 obj_cart_goods_data.add("plus", new JsonPrimitive(data.get_plus()));

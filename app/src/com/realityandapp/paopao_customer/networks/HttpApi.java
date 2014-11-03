@@ -3,7 +3,6 @@ package com.realityandapp.paopao_customer.networks;
 import com.github.kevinsawicki.http.HttpRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.mindpin.android.authenticator.RequestResult;
@@ -11,13 +10,12 @@ import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.controllers.AuthenticatorsController;
 import com.realityandapp.paopao_customer.models.User;
-import com.realityandapp.paopao_customer.models.UserReg;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 import com.realityandapp.paopao_customer.models.http.Order;
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.http.Good;
 import com.realityandapp.paopao_customer.models.http.ShopCart;
-import com.realityandapp.paopao_customer.models.test.Address;
+import com.realityandapp.paopao_customer.models.http.Address;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -206,8 +204,9 @@ public class HttpApi {
                         new GsonBuilder().registerTypeAdapter(ShopCart.class, new ShopCart.ShopCartSerializer())
                                 .create();
                 String json = gson.toJson(shop_cart);
-                System.out.println("json:\r\n" + json);
-                request.send(json);
+                System.out.println("shop_cart_to_order json:\r\n" + json);
+//                request.send(json);
+                request.part("cart", json);
                 return request;
             }
         }.request();
@@ -312,7 +311,8 @@ public class HttpApi {
                                 .create();
                 String json = gson.toJson(shop_cart);
                 System.out.println("shop cart json:\r\n" + json);
-                request.send(json);
+                request.part("cart", json);
+//                request.send(json);
                 return request;
             }
         }.request();
@@ -354,8 +354,9 @@ public class HttpApi {
                         new GsonBuilder().registerTypeAdapter(Order.class, new Order.OrderSerializer())
                                 .create();
                 String json = gson.toJson(order);
-                System.out.println("order json:\r\n" + json);
-                request.send(json);
+                System.out.println("save order json:\r\n" + json);
+//                request.send(json);
+                request.part("order", json);
                 return request;
             }
         }.request();

@@ -1,28 +1,27 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
 import com.realityandapp.paopao_customer.models.interfaces.IAddress;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by dd on 14-9-21.
  */
 public class Address implements IAddress {
-    private String _id;
-    private List<Double> coordinates = new ArrayList<Double>();
+    private String id;
+//    private List<Double> coordinates = new ArrayList<Double>();
     private String address;
     private String realname;
     private String phone;
     private String plus;
+    private double latitude;
+    private double longitude;
 
     public Address() {
 //        i++;
-//        _id = String.valueOf(i);
-//        address = "地址" + _id;
-//        realname = "姓名" + _id;
+//        id = String.valueOf(i);
+//        address = "地址" + id;
+//        realname = "姓名" + id;
 //        phone = String.format("133%08d", new Random().nextInt(100000000));
 //        coordinates.add((new Random().nextDouble() - 0.5f) * 360 ); //lng
 //        coordinates.add((new Random().nextDouble() - 0.5f) * 180); //lat
@@ -48,19 +47,19 @@ public class Address implements IAddress {
         return plus;
     }
 
+//    @Override
+//    public List<Double> get_coordinates() {
+//        return coordinates;
+//    }
+
     @Override
-    public List<Double> get_coordinates() {
-        return coordinates;
+    public double get_latitude() {
+        return latitude;
     }
 
     @Override
-    public Double get_latitude() {
-        return coordinates == null ? null : coordinates.get(2);
-    }
-
-    @Override
-    public Double get_longitude() {
-        return coordinates == null ? null : coordinates.get(1);
+    public double get_longitude() {
+        return longitude;
     }
 
     @Override
@@ -70,16 +69,24 @@ public class Address implements IAddress {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
-    public void set_coordinates(Double latitude, Double longitude) {
-        System.out.println("latitude:" + latitude);
-        System.out.println("longitude:" + longitude);
-        List<Double> tmp = new ArrayList<Double>();
-        tmp.add(longitude);
-        tmp.add(latitude);
-        this.coordinates = tmp;
+//    public void set_coordinates(Double latitude, Double longitude) {
+//        System.out.println("latitude:" + latitude);
+//        System.out.println("longitude:" + longitude);
+//        List<Double> tmp = new ArrayList<Double>();
+//        tmp.add(longitude);
+//        tmp.add(latitude);
+//        this.coordinates = tmp;
+//    }
+
+    public void set_latitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void set_longitude(double longitude) {
+        this.longitude = longitude;
     }
 
     @Override

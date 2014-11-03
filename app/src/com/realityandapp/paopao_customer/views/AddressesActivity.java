@@ -16,7 +16,6 @@ import com.realityandapp.paopao_customer.views.adapter.AddressesAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectView;
-import roboguice.util.RoboAsyncTask;
 
 import java.util.List;
 

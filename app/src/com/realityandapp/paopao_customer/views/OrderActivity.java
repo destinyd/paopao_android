@@ -20,7 +20,6 @@ import com.realityandapp.paopao_customer.views.im.ChatActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
-import roboguice.util.RoboAsyncTask;
 
 /**
  * Created by dd on 14-9-18.

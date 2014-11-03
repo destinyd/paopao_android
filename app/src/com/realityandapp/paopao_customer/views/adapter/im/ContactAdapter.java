@@ -27,7 +27,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import com.realityandapp.paopao_customer.IMConstant;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.im.IMUser;
+import com.realityandapp.paopao_customer.models.http.im.IMUser;
 import com.realityandapp.paopao_customer.widget.im.Sidebar;
 
 import java.util.ArrayList;

@@ -10,16 +10,16 @@ public class Good implements IGood {
     private String unit;
 //    private float price;
     private float human_price;
-    private String _id;
+    private String id;
     private String name;
     private String description;
     private Uploader image;
 
     public Good() {
         i++;
-        _id = String.valueOf(i);
-        name = "good" + _id;
-        description = "good description" + _id;
+        id = String.valueOf(i);
+        name = "good" + id;
+        description = "good description" + id;
 //        price = i;
         unit = "份";
 //        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
@@ -27,9 +27,9 @@ public class Good implements IGood {
 
     public Good(String id) {
         i++;
-        _id = id;
-        name = "good" + _id;
-        description = "good description" + _id;
+        id = id;
+        name = "good" + id;
+        description = "good description" + id;
 //        price = i;
         unit = "份";
 //        image = "http://meishipaopao.dev.realityandapp.com/assets/noface_android.png";
@@ -62,7 +62,7 @@ public class Good implements IGood {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
 }

@@ -23,7 +23,7 @@ import com.easemob.util.DateUtils;
 import com.easemob.util.TextFormater;
 import com.realityandapp.paopao_customer.BuildConfig;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.im.VideoEntity;
+import com.realityandapp.paopao_customer.models.http.im.VideoEntity;
 import com.realityandapp.paopao_customer.utils.im.video.util.ImageCache;
 import com.realityandapp.paopao_customer.utils.im.video.util.ImageResizer;
 import com.realityandapp.paopao_customer.utils.im.video.util.Utils;

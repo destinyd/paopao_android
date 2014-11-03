@@ -17,7 +17,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.im.IMUser;
+import com.realityandapp.paopao_customer.models.http.im.IMUser;
 import com.realityandapp.paopao_customer.views.im.ChatActivity;
 import com.realityandapp.paopao_customer.views.im.PickContactNoCheckboxActivity;
 

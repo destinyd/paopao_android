@@ -16,7 +16,7 @@ public class CartGoodsData implements ICartGoodsData {
     private String good_name = "";
     private String good_unit = "";
 
-    private String _id;
+    private String id;
     private String plus = "";
 
     public CartGoodsData() {
@@ -67,7 +67,7 @@ public class CartGoodsData implements ICartGoodsData {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
     @Override

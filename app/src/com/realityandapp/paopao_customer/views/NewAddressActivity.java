@@ -27,7 +27,7 @@ import com.mindpin.android.loadingview.LoadingView;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.test.Address;
+import com.realityandapp.paopao_customer.models.http.Address;
 import com.realityandapp.paopao_customer.views.adapter.SuggestionResultsAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
@@ -176,7 +176,9 @@ public class NewAddressActivity extends PaopaoBaseActivity implements OnGetPoiSe
     private void create_address() {
         address = new Address();
         address.set_address(actv_address.getText().toString());
-        address.set_coordinates(latitude, longitude);
+        address.set_latitude(latitude);
+        address.set_longitude(longitude);
+//        address.set_coordinates(latitude, longitude);
     }
 
     private void go_to_fill_contact() {

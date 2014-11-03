@@ -24,7 +24,7 @@ public class User extends IUser implements Serializable {
     private static final String TAG = "User";
 
     // 下面几个字段根据具体业务逻辑确定
-    @SerializedName("_id")
+    @SerializedName("id")
     @Column(name = "Server_user_id")
     public String server_user_id;
 

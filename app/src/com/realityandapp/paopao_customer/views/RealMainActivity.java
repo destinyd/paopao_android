@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,11 +17,10 @@ import com.readystatesoftware.viewbadger.BadgeView;
 import com.realityandapp.paopao_customer.IMConstant;
 import com.realityandapp.paopao_customer.PaopaoCustomerApplication;
 import com.realityandapp.paopao_customer.R;
-import com.realityandapp.paopao_customer.models.User;
-import com.realityandapp.paopao_customer.models.test.im.IMUser;
-import com.realityandapp.paopao_customer.models.test.im.IMUserDao;
-import com.realityandapp.paopao_customer.models.test.im.InviteMessage;
-import com.realityandapp.paopao_customer.models.test.im.InviteMessgeDao;
+import com.realityandapp.paopao_customer.models.http.im.IMUser;
+import com.realityandapp.paopao_customer.models.http.im.IMUserDao;
+import com.realityandapp.paopao_customer.models.http.im.InviteMessage;
+import com.realityandapp.paopao_customer.models.http.im.InviteMessgeDao;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseIncludeDrawerActivity;
 import com.realityandapp.paopao_customer.views.fragment.ShopsFragment;
 import com.realityandapp.paopao_customer.views.im.ChatAllHistoryFragment;
@@ -129,7 +127,7 @@ public class RealMainActivity extends PaopaoBaseIncludeDrawerActivity {
      * button点击事件
      */
 //	public void onTabClicked(View view) {
-//		switch (view.getId()) {
+//		switch (view.get_id()) {
 //		case R.id.btn_conversation:
 //			index = 0;
 //			break;

@@ -1,4 +1,4 @@
-package com.realityandapp.paopao_customer.models.test;
+package com.realityandapp.paopao_customer.models.http;
 
 import com.realityandapp.paopao_customer.models.http.Shop;
 import com.realityandapp.paopao_customer.models.interfaces.ICartData;
@@ -13,15 +13,13 @@ import java.util.Random;
  * Created by dd on 14-9-18.
  */
 public class CartData implements ICartData {
-    public static int i = 0;
-    public String _id;
+    public String id;
     public Shop shop;
     public int shop_discount;
     public float shop_delivery_price;
     public List<ICartGoodsData> goods = new ArrayList<ICartGoodsData>();
 
     public CartData() {
-        i++;
         shop = new Shop();
         shop_discount = 1 + new Random().nextInt(5000);
 //        for(int i=0; i < 1 + new Random().nextInt(5); i++){
@@ -32,12 +30,12 @@ public class CartData implements ICartData {
 
     @Override
     public String get_id() {
-        return String.valueOf(i);
+        return id;
     }
 
     @Override
     public String get_shop_id() {
-        return _id;
+        return shop.id;
     }
 
     @Override

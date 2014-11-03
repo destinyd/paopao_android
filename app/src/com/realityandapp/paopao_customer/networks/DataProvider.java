@@ -3,8 +3,7 @@ package com.realityandapp.paopao_customer.networks;
 
 import com.google.gson.JsonObject;
 import com.realityandapp.paopao_customer.models.User;
-import com.realityandapp.paopao_customer.models.http.ShopCart;
-import com.realityandapp.paopao_customer.models.test.*;
+import com.realityandapp.paopao_customer.models.http.Cart;
 import com.realityandapp.paopao_customer.models.interfaces.*;
 
 import java.util.*;

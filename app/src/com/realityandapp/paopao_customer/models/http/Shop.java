@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Shop implements IShop {
     public static int i = 0;
-    public String _id;
+    public String id;
     public String name;
     public String address;
     public String description;
@@ -29,7 +29,7 @@ public class Shop implements IShop {
 
     @Override
     public String get_id() {
-        return _id;
+        return id;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer.models.http;
 
+import com.realityandapp.paopao_customer.models.interfaces.IUrlObject;
+
 /**
  * Created by DD on 14-10-17.
  */

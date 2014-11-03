@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.realityandapp.paopao_customer.models.test.im;
+package com.realityandapp.paopao_customer.models.http.im;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -12,9 +12,9 @@ public interface IAddress extends IBase {
     public String get_realname();
     public String get_phone();
     public String get_plus();
-    public List<Double> get_coordinates();
-    public Double get_latitude();
-    public Double get_longitude();
+//    public List<Double> get_coordinates();
+    public double get_latitude();
+    public double get_longitude();
     public IAddress save() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
 
     void set_address(String address);

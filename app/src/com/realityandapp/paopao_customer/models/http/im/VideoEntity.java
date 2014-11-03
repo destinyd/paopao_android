@@ -1,4 +1,4 @@
-package com.realityandapp.paopao_customer.models.test.im;
+package com.realityandapp.paopao_customer.models.http.im;
 
 public class VideoEntity {
 	public int ID;

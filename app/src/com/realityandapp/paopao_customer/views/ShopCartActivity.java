@@ -19,7 +19,6 @@ import com.realityandapp.paopao_customer.views.adapter.ShopCartGoodsDataAdapter;
 import com.realityandapp.paopao_customer.views.base.PaopaoBaseActivity;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
-import roboguice.util.RoboAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
