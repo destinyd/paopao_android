@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.mindpin.android.loadingview.LoadingView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.http.Order;
@@ -233,8 +234,13 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
     }
 
     private void show_qrcode() {
-        // todo show qr code for finish
-        System.out.println("show_qrcode");
+        ImageView iv_qrcode = new ImageView(this);
+        AlertDialog.Builder dialog_builder = new AlertDialog.Builder(this)
+                .setTitle("请将此二维码出示给跑跑")
+                .setView(iv_qrcode)
+                ;
+        ImageLoader.getInstance().displayImage(String.format(Constants.Format.QR_CODE, order.get_id()), iv_qrcode);
+        dialog_builder.create().show();
     }
 
     private void go_to_edit_order() {

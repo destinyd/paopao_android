@@ -1,5 +1,7 @@
 package com.realityandapp.paopao_customer;
 
+import com.realityandapp.paopao_customer.networks.HttpApi;
+
 /**
  * Created by DD on 14-9-27.
  */
@@ -39,5 +41,6 @@ public class Constants {
         public static final String TOTAL_CALCULATE = "￥%.2f X %d%s";
         public static final String DISTANCT = "%d米";
         public static final String VERIFY_CODE_TIMEOUT = "%d后可以重新发送";
+        public static final String QR_CODE = HttpApi.USER_SITE + "/orders/%s/qrcode";
     }
 }

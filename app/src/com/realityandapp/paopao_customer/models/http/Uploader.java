@@ -28,8 +28,6 @@ public class Uploader implements IUploader {
 
     @Override
     public String get_android() {
-        System.out.println("android.get_url():" + android.get_url());
-        System.out.println("!\"/noface_android.png\".equals(android.get_url()" + !"noface_android.png".equals(android.get_url()));
         return android != null && !"/noface_android.png".equals(android.get_url()) ? android.get_url() : "/assets/noface_android.png";
     }
 
