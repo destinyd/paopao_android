@@ -11,6 +11,8 @@ public class Deliveryman implements IDeliveryman {
     private String realname;
     private String phone;
     private String weixinid;
+    private String im_nickname;
+    private String im_id;
 
     public Deliveryman() {
         i++;
@@ -38,5 +40,15 @@ public class Deliveryman implements IDeliveryman {
     @Override
     public String get_weixinid() {
         return weixinid;
+    }
+
+    @Override
+    public String get_im_nickname() {
+        return im_nickname;
+    }
+
+    @Override
+    public String get_im_id() {
+        return im_id;
     }
 }

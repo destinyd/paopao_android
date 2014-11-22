@@ -7,4 +7,6 @@ public interface IDeliveryman extends IBase {
     public String get_realname();
     public String get_phone();
     public String get_weixinid();
+    public String get_im_nickname();
+    public String get_im_id();
 }

@@ -26,6 +26,8 @@ import com.easemob.chat.*;
 import com.easemob.util.DateUtils;
 import com.realityandapp.paopao_customer.IMConstant;
 import com.realityandapp.paopao_customer.R;
+import com.realityandapp.paopao_customer.networks.DataProvider;
+import com.realityandapp.paopao_customer.utils.PaopaoAsyncTask;
 import com.realityandapp.paopao_customer.utils.im.SmileUtils;
 
 import java.util.Date;
@@ -95,6 +97,8 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				holder.name.setText("申请与通知");
 			}
 			holder.name.setText(username);
+			if(username.length() == 32)
+				sync_name(username, holder.name);
 		}
 
 		if (conversation.getUnreadMsgCount() > 0) {
@@ -120,6 +124,21 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		}
 
 		return convertView;
+	}
+
+	private void sync_name(final String im_id, final TextView tv_name) {
+		new PaopaoAsyncTask<String>(getContext()) {
+			@Override
+			public String call() throws Exception {
+				return DataProvider.im_nickname(im_id);
+			}
+
+			@Override
+			protected void onSuccess(String im_nickname) throws Exception {
+				super.onSuccess(im_nickname);
+				tv_name.setText(im_nickname);
+			}
+		}.execute();
 	}
 
 	/**

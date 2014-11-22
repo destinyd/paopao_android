@@ -139,7 +139,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         if (order.get_deliveryman() == null) {
             ((View) tv_deliveryman.getParent()).setVisibility(View.GONE);
         } else {
-            tv_deliveryman.setText(order.get_deliveryman().get_realname());
+            tv_deliveryman.setText(order.get_deliveryman().get_im_nickname());
             ((View) tv_deliveryman.getParent()).setVisibility(View.VISIBLE);
         }
     }
@@ -217,7 +217,9 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
 
     private void go_to_im() {
         Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("userId", order.get_deliveryman().get_realname());
+        // todo
+        intent.putExtra("userId", order.get_deliveryman().get_im_id());
+        intent.putExtra("nickname", order.get_deliveryman().get_im_nickname());
         startActivity(intent);
     }
 

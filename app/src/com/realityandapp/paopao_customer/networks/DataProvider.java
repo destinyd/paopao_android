@@ -106,4 +106,8 @@ public class DataProvider {
     public static User user_info() throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
         return HttpApi.user_info();
     }
+
+    public static String im_nickname(String im_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException {
+        return HttpApi.im_nickname(im_id);
+    }
 }
