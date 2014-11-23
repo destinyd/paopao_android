@@ -359,6 +359,7 @@ public class ChatActivity extends PaopaoBaseActivity {
     }
 
     private void sync_title() {
+        if(toChatUsername.length() == 32)
         new PaopaoAsyncTask<String>(this) {
             @Override
             public String call() throws Exception {
