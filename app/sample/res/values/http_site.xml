@@ -1,0 +1,7 @@
+<resources>
+    <!-- http_site 设置自己的开发服务器地址 -->
+    <string name="http_site">http://meishipaopao.dev.realityandapp.com</string>
+    <string name="user_http_site">http://u.meishipaopao.dev.realityandapp.com</string>
+    <string name="deliveryman_http_site">http://d.meishipaopao.dev.realityandapp.com</string>
+    <string name="trader_http_site">http://t.meishipaopao.dev.realityandapp.com</string>
+</resources>
