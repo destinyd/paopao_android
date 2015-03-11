@@ -139,6 +139,16 @@ public class ShopCart implements IShopCart {
         return to_id;
     }
 
+    @Override
+    public boolean wrote_all_pluses() {
+        for (CartGoodsData good : cart_items) {
+            if (good.get_plus() == null || good.get_plus().length() == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public CartGoodsData get_good_data_by_id(String good_id) {
         for (CartGoodsData good : cart_items) {
             if (good.get_good_id().equals(good_id)) {

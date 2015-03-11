@@ -165,7 +165,21 @@ public class ShopCartActivity extends PaopaoBaseActivity {
                 go_to_new_address();
                 break;
             case R.id.btn_submit:
-                submit_cart();
+                if(shop_cart.wrote_all_pluses())
+                    submit_cart();
+                else {
+                    new AlertDialog.Builder(ShopCartActivity.this)
+                            .setTitle("你有商品未作备注")
+                            .setMessage("这样会导致骑手不知道您的口味，从而让您有不好的体验！\n你确定不作备注？")
+                            .setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    submit_cart();
+                                }
+                            })
+                            .setNeutralButton("取消", null)
+                    .show();
+                }
                 break;
             default:
                 super.onClick(view);

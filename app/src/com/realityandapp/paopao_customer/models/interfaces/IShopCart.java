@@ -22,4 +22,5 @@ public interface IShopCart extends IBase {
     public Integer calculate_distance_and_pricing(String shop_id, String address_id) throws HttpApi.RequestDataErrorException, HttpApi.AuthErrorException, HttpApi.NetworkErrorException;
     public void set_to_id(String address_id);
     public String get_to_id();
+    public boolean wrote_all_pluses();
 }
