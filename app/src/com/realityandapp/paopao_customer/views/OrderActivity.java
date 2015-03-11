@@ -228,7 +228,7 @@ public class OrderActivity extends PaopaoBaseActivity implements View.OnClickLis
         if (order.get_status() == Order.OrderStatus.pending) {
             Intent intent = new Intent(this, PayActivity.class);
             intent.putExtra(Constants.Extra.ORDER, order);
-            startActivity(intent);
+            startActivityForResult(intent, Constants.Request.ORDER);
         } else if (Order.OrderStatus.took_away == order.get_status()) {
             show_qrcode();
         } else {

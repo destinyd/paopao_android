@@ -55,6 +55,7 @@
     <string name="params_password_confirmation">密码验证</string>
     <string name="params_verify_code">手机验证码</string>
     <string name="params_email">Email</string>
+    <string name="wait_for_paying">支付中，请稍后...</string>
 
 
 </resources>
