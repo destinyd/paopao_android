@@ -8,6 +8,7 @@ import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
+import com.umeng.fb.FeedbackAgent;
 import roboguice.activity.RoboActivity;
 import roboguice.util.RoboAsyncTask;
 
@@ -22,8 +23,14 @@ public class LauncherActivity extends RoboActivity {
 
         EMChat.getInstance().setAppInited();
         // todo init here
+        feedback_sync();
         application.init_image_config();
         go_to_main();
+    }
+
+    private void feedback_sync() {
+        FeedbackAgent agent = new FeedbackAgent(this);
+        agent.sync();
     }
 
     private void go_to_main() {

@@ -85,4 +85,17 @@
                 android:text="@string/exit"
                 style="@style/MenuLineTV"/>
     </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/menu_feedback"
+            style="@style/MenuLine"
+            >
+        <com.realityandapp.paopao_customer.widget.FontAwesomeTextView
+                style="@style/MenuLineFATV"
+                android:text="@string/fa_note"
+                />
+        <TextView
+                android:text="@string/feedback"
+                style="@style/MenuLineTV"/>
+    </LinearLayout>
 </LinearLayout>

@@ -11,6 +11,7 @@ import com.realityandapp.paopao_customer.Constants;
 import com.realityandapp.paopao_customer.R;
 import com.realityandapp.paopao_customer.views.*;
 import com.realityandapp.paopao_customer.widget.FontAwesomeButton;
+import com.umeng.fb.FeedbackAgent;
 import roboguice.inject.InjectView;
 
 /**
@@ -35,6 +36,8 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
     LinearLayout menu_settings;
     @InjectView(R.id.menu_exit)
     LinearLayout menu_exit;
+    @InjectView(R.id.menu_feedback)
+    LinearLayout menu_feedback;
 
     @Override
     protected void onStart() {
@@ -50,6 +53,7 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
         menu_addresses.setOnClickListener(this);
         menu_settings.setOnClickListener(this);
         menu_exit.setOnClickListener(this);
+        menu_feedback.setOnClickListener(this);
     }
 
     @Override
@@ -81,9 +85,17 @@ public class PaopaoBaseIncludeDrawerActivity extends PaopaoBaseActivity {
             case R.id.menu_exit:
                 alert_exit();
                 break;
+            case R.id.menu_feedback:
+                show_feedback();
+                break;
             default:
                 super.onClick(v);
         }
+    }
+
+    private void show_feedback() {
+        FeedbackAgent agent = new FeedbackAgent(this);
+        agent.startFeedbackActivity();
     }
 
     @Override

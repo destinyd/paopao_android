@@ -241,6 +241,18 @@
                 android:name="EASEMOB_APPKEY"
                 android:value="realityandapp#paopaotest" />
 
+
+        <!--umeng fb-->
+        <activity
+                android:name="com.umeng.fb.ConversationActivity"/>
+        <meta-data
+                android:value="@string/umeng_appkey"
+                android:name="UMENG_APPKEY"/>
+        <meta-data
+                android:value="@string/umeng_channel"
+                android:name="UMENG_CHANNEL"/>
+        <!--umeng fb-->
+
         <!--baidu-->
         <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
