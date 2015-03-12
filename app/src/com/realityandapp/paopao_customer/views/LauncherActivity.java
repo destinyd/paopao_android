@@ -9,6 +9,8 @@ import com.realityandapp.paopao_customer.models.User;
 import com.realityandapp.paopao_customer.networks.DataProvider;
 import com.realityandapp.paopao_customer.networks.HttpApi;
 import com.umeng.fb.FeedbackAgent;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UpdateConfig;
 import roboguice.activity.RoboActivity;
 import roboguice.util.RoboAsyncTask;
 
@@ -19,6 +21,10 @@ public class LauncherActivity extends RoboActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launcher);
+        UpdateConfig.setDebug(true);
+        // 静默下载更新 wifi
+        UmengUpdateAgent.silentUpdate(this);
+
         application = (PaopaoCustomerApplication) getApplication();
 
         EMChat.getInstance().setAppInited();

@@ -253,6 +253,17 @@
                 android:name="UMENG_CHANNEL"/>
         <!--umeng fb-->
 
+        <!--umeng update-->
+        <service
+                android:name="com.umeng.update.net.DownloadingService"
+                android:process=":DownloadingService" >
+        </service>
+        <activity
+                android:name="com.umeng.update.UpdateDialogActivity"
+                android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!--umeng update-->
+
         <!--baidu-->
         <meta-data
                 android:name="com.baidu.lbsapi.API_KEY"
