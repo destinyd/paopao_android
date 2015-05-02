@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="app_name">美食跑跑</string>
+	<string name="app_name">易食趴</string>
 	<string name="action_settings">Settings</string>
 	<string name="hello_world">Hello world!</string>
     <string name="label_login">手机号/昵称/邮箱</string>
